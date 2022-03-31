@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&family=Roboto:wght@400;500;700;900&display=swap');
 
 * {
   box-sizing: border-box;
@@ -6,11 +6,18 @@
   padding: 0;
 }
 
-.padNav {
-  background-color: grey;
+.padNavTop {
+  background-color: rgba(223, 222, 222, 0.904);
   margin: 0;
   padding: 0;
-  height: 15px;
+  height: 20px;
+}
+
+.padNavBottom {
+  background-color: rgba(223, 222, 222, 0.904);
+  margin: 0;
+  padding: 0;
+  height: 40px;
 }
 
 .topNav {
@@ -18,7 +25,7 @@
   color: rgb(0, 0, 0);
   font-family: 'IBM Plex Sans Arabic', sans-serif;
   font-weight: 300;
-  font-size: 16px;
+  font-size: 18px;
   text-decoration: none;
   display: flex;
   justify-content: flex-start;
@@ -27,8 +34,8 @@
 }
 
 .logo {
-  width: 5%;
-  height: 5%;
+  width: 7.5%;
+  height: 7.5%;
   cursor: pointer;
 }
 
@@ -42,10 +49,71 @@
   text-decoration: none;
   padding: 0px 20px;
   transition: all 0.3s ease 0s;
+  color: rgb(128,128,128);
 }
 
 .nav-links:hover {
   color: black;
   text-decoration: underline;
-  transition: all 0.3s ease 0s;
+  transition: all 0.5s ease 0s;
+}
+
+.page-container {
+  height: 600px;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.small-home-text {
+  list-style: none;
+  padding-top: 80px;
+  font-size: 36px;
+  text-align: center;
+  font-weight: 600;
+  font-family: 'Dancing Script';
+}
+
+.large-home-text {
+  list-style: none;
+  padding-top: 60px;
+  font-size: 100px;
+  text-align: center;
+  font-weight: 900;
+  font-family: 'Roboto', sans-serif;
+}
+
+.home-btn {
+  width: 6.5em;
+  height: 2.3em;
+  margin: 1.5em;
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 0.625em;
+  font-size: 20px;
+  cursor: pointer;
+ }
+
+.home-btn:hover {
+   background: rgb(128,128,128);
+   color: white;
+   transition: all 0.3s ease 0s;
+}
+
+.padBottom {
+  background-color: black;
+  margin: 0px;
+  padding: 0px;
+  height: 125px;
+}
+
+.products-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
 }
