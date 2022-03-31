@@ -1,11 +1,16 @@
 import React from 'react';
+import Overview from './Overview.jsx';
+import QA from './Q&A.jsx';
+import Related from './Related.jsx';
+import Reviews from './Reviews.jsx';
 
 const ProductDetail = () => {
   return (
     <div className="page-container">
-      <div>
-        This is the product detail page!
-      </div>
+        <Overview />
+        <Related />
+        <QA />
+        <Reviews />
     </div>
   );
 }
