@@ -159,23 +159,23 @@
 .overview-container {
   width: 100%;
   height: 25%;
-  border-style: solid black;
+  border-style: solid;
 }
 
 .qa-container {
   width: 100%;
   height: 25%;
-  border-style: solid black;
+  border-style: solid;
 }
 
 .related-container {
   width: 100%;
   height: 25%;
-  border-style: solid black;
+  border-style: solid;
 }
 
 .reviews-container {
   width: 100%;
   height: 25%;
-  border-style: solid black;
+  border-style: solid;
 }

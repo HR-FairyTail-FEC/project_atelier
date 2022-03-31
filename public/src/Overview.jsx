@@ -1,9 +1,19 @@
 import React from 'react';
 
-const Overview = () => {
+const Overview = (props) => {
+  let details = props.details;
+  console.log(details);
+  let display;
+  if (details.length < 1) {
+    display = <div>Page Loading...</div>
+  } else {
+    display = <div></div>;
+  }
   return (
     <div className="overview-container">
-      This is the overview component.
+      <div>
+        {display}
+      </div>
     </div>
   );
 }
