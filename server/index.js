@@ -24,6 +24,13 @@ app.get('/api/products/:id/styles', (request, response) => {
     .catch(err => console.error(err));
 });
 
+app.get('/api/products/:id/related', (request, response) => {
+  let id = request.params.id;
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${id}/related`, {headers: Options})
+    .then(res => response.json(res.data))
+    .catch(err => console.error(err));
+});
+
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });

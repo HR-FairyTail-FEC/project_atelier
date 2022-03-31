@@ -8,7 +8,7 @@ import ProductDetail from './ProductDetail.jsx';
 const axios = require('axios');
 
 const App = () => {
-  const [data, setData] = useState([]);
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
     let elements = [];
@@ -22,10 +22,11 @@ const App = () => {
         let price = product.default_price;
         let response = await axios.get(`http://localhost:3000/api/products/${id}/styles`);
         let styles = response.data;
-        let url = styles.results[0].photos[0].thumbnail_url || '../../public/dist/logo.png';
+        let url = styles.results[0].photos[0].thumbnail_url || 'https://cdn.shopify.com/s/files/1/0512/4741/5494/files/Clive_HPMobile_1400x.jpg?v=1647031597';
         elements.push({id, name, url, price});
+        console.log(elements);
       }
-      setData(elements);
+      setProducts(elements);
     }
     fetch();
   }, []);
@@ -44,7 +45,7 @@ const App = () => {
       <div className="padNavBottom"></div>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/products" element={<Products products={data}/>} />
+        <Route path="/products" element={<Products products={products}/>} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/products/:id" element={<ProductDetail />}></Route>
       </Routes>
