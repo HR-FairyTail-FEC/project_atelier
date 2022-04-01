@@ -22,15 +22,12 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [
-          'style-loader',
-          'css-loader'
-        ]
+        use: ['style-loader', 'css-loader']
       }
     ]
   },
   devServer: {
     historyApiFallback: true,
-    static: 'public/dist'
+    static: path.resolve(__dirname, 'public/dist')
   }
 }

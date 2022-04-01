@@ -27,7 +27,6 @@ function ProductDetail() {
         final[elements[index]] = item;
       });
       setDetail(final);
-      console.log(final);
     };
     fetch();
   }, []);
