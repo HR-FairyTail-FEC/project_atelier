@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useLayoutEffect, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Overview from './Overview.jsx';
 
@@ -9,7 +9,7 @@ function ProductDetail() {
 
   const { id } = useParams();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const promises = [];
     let result = [];
     const endpoints = [`/api/products?product_id=${id}`, `/api/products/${id}/styles`, `/api/products/${id}/related`, `/api/reviews?product_id=${id}&sort=relevant`, `/api/reviews/meta?product_id=${id}`, `/api/qa/questions?product_id=${id}`, '/api/cart'];
@@ -17,7 +17,9 @@ function ProductDetail() {
       for (let i = 0; i < endpoints.length; i += 1) {
         promises.push(axios.get(`http://localhost:3000${endpoints[i]}`));
       }
+      console.log(promises);
       const data = await Promise.all(promises);
+      console.log(data);
       data.forEach((item) => {
         result = [...result, item.data];
       });
@@ -25,6 +27,7 @@ function ProductDetail() {
       const elements = ['product', 'styles', 'related', 'reviews', 'meta', 'questions', 'cart'];
       result.forEach((item, index) => {
         final[elements[index]] = item;
+        console.log(final);
       });
       setDetail(final);
     };

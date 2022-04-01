@@ -175,9 +175,16 @@
   height: 500px;
   margin: 25px 25px 25px 75px;
   display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   border: 2px solid black;
+}
+
+.thumbnail-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
 }
 
 .product-detail-container {
@@ -203,6 +210,7 @@
   opacity: 0.5;
   margin: 5px;
   border: 2px solid black;
+  transition: opacity .35s ease-out 0s;
 }
 
 .thumbnail-img:hover {
