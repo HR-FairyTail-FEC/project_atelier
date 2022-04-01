@@ -1,13 +1,16 @@
 import React, { useLayoutEffect, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Overview from './Overview.jsx';
+import Related from './Related.jsx';
 
 const axios = require('axios');
+
 
 function ProductDetail() {
   const [productDetail, setDetail] = useState([]);
 
   const { id } = useParams();
+  // console.log('id clicked', id);
 
   useLayoutEffect(() => {
     const promises = [];
@@ -17,9 +20,9 @@ function ProductDetail() {
       for (let i = 0; i < endpoints.length; i += 1) {
         promises.push(axios.get(`http://localhost:3000${endpoints[i]}`));
       }
-      console.log(promises);
+      // console.log(promises);
       const data = await Promise.all(promises);
-      console.log(data);
+      // console.log('data is', data);
       data.forEach((item) => {
         result = [...result, item.data];
       });
@@ -27,8 +30,8 @@ function ProductDetail() {
       const elements = ['product', 'styles', 'related', 'reviews', 'meta', 'questions', 'cart'];
       result.forEach((item, index) => {
         final[elements[index]] = item;
-        console.log(final);
       });
+      // console.log('final item is' ,final);
       setDetail(final);
     };
     fetch();
@@ -37,6 +40,7 @@ function ProductDetail() {
   return (
     <div className="page-container">
       <Overview details={productDetail} />
+      <Related details={productDetail} />
     </div>
   );
 }
