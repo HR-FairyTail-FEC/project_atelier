@@ -136,6 +136,7 @@
   margin: 50px 35px;
   height: 300px;
   width: 300px;
+  position: relative;
 }
 
 .row img {
@@ -158,24 +159,26 @@
 
 .overview-container {
   width: 100%;
-  height: 25%;
+  height: 100%;
   border-style: solid;
+  background-color: blue;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: start;
 }
 
-.qa-container {
-  width: 100%;
-  height: 25%;
-  border-style: solid;
+.carousel-container {
+  background-color: green;
+  width: 800px;
+  height: 500px;
+  margin: 25px 25px 25px 75px;
 }
 
-.related-container {
-  width: 100%;
-  height: 25%;
-  border-style: solid;
-}
-
-.reviews-container {
-  width: 100%;
-  height: 25%;
-  border-style: solid;
+.product-detail-container {
+  background-color: red;
+  width: 750px;
+  height: 500px;
+  margin: 25px;
 }

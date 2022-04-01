@@ -1,18 +1,14 @@
 import React from 'react';
 
-const Overview = (props) => {
-  let details = props.details;
-  console.log(details);
+function Overview() {
   let display;
-  if (details.length < 1) {
-    display = <div>Page Loading...</div>
-  } else {
-    display = <div></div>;
-  }
   return (
     <div className="overview-container">
-      <div>
-        {display}
+      <div className="carousel-container">
+        Hello!
+      </div>
+      <div className="product-detail-container">
+        World!
       </div>
     </div>
   );
