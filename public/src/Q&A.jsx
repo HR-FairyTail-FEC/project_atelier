@@ -1,6 +1,6 @@
 import React from 'react';
 
-const QA = () => {
+const QA = (props) => {
   return (
     <div className="qa-container">
       This is the Q+A component.
