@@ -220,3 +220,17 @@
 .active {
   opacity: 1;
 }
+
+.thumbnail-arrow {
+  object-fit: cover;
+  max-width: 180px;
+  max-height: 100px;
+  cursor: pointer;
+  opacity: 0.5;
+  margin: 5px;
+  transition: opacity .35s ease-out 0s;
+}
+
+.thumbnail-arrow:hover {
+  opacity: 1;
+}

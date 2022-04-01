@@ -14,21 +14,18 @@ app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.static(fullPath));
 
-app.get('/api/products', (request, response) => {
-  const id = request.query.product_id;
-  console.log('in api/products with id=', id);
-
-  if (id) { //select single item
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${id}`, { headers: Options })
+app.get('/api/products/:id', (request, response) => {
+  const { id } = request.params;
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${id}`, { headers: Options })
     .then(res => response.json(res.data))
     .catch(err => console.error(err));
-  } else {
-    axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products', { headers: Options })
-    .then(res => response.json(res.data))
-    .catch(err => console.error(err));
-  }
 });
 
+app.get('/api/products', (request, response) => {
+  axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products', { headers: Options })
+  .then(res => response.json(res.data))
+  .catch(err => console.error(err));
+});
 
 
 app.get('/api/products/:id/styles', (request, response) => {
