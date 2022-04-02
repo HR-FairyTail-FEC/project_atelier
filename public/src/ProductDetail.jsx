@@ -1,42 +1,42 @@
-import React, { useLayoutEffect, useState } from 'react';
+import React, { useLayoutEffect, useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import Overview from './Overview.jsx';
 import QA from './Q&A.jsx';
-import Related from './Related.jsx';
-import Reviews from './Reviews.jsx';
-import { useParams } from 'react-router-dom';
+
 const axios = require('axios');
 
-const ProductDetail = () => {
-
+function ProductDetail() {
   const [productDetail, setDetail] = useState([]);
 
-  let { id } = useParams();
+  const { id } = useParams();
 
   useLayoutEffect(() => {
-    const fetch = async() => {
-      try {
-        let products = await axios.get(`http://localhost:3000/api/products`);
-        let styles = await axios.get(`http://localhost:3000/api/products/${id}/styles`);
-        let related = await axios.get(`http://localhost:3000/api/products/${id}/related`);
-        let results = {
-          products: products.data,
-          styles: styles.data,
-          related: related.data
-        };
-        setDetail(results);
-      } catch(err) {
-        console.error(err);
+    const promises = [];
+    let result = [];
+    const endpoints = [`/api/products?product_id=${id}`, `/api/products/${id}/styles`, `/api/products/${id}/related`, `/api/reviews?product_id=${id}&sort=relevant`, `/api/reviews/meta?product_id=${id}`, `/api/qa/questions?product_id=${id}`, '/api/cart'];
+    const fetch = async () => {
+      for (let i = 0; i < endpoints.length; i += 1) {
+        promises.push(axios.get(`http://localhost:3000${endpoints[i]}`));
       }
-    }
+      const data = await Promise.all(promises);
+      data.forEach((item) => {
+        result = [...result, item.data];
+      });
+      const final = {};
+      const elements = ['product', 'styles', 'related', 'reviews', 'meta', 'questions', 'cart'];
+      result.forEach((item, index) => {
+        final[elements[index]] = item;
+      });
+      setDetail(final);
+      console.log(final);
+    };
     fetch();
   }, []);
 
   return (
-    <div className="page-container">
-        <Overview details={productDetail}/>
-        <Related />
-        <QA />
-        <Reviews />
+    <div>
+      <Overview details={productDetail} />
+      <QA details = {productDetail}/>
     </div>
   );
 }
