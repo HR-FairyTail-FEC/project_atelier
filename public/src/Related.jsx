@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 let placeHolderURL = 'https://www.eslc.org/wp-content/uploads/2019/08/placeholder-grey-square-600x600.jpg'
-import { ContainerRelated } from '../src/Styled Components/RelatedItems+Comparison/container-related.styled.js';
+import { ContainerRelated, Category, Name, Price, Stars, ImageContainer} from '../src/Styled Components/RelatedItems+Comparison/container-related.styled.js';
 
 
 
@@ -43,14 +43,13 @@ const Related = (props)=> {
               HTMLText.map((obj,index)=>{
                 return (
                   <ContainerRelated>
-                    <img src={obj.thumbnailURL} alt="item" width="50%" height="50%"/>
-                    <p> {obj.category} </p>
-                    <p> {obj.name}</p>
-                    <p> ${obj.price}</p>
-                    <p> {obj.stars} stars </p>
+                    <ImageContainer img={obj.thumbnailURL}>
+                    </ImageContainer>
+                    <Category>{obj.category} </Category>
+                    <Name> {obj.name}</Name>
+                    <Price> ${obj.price}</Price>
+                    <Stars>{obj.stars}</Stars>
                   </ContainerRelated>
-
-
                     )
               })
             }
