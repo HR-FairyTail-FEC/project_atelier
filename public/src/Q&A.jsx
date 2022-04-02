@@ -5,11 +5,17 @@ import moment from 'moment';
 const QA = (props) => {
   let questions = props.details.questions;
   let display;
+  let allQ = [];
+  let allA = [];
+  const sayHi = () => {
+    allA = [];
+    console.log(allA)
+  }
+
   if (props.details.length < 1) {
     display = <div>Loading Questions..</div>
   } else {
-    let allQ = [];
-    let allA = [];
+
     questions.results.forEach(result=>{
       console.log(result.answers)
       for (let answer in result.answers) {
@@ -34,7 +40,7 @@ const QA = (props) => {
       <div>
       {display}
       </div>
-      <button>More Answered Questions</button>
+      <button onClick ={sayHi} >More Answered Questions</button>
       <button>Add A Question</button>
     </div>
 
