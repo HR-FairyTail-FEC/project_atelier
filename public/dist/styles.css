@@ -161,7 +161,6 @@
   width: 100%;
   height: 100%;
   border-style: solid;
-  background-color: blue;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -170,7 +169,6 @@
 }
 
 .carousel-container {
-  background-color: green;
   width: 800px;
   height: 500px;
   margin: 25px 25px 25px 75px;
@@ -178,17 +176,22 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  border: 2px solid black;
 }
 
 .thumbnail-container {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
+  margin-right: 75px;
+  margin-left: 75px;
+}
+
+.feature-container {
+  margin-right: 75px;
+  margin-left: 75px;
 }
 
 .product-detail-container {
-  background-color: red;
   width: 750px;
   height: 500px;
   margin: 25px;
@@ -204,12 +207,11 @@
 
 .thumbnail-img {
   object-fit: cover;
-  max-width: 180px;
-  max-height: 100px;
+  max-width: 125px;
+  max-height: 75px;
   cursor: pointer;
   opacity: 0.5;
   margin: 5px;
-  border: 2px solid black;
   transition: opacity .35s ease-out 0s;
 }
 
@@ -221,10 +223,19 @@
   opacity: 1;
 }
 
+.clicked {
+  object-fit: cover;
+  max-width: 125px;
+  max-height: 75px;
+  cursor: pointer;
+  margin: 5px;
+  border: 2.5px solid black;
+}
+
 .thumbnail-arrow {
   object-fit: cover;
-  max-width: 180px;
-  max-height: 100px;
+  max-width: 125px;
+  max-height: 75px;
   cursor: pointer;
   opacity: 0.5;
   margin: 5px;

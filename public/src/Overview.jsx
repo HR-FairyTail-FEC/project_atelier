@@ -5,17 +5,25 @@ function Overview(props) {
   let feature;
   let photos;
   let details = props.details;
-  let [featured, setFeatured] = useState(0);
-  let [active, setActive] = useState(0);
-  let [start, setStart] = useState(0);
-  let [end, setEnd] = useState(3);
+  let [{featured, active, clicked, start, end, thumbnails}, setState] = useState({
+    featured: 0,
+    active: null,
+    clicked: 0,
+    start: 0,
+    end: 3
+  });
 
-  const handleHover = (event) => {
-    setActive(event.target.id);
-  }
-  const handleSelect = (event) => {
-    setFeatured(event.target.id);
-    setActive(event.target.id);
+  const handleArrowClick = (photos) => {
+    let last = photos.length - 1;
+    if (end === last) {
+      setState({featured, active, clicked, start: start + 1, end: 0});
+    }
+    if (start === last) {
+      setState({featured, active, clicked, start: 0, end: end + 1});
+    }
+    if (start !== last && end !== last) {
+      setState({featured, active, clicked, start: start + 1, end: end + 1});
+    }
   }
 
   if (details.length < 1) {
@@ -29,22 +37,40 @@ function Overview(props) {
     let featureUrl = details.styles.results[0].photos[featured].thumbnail_url;
     feature = <img className="feature-img" src={featureUrl}></img>;
     let mapped = [];
-    for (let i = 0; i < photos.length; i++) {
-      let photo = photos[i];
-      if (i === active) {
-        mapped.push(<img onClick={handleSelect} onMouseEnter={handleHover} id={i} key={i} className="thumbnail-img active" src={photo.thumbnail_url}></img>)
-      } else {
-        mapped.push(<img onClick={handleSelect} onMouseEnter={handleHover} id={i} key={i} className="thumbnail-img" src={photo.thumbnail_url}></img>);
+    if (end < start) {
+      let sliced = photos.slice(start).concat(photos.slice(0, end + 1));
+      for (let i = 0; i < sliced.length; i++) {
+        let photo = sliced[i];
+        if (i === active) {
+          mapped.push(<img onClick={(e) => setState({featured: e.target.id, active, clicked: e.target.id, start, end})} onMouseEnter={(e) => setState({featured, active: e.target.id, clicked, start, end})} id={i} key={i} className="thumbnail-img active" src={photo.thumbnail_url}></img>)
+        } else if (i === clicked) {
+          mapped.push(<img onClick={(e) => setState({featured: e.target.id, active, clicked: e.target.id, start, end})} onMouseEnter={(e) => setState({featured, active: e.target.id, clicked, start, end})} id={i} key={i} className="clicked" src={photo.thumbnail_url}></img>)
+        } else {
+          mapped.push(<img onClick={(e) => setState({featured: e.target.id, active, clicked: e.target.id, start, end})} onMouseEnter={(e) => setState({featured, active: e.target.id, clicked, start, end})} id={i} key={i} className="thumbnail-img" src={photo.thumbnail_url}></img>);
+        }
+      }
+    }
+    if (start < end) {
+      let sliced = photos.slice(start, end + 1);
+      for (let i = 0; i < sliced.length; i++) {
+        let photo = sliced[i];
+        if (i === active) {
+          mapped.push(<img onClick={(e) => setState({featured: e.target.id, active, clicked: e.target.id, start, end})} onMouseEnter={(e) => setState({featured, active: e.target.id, clicked, start, end})} id={i} key={i} className="thumbnail-img active" src={photo.thumbnail_url}></img>)
+        } else if (i === clicked) {
+          mapped.push(<img onClick={(e) => setState({featured: e.target.id, active, clicked: e.target.id, start, end})} onMouseEnter={(e) => setState({featured, active: e.target.id, clicked, start, end})} id={i} key={i} className="clicked" src={photo.thumbnail_url}></img>)
+        } else {
+          mapped.push(<img onClick={(e) => setState({featured: e.target.id, active, clicked: e.target.id, start, end})} onMouseEnter={(e) => setState({featured, active: e.target.id, clicked, start, end})} id={i} key={i} className="thumbnail-img" src={photo.thumbnail_url}></img>);
+        }
       }
     }
     display =
-    <div>
+    <div className="left-container">
       <div className="carousel-container">
         <div className="thumbnail-container">
           {mapped}
-          <img className="thumbnail-arrow" src="https://images.squarespace-cdn.com/content/v1/5bbd01503560c334e3d24981/1551746621260-M55SZ54KVQJWN784VA38/arrow-down.png"></img>
+          <img onClick={() => handleArrowClick(photos)} className="thumbnail-arrow" src="https://images.squarespace-cdn.com/content/v1/5bbd01503560c334e3d24981/1551746621260-M55SZ54KVQJWN784VA38/arrow-down.png"></img>
         </div>
-        <div>
+        <div className="feature-container">
           {feature}
         </div>
       </div>
