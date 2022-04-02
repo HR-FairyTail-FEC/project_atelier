@@ -1,17 +1,16 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 let placeHolderURL = 'https://www.eslc.org/wp-content/uploads/2019/08/placeholder-grey-square-600x600.jpg'
-import { ContainerRelated, Category, Name, Price, Stars, ImageContainer} from '../src/Styled Components/RelatedItems+Comparison/container-related.styled.js';
-
+import { ContainerRelated, Category, Name, Price, ImageContainer} from '../src/Styled Components/RelatedItems+Comparison/container-related.styled.js';
+import { ContainerOutfit, AddToOutfit_Text, AddToOutfit_Button} from '../src/Styled Components/RelatedItems+Comparison/container-outfit.styled.js';
 
 
 const Related = (props)=> {
   // console.log('in related with props', props);
-
-    const [HTMLText, setHTMLText] = useState([]);
+    const [relatedEntries, setRelatedEntries] = useState([]);
     useEffect(()=>{
         if (props.details.length === 0) {
-          setHTMLText([]);
+          setRelatedEntries([]);
         }
         else {
           let related = props.details.related;
@@ -26,7 +25,7 @@ const Related = (props)=> {
             return formatData(allData);
           }).then((value)=>{
             console.log('second then value is', value);
-            setHTMLText(value);
+            setRelatedEntries(value);
           })
         }
     },[props.details]);
@@ -39,54 +38,71 @@ const Related = (props)=> {
           </div>
           <div id="related-items">
             {
-              HTMLText.length ===0 ? <p> Loading... </p> :
-              HTMLText.map((obj,index)=>{
+              relatedEntries.length ===0 ? <p> Loading... </p> :
+              relatedEntries.map((obj,index)=>{
                 return (
-                  <ContainerRelated>
-                    <ImageContainer img={obj.thumbnailURL}>
-                    </ImageContainer>
-                    <Category>{obj.category} </Category>
-                    <Name> {obj.name}</Name>
-                    <Price> ${obj.price}</Price>
-                    <Stars>{obj.stars}</Stars>
-                  </ContainerRelated>
+                  <>
+                    <ContainerRelated>
+                      <ImageContainer img={obj.thumbnailURL}>
+                      </ImageContainer>
+                      <Category>{obj.category} </Category>
+                      <Name> {obj.name}</Name>
+                      <Price> ${obj.price} </Price>
+                      <Stars rating={obj.stars} instance={obj.instance} key={index}/>
+                    </ContainerRelated>
+                  </>
                     )
               })
             }
           </div>
         </div>
-
+        <br></br>
         <div id="outfit-container">
-        </div>
+          <div id="outfit-title">
+            <p> YOUR OUTFIT </p>
+          </div>
+          <div id="outfit-items">
+            {
+              (
+                <ContainerOutfit>
+                  <AddToOutfit_Button onClick={AddToOutfit_Click}> PLUS SYMBOL </AddToOutfit_Button>
+                  <AddToOutfit_Text> Add to Outfit </AddToOutfit_Text>
+                </ContainerOutfit>
+              )
 
+            }
+          </div>
+        </div>
       </div>
 
     );
 };
 
-
 function formatData(allData){
   console.log('in formatData with data', allData);
     let data = [];
+
     for (let i =0; i<allData.length;i = i+3){
       let averageStars = calculateStars(allData[i+1].data);//even is cnp data, odd has reviews
       let thumbnailURL = allData[i+2].data.results[0].photos[0].thumbnail_url || placeHolderURL;
-      console.log(thumbnailURL);
+      let instance = i/3;
+      // console.log('instance is', instance);
+      // console.log(thumbnailURL);
       let dataObj = {
+        instance: instance,
         thumbnailURL: thumbnailURL,
         category: allData[i].data.category,
         name: allData[i].data.name,
         price: allData[i].data.default_price,
         stars: averageStars
       }
-      console.log('dataobj being pushed is', dataObj);
+      // console.log('dataobj being pushed is', dataObj);
       data.push(dataObj);
     }
     console.log('data array', data);
     return data;
 
 };
-
 function calculateStars(obj){
   let count = obj.count;
   if (count === 0) return undefined;
@@ -98,9 +114,62 @@ function calculateStars(obj){
   if (sum===0) return undefined;
   let average = sum/count;
   let averageRounded = (Math.round(average * 4) / 4).toFixed(2);
-  // console.log('averageRounded is calulcated', averageRounded);
   return averageRounded;
 }
+function Stars(props) {
+  // console.log('in stars component with rating', props.rating,' instance', props.instance);
+  let instance = props.instance;
+  let rating = props.rating;
+  let starValues = ratingToArray(rating);
+  return (
+    <div className='star-container'>
+      {
+        starValues.map((percentage,index)=>{
+          return (
+            <div className="star">
+              <svg width="24px" height="24px" viewBox="0 0 32 32">
+                  <defs>
+                    <linearGradient id={`${instance}_grad${index}`}>
+                      <stop offset={`${percentage}`} stopColor="black"/>
+                      <stop offset={`${percentage}`} stopColor="white"/>
+                    </linearGradient>
+                  </defs>
+                  <path fill={`url(#${instance}_grad${index})`} stroke="#646464"  strokeWidth="0.3px"
+                  d="M20.388,10.918L32,12.118l-8.735,7.749L25.914,31.4l-9.893-6.088L6.127,31.4l2.695-11.533L0,12.118
+                  l11.547-1.2L16.026,0.6L20.388,10.918z"/>
+              </svg>
+            </div>
+          )
+        })
+      }
+    </div>
+  )
+}
+function ratingToArray(rating){
+  console.log('in rating to array with rating', rating);
+  let array = ['0%','0%','0%','0%','0%'];
+  let whole = Math.floor(rating);
+  let decimal = rating - whole;
+  // console.log('whole is', whole, 'dec is ', decimal);
+  for (let i =0; i<whole; i++){
+    array[i] = '100%';
+  }
+  let decimalToPercentage = {
+    0.25: '25%',
+    0.5: '50%',
+    0.75: '75%'
+  }
+  let percentage = decimalToPercentage[decimal];
+  array[whole] = percentage;
+  // console.log('array is', array);
+  return array;
+}
+
+function AddToOutfit_Click(e){
+  console.log(' button clicked');
+}
+
+
 
 
 export default Related;

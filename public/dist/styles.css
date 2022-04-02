@@ -273,4 +273,11 @@
   height: 370px;
 }
 
+.star-container{
+  display:flex;
+  position: absolute;
+  bottom:10px;
+  left:10px;
+}
+
 

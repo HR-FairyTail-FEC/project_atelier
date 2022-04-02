@@ -51,7 +51,6 @@ const Price = styled.p`
   font-weight: 300;
   bottom: 86px;
   left: 10px;
-
 `;
 
 const Stars = styled.p`
@@ -59,7 +58,6 @@ const Stars = styled.p`
   position: absolute;
   bottom: 65px;
   left: 10px;
-
 `;
 
 
