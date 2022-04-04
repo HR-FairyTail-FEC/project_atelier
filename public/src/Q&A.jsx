@@ -7,9 +7,10 @@ const QA = (props) => {
   let display;
   let allQ = [];
   let numQShown = 2;
-
+  let index = 0;
   // let qShown = [];
   // const [qShown, setQShown] = useState([{ result: props.details.questions[0].results, answers: [] }]);
+  let initLoad = false;
   const [qShown, setQShown] = useState([]);
   // const sayHi = () => {
   //   if (allQ.length ===1) {
@@ -25,27 +26,29 @@ const QA = (props) => {
     console.log('here')
 
     console.log(allQ)
-    if (allQ.length === 1 && allQ[0]) {
+    if (allQ.length === 1) {
       // const [qShown, setQShown] = useState([allQ[0]]);
       setQShown([allQ[0]])
-    } else if (allQ.length >= 2 && allQ[1]) {
+    } else if (allQ.length >= 2) {
       // const [qShown, setQShown] = useState([allQ[0], allQ[1]]);
       setQShown([allQ[0], allQ[1]])
     }
     // initialize();
-  })
+  }, []);
+
   if (props.details.length < 1) {
     display = <div>Loading Questions..</div>
     // initialize();
   } else {
-
     // console.log('always in here')
     questions.results.forEach(result => {
+
       let allA = [];
       for (let answer in result.answers) {
         allA.push(result.answers[answer]);
       }
       allQ.push({ result: result, answers: allA });
+      console.log(index)
     })
     // if (allQ[0] && props.details.length === 1) {
     //   setQShown([allQ[0]]);
@@ -98,11 +101,11 @@ const QA = (props) => {
   }
   return (
     <div>
-      {/* {sayHi()} */}
-      <input placeholder='HAVE A QUESTION? SEARCH FOR ANSWERS...'></input>
-      {/* <div> */}
 
-      <div>{qShown.map(q => <div>
+      <input placeholder='HAVE A QUESTION? SEARCH FOR ANSWERS...'></input>
+      {/* <div> */}{props.details.length < 1 && display}
+
+      <div>{allQ.slice(0, numQShown).map(q => <div>
         <div>
           <h3> Q: {q.result.question_body} </h3>
           <span>asked by {q.result.asker_name} on {moment(q.result.question_date).format('MMMM Do YYYY')} | Helpful {q.result.question_helpfulness} </span>
