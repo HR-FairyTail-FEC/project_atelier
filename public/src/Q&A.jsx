@@ -20,13 +20,20 @@ const QA = (props) => {
   //   // console.log('hi');
   // }
   // console.log('bye')
-
+  const initialize = () => {
+    if (props.details.length === 1 && allQ[0]) {
+      // const [qShown, setQShown] = useState([allQ[0]]);
+      setQShown([allQ[0]])
+    } else if (props.details.length >= 2 && allQ[1]) {
+      // const [qShown, setQShown] = useState([allQ[0], allQ[1]]);
+      setQShown([allQ[0], allQ[1]])
+    }
+  }
   if (props.details.length < 1) {
     display = <div>Loading Questions..</div>
   } else {
     // console.log('always in here')
     questions.results.forEach(result => {
-      console.log(result);
       let allA = [];
       for (let answer in result.answers) {
         allA.push(result.answers[answer]);
@@ -40,15 +47,10 @@ const QA = (props) => {
     //   qShown[allQ[0], allQ[1]];
     // }
     // console.log('this is question', questions.results[0]);
-  }
-   const initialize = () => {
-      if (props.details.length === 1 && allQ[0]){
-        const [qShown, setQShown] = useState([allQ[0]]);
-      } else if (props.details.length >= 2 && allQ[1]){
-        const [qShown, setQShown] = useState([allQ[0], allQ[1]]);
-      }
-    }
     initialize();
+  }
+
+
   // useEffect(){
   //   if (allQ.length === 1) {
   //     const [qShown, setQShown] = useState([allQ[0]]);
