@@ -220,10 +220,6 @@
 }
 
 .active {
-  opacity: 1;
-}
-
-.clicked {
   object-fit: cover;
   max-width: 125px;
   max-height: 75px;
