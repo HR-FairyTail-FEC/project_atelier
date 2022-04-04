@@ -17,7 +17,6 @@ function ProductDetail() {
       for (let i = 0; i < endpoints.length; i += 1) {
         promises.push(axios.get(`http://localhost:3000${endpoints[i]}`));
       }
-      console.log(promises);
       const data = await Promise.all(promises);
       data.forEach((item) => {
         result = [...result, item.data];

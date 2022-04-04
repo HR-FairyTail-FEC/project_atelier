@@ -1,56 +1,64 @@
 import React, { useState, useEffect } from 'react';
 
 function Overview(props) {
-  let display;
   let feature;
   let photos;
   let details = props.details;
-  let [featured, setFeatured] = useState(0);
-  let [active, setActive] = useState(0);
-  let [start, setStart] = useState(0);
-  let [end, setEnd] = useState(3);
+  const [featured, setFeatured] = useState(0);
+  const [active, setActive] = useState(0);
+  const [thumbnails, setThumbnails] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [display, setDisplay] = useState(<div></div>);
 
-  const handleHover = (event) => {
-    setActive(event.target.id);
-  }
-  const handleSelect = (event) => {
-    setFeatured(event.target.id);
-    setActive(event.target.id);
-  }
-
-  if (details.length < 1) {
-    display =
-    <div>
-      <div className="carousel-container"></div>
-      <div className="product-detail-container"></div>
-    </div>
-  } else {
-    photos = details.styles.results[0].photos;
-    let featureUrl = details.styles.results[0].photos[featured].thumbnail_url;
-    feature = <img className="feature-img" src={featureUrl}></img>;
-    let mapped = [];
-    for (let i = 0; i < photos.length; i++) {
-      let photo = photos[i];
-      if (i === active) {
-        mapped.push(<img onClick={handleSelect} onMouseEnter={handleHover} id={i} key={i} className="thumbnail-img active" src={photo.thumbnail_url}></img>)
-      } else {
-        mapped.push(<img onClick={handleSelect} onMouseEnter={handleHover} id={i} key={i} className="thumbnail-img" src={photo.thumbnail_url}></img>);
-      }
+  if (Object.keys(details).length > 0) {
+    if (!loading) {
+      let photos = details.styles.results[0].photos;
+      setLoading(true);
+      setThumbnails(photos);
     }
-    display =
-    <div>
-      <div className="carousel-container">
-        <div className="thumbnail-container">
-          {mapped}
-          <img className="thumbnail-arrow" src="https://images.squarespace-cdn.com/content/v1/5bbd01503560c334e3d24981/1551746621260-M55SZ54KVQJWN784VA38/arrow-down.png"></img>
-        </div>
-        <div>
-          {feature}
-        </div>
-      </div>
-      <div className="product-detail-container"></div>
-    </div>
   }
+
+  const handleArrowClick = () => {
+    let arr = [...thumbnails];
+    let temp = arr.shift();
+    arr.push(temp);
+    setThumbnails(arr);
+  };
+
+  const handleImageClick = (e) => {
+    setActive(Number(e.target.id));
+    setFeatured(Number(e.target.id));
+  };
+
+  useEffect(() => {
+    if (loading) {
+      let featureUrl = thumbnails[featured].thumbnail_url;
+      let feature = <img className="feature-img" src={featureUrl}></img>;
+      let mapped = [];
+      for (let i = 0; i < 4; i++) {
+        let photo = thumbnails[i].thumbnail_url;
+        if (i === active) {
+          mapped.push(<img onClick={handleImageClick} key={i} id={i} className="active" src={photo}></img>);
+        } else {
+          mapped.push(<img onClick={handleImageClick} key={i} id={i} className="thumbnail-img" src={photo}></img>);
+        }
+      }
+      let carousel =
+      <div className="left-container">
+        <div className="carousel-container">
+          <div className="thumbnail-container">
+            {mapped}
+            <img onClick={handleArrowClick} className="thumbnail-arrow" src="https://images.squarespace-cdn.com/content/v1/5bbd01503560c334e3d24981/1551746621260-M55SZ54KVQJWN784VA38/arrow-down.png"></img>
+          </div>
+          <div className="feature-container">
+            {feature}
+          </div>
+        </div>
+        <div className="product-detail-container"></div>
+      </div>
+      setDisplay(carousel);
+    }
+  }, [loading, thumbnails, featured, active]);
 
   return (
     <div className="overview-container">
