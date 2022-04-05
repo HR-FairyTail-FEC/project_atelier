@@ -8,34 +8,13 @@ const QA = (props) => {
   let allQ = [];
   const [numQShown, setNumQ] = useState(2);
   const [numAShown, setNumA] = useState(2);
-  let index = 0;
+  const [addQPost, setAddQ] = useState(false);
+  const [addAPost, setAddA] = useState(false);
+  const [state, setState] = useState({answer:'', question:'', nickname:'', email:''})
   // let qShown = [];
   // const [qShown, setQShown] = useState([{ result: props.details.questions[0].results, answers: [] }]);
   let initLoad = false;
   const [qShown, setQShown] = useState([]);
-  // const sayHi = () => {
-  //   if (allQ.length ===1) {
-  //     setQShown(allQ);
-  //   } else if (allQ.length>=2) {
-  //     setQShown([allQ[0], allQ[1]]);
-  //   }
-  //   // setQShown(allQ);
-  //   // console.log('hi');
-  // }
-  // console.log('bye')
-  // useEffect(() => {
-  //   console.log('here')
-
-  //   console.log(allQ)
-  //   if (allQ.length === 1) {
-  //     // const [qShown, setQShown] = useState([allQ[0]]);
-  //     setQShown([allQ[0]])
-  //   } else if (allQ.length >= 2) {
-  //     // const [qShown, setQShown] = useState([allQ[0], allQ[1]]);
-  //     setQShown([allQ[0], allQ[1]])
-  //   }
-  //   // initialize();
-  // }, []);
 
   if (props.details.length < 1) {
     display = <div>Loading Questions..</div>
@@ -43,49 +22,31 @@ const QA = (props) => {
   } else {
     // console.log('always in here')
     questions.results.forEach(result => {
-
       let allA = [];
       for (let answer in result.answers) {
         allA.push(result.answers[answer]);
       }
       allQ.push({ result: result, answers: allA });
-      console.log(index)
     })
-    // if (allQ[0] && props.details.length === 1) {
-    //   setQShown([allQ[0]]);
-    // } else if (allQ[1] && allQ[0]) {
-    //   qShown[allQ[0], allQ[1]];
-    // }
-    // console.log('this is question', questions.results[0]);
-    // initialize();
-    console.log(qShown);
   }
 
-  // const initialize = () => {
 
-  // }
-  // initialize();
+  const addQ = () => {
+    if (addQPost === false) {
+      setAddQ(true);
+    } else {
+      setAddQ(false);
+    }
+  }
+  const addA = () => {
+    if (addAPost === false) {
+      setAddA(true);
+    } else {
+      setAddA(false);
+    }
+  }
 
 
-  // if (props.details.length <= 2) {
-  //   setQShown(allQ);
-  // }
-  // let initQ = [];
-  // if (allQ.length <= 2 ) {
-  //   for (let i = 0; i < allQ.length; i++) {
-  //     initQ.push(allQ[i])
-  //   }
-  //   setQShown(initQ);
-  // } else {
-  //   for (let i = 0; i < 2; i++) {
-  //     initQ.push(allQ[i])
-  //   }
-  //   setQShown(initQ);
-  // }
-
-  // if (allQ.length <= 2){
-  //   setQShown(allQ);
-  // }
 
   const showMoreQ = () => {
     setNumQ(numQShown + 2);
@@ -95,18 +56,46 @@ const QA = (props) => {
     setNumA(numAShown + 2);
   }
 
+  const hideA = () => {
+    setNumA(2);
+  }
+
+  const handleChange = (e) => {
+    const value = e.target.value;
+    setState({
+      ...state,
+      [e.target.name]: value
+    })
+  }
+
   return (
     <div>
+      <input placeholder='SEARCH FOR ANSWERS...'></input>
+      {props.details.length < 1 && display}
 
-      <input placeholder='HAVE A QUESTION? SEARCH FOR ANSWERS...'></input>
-      {/* <div> */}{props.details.length < 1 && display}
-
-      <div>{allQ.slice(0, numQShown).map(q => <div>
+      <div>{allQ.slice(0, numQShown).map(q => <div key={q.result.question_id}>
         <div>
           <h3> Q: {q.result.question_body} </h3>
           <span>asked by {q.result.asker_name} on {moment(q.result.question_date).format('MMMM Do YYYY')} | Helpful {q.result.question_helpfulness} </span>
+
+          <div>
+            <button onClick={addA}>Add Answer</button>
+            <div> {addAPost === true &&
+            <form>
+            <label>
+              Answer This Question:
+              <br />
+              <span>*<input type='textarea' name='question' placeholder="Your Answer" value={state.answer} onChange={handleChange}/></span><br />
+              <span>*<input type="text" name='nickname' placeholder="What's Your Nickname" value={state.nickname} onChange={handleChange}/></span>
+              <span>*<input type='text' name='email' placeholder='Email Address' value={state.email} onChange={handleChange}/></span>
+            </label>
+            <button>Submit Answer</button>
+          </form>
+            } </div>
+          </div>
+
           <div>{q.answers.slice(0, numAShown).map(a =>
-            <div>
+            <div key={a.id}>
               <h4>A: {a.body}</h4>
               <span>
                 answered on {moment(a.date).format('MMMM Do YYYY')} by {a.answerer_name} | helpful? {a.helpfulness}
@@ -115,13 +104,26 @@ const QA = (props) => {
 
           )}
           </div>
-          <div> {(q.answers.length > 2 && numAShown <= q.answers.length) && <button onClick = {showMoreA}> More Answers </button>} </div>
+          <div> {(q.answers.length > 2 && numAShown < q.answers.length) && <button onClick={showMoreA}> More Answers </button>} </div>
+          <div> {(q.answers.length > 2 && numAShown >= q.answers.length) && <button onClick={hideA}> Collapse Answers </button>} </div>
         </div>
       </div>
       )}
         <button onClick={showMoreQ}>More Answered Questions</button>
-        <button>Add A Question</button>
+        <button onClick={addQ}>Add A Question</button>
       </div>
+      <div>{addQPost === true &&
+        <form>
+          <label>
+            Ask A Quesion:
+            <br />
+            <span>*<input type='textarea' name='question' placeholder="Your Question" value={state.question} onChange={handleChange}/></span><br />
+            <span>*<input type="text" name='nickname' placeholder="What's Your Nickname" value={state.nickname} onChange={handleChange}/></span>
+            <span>*<input type='text' name='email' placeholder='Email Address' value={state.email} onChange={handleChange}/></span>
+          </label>
+          <button>Submit Question</button>
+        </form>
+      }</div>
     </div>
 
   );
