@@ -10,7 +10,6 @@ function ProductDetail() {
   const [productDetail, setDetail] = useState([]);
 
   const { id } = useParams();
-  // console.log('id clicked', id);
 
   useLayoutEffect(() => {
     const promises = [];
@@ -20,7 +19,6 @@ function ProductDetail() {
       for (let i = 0; i < endpoints.length; i += 1) {
         promises.push(axios.get(`http://localhost:3000${endpoints[i]}`));
       }
-      // console.log(promises);
       const data = await Promise.all(promises);
       data.forEach((item) => {
         result = [...result, item.data];
@@ -30,7 +28,6 @@ function ProductDetail() {
       result.forEach((item, index) => {
         final[elements[index]] = item;
       });
-      // console.log('final item is' ,final);
       setDetail(final);
     };
     fetch();
