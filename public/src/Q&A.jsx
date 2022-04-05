@@ -85,14 +85,15 @@ const QA = (props) => {
             <label>
               Answer This Question:
               <br />
-              <span>*<input type='textarea' name='question' placeholder="Your Answer" value={state.answer} onChange={handleChange}/></span><br />
-              <span>*<input type="text" name='nickname' placeholder="What's Your Nickname" value={state.nickname} onChange={handleChange}/></span>
-              <span>*<input type='text' name='email' placeholder='Email Address' value={state.email} onChange={handleChange}/></span>
+              <span>*Your Answer <input type='textarea' name='answer' placeholder="Your Answer" value={state.answer} onChange={handleChange}/></span><br />
+              <span>*Your Nickname <input type="text" name='nickname' placeholder="What's Your Nickname" value={state.nickname} onChange={handleChange}/></span>
+              <span>*Your Email <input type='text' name='email' placeholder='Email Address' value={state.email} onChange={handleChange}/></span>
             </label>
             <button>Submit Answer</button>
           </form>
             } </div>
           </div>
+
 
           <div>{q.answers.slice(0, numAShown).map(a =>
             <div key={a.id}>
@@ -101,15 +102,16 @@ const QA = (props) => {
                 answered on {moment(a.date).format('MMMM Do YYYY')} by {a.answerer_name} | helpful? {a.helpfulness}
               </span><br />
             </div>
-
           )}
           </div>
+
           <div> {(q.answers.length > 2 && numAShown < q.answers.length) && <button onClick={showMoreA}> More Answers </button>} </div>
           <div> {(q.answers.length > 2 && numAShown >= q.answers.length) && <button onClick={hideA}> Collapse Answers </button>} </div>
         </div>
       </div>
       )}
-        <button onClick={showMoreQ}>More Answered Questions</button>
+
+        {numQShown < allQ.length && <button onClick={showMoreQ}>More Answered Questions</button>}
         <button onClick={addQ}>Add A Question</button>
       </div>
       <div>{addQPost === true &&
@@ -117,9 +119,9 @@ const QA = (props) => {
           <label>
             Ask A Quesion:
             <br />
-            <span>*<input type='textarea' name='question' placeholder="Your Question" value={state.question} onChange={handleChange}/></span><br />
-            <span>*<input type="text" name='nickname' placeholder="What's Your Nickname" value={state.nickname} onChange={handleChange}/></span>
-            <span>*<input type='text' name='email' placeholder='Email Address' value={state.email} onChange={handleChange}/></span>
+            <span>*Your Question <input type='textarea' name='question' placeholder="Your Question" value={state.question} onChange={handleChange}/></span><br />
+            <span>*Your Nickname <input type="text" name='nickname' placeholder="What's Your Nickname" value={state.nickname} onChange={handleChange}/></span>
+            <span>*Your Email <input type='text' name='email' placeholder='Email Address' value={state.email} onChange={handleChange}/></span>
           </label>
           <button>Submit Question</button>
         </form>
