@@ -6,6 +6,11 @@
   padding: 0;
 }
 
+body {
+  -webkit-font-smooothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 .padNavTop {
   background-color: rgba(223, 222, 222, 0.904);
   margin: 0;
@@ -281,4 +286,5 @@
 
 .styles-active {
   opacity: 1;
+  border: 3px solid rgba(223, 222, 222, 0.904);;
 }

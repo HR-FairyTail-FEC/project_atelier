@@ -26,18 +26,19 @@ function Overview(props) {
 
   if (Object.keys(details).length > 0) {
     if (!loading) {
-      let style = details.styles.results[0];
-      let photos = style.photos;
+      let curr = details.styles.results[0];
+      let photos = curr.photos;
       let total = 0;
       let count = 0;
       let ratings = details.meta.ratings;
+      console.log(ratings);
       for (let rating in ratings) {
         total += rating * ratings[rating];
         count += Number(ratings[rating]);
       }
       let rating = total / count;
       let rounded = (Math.round(rating * 4) / 4).toFixed(2);
-      setStyle(style);
+      setStyle(curr);
       setStyleActive(details.styles.results[0].style_id);
       setTotalRatings(count);
       setRating(rounded);
