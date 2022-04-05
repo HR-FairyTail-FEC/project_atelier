@@ -9,12 +9,10 @@ const QA = (props) => {
   const [numQShown, setNumQ] = useState(2);
   const [numAShown, setNumA] = useState(2);
   const [addQPost, setAddQ] = useState(false);
-  const [addAPost, setAddA] = useState(false);
   const [state, setState] = useState({answer:'', question:'', nickname:'', email:''})
+  const [clickedAnswer, setClickedAnswer] = useState([]);
   // let qShown = [];
   // const [qShown, setQShown] = useState([{ result: props.details.questions[0].results, answers: [] }]);
-  let initLoad = false;
-  const [qShown, setQShown] = useState([]);
 
   if (props.details.length < 1) {
     display = <div>Loading Questions..</div>
@@ -38,12 +36,13 @@ const QA = (props) => {
       setAddQ(false);
     }
   }
-  const addA = () => {
-    if (addAPost === false) {
-      setAddA(true);
+  const addA = (id) => {
+    if (clickedAnswer.includes(id)) {
+      setClickedAnswer(clickedAnswer.filter(item => item != id));
     } else {
-      setAddA(false);
+      setClickedAnswer(prevItem => [id]);
     }
+    console.log('here');
   }
 
 
@@ -79,12 +78,13 @@ const QA = (props) => {
           <span>asked by {q.result.asker_name} on {moment(q.result.question_date).format('MMMM Do YYYY')} | Helpful {q.result.question_helpfulness} </span>
 
           <div>
-            <button onClick={addA}>Add Answer</button>
-            <div> {addAPost === true &&
+            <button onClick={()=>addA(q.result.question_id)} key={q.result.question_id}>Add Answer</button>
+            <div> {clickedAnswer.includes(q.result.question_id) &&
             <form>
             <label>
               Answer This Question:
               <br />
+              {}
               <span>*Your Answer <input type='textarea' name='answer' placeholder="Your Answer" value={state.answer} onChange={handleChange}/></span><br />
               <span>*Your Nickname <input type="text" name='nickname' placeholder="What's Your Nickname" value={state.nickname} onChange={handleChange}/></span>
               <span>*Your Email <input type='text' name='email' placeholder='Email Address' value={state.email} onChange={handleChange}/></span>
