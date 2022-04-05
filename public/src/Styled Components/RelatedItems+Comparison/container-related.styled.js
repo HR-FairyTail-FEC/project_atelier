@@ -12,6 +12,7 @@ const ContainerRelated = styled.div`
 `;
 
 
+console.log('access image container');
 const ImageContainer = styled.div`
   position: absolute;
   top: 10px;
@@ -53,14 +54,8 @@ const Price = styled.p`
   left: 10px;
 `;
 
-const Stars = styled.p`
-  font-weight: 300;
-  position: absolute;
-  bottom: 65px;
-  left: 10px;
-`;
 
 
-export {ContainerRelated, Category, Name, Price, Stars, ImageContainer};
+export {ContainerRelated, Category, Name, Price, ImageContainer};
 
 

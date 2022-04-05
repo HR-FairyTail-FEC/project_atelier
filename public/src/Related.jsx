@@ -3,11 +3,14 @@ import axios from 'axios';
 let placeHolderURL = 'https://www.eslc.org/wp-content/uploads/2019/08/placeholder-grey-square-600x600.jpg'
 import { ContainerRelated, Category, Name, Price, ImageContainer} from '../src/Styled Components/RelatedItems+Comparison/container-related.styled.js';
 import { ContainerOutfit, AddToOutfit_Text, AddToOutfit_Button} from '../src/Styled Components/RelatedItems+Comparison/container-outfit.styled.js';
+import ActionButton_Star from './Related_ActionButton_Star.jsx';
 
 
 const Related = (props)=> {
-  // console.log('in related with props', props);
-    const [relatedEntries, setRelatedEntries] = useState([]);
+  console.log('in related with props', props);
+    const [relatedEntries, setRelatedEntries] = useState([]); //looks like
+    const [outfitEntries, setOutfitEntries] = useState([]);
+
     useEffect(()=>{
         if (props.details.length === 0) {
           setRelatedEntries([]);
@@ -16,66 +19,134 @@ const Related = (props)=> {
           let related = props.details.related;
           let promisesArr = [];
           related.forEach((relatedID) => {
-            // console.log('calling relatedID', relatedID);
+            console.log('calling relatedID', relatedID);
             promisesArr.push(axios.get(`http://localhost:3000/api/products/${relatedID}`)); //c n p
-            promisesArr.push(axios.get(`http://localhost:3000/api/reviews?product_id=${relatedID}`)); //for reviews
-            promisesArr.push(axios.get(`http://localhost:3000/api/products/${relatedID}/styles`)) //for thumbnail in
+            // promisesArr.push(axios.get(`http://localhost:3000/api/reviews?product_id=${relatedID}`)); //for reviews
+            promisesArr.push(axios.get(`http://localhost:3000/api/reviews/meta?product_id=${relatedID}`)); //for reviews
+            promisesArr.push(axios.get(`http://localhost:3000/api/products/${relatedID}/styles`)); //for thumbnail in
           });
           Promise.all(promisesArr).then((allData)=>{
-            return formatData(allData);
-          }).then((value)=>{
-            console.log('second then value is', value);
-            setRelatedEntries(value);
+            console.log('raw all promises holds', allData);
+            let formattedData = formatData(allData);
+            // console.log('this is what relatedEntries holds', formattedData);
+            setRelatedEntries(formattedData);
           })
         }
-    },[props.details]);
+    },[props.details], outfitEntries);
 
     return (
-      <div id="related-outfit-container">
-        <div id="related-container">
-          <div id="related-title">
-            <p> RELATED PRODUCTS</p>
-          </div>
-          <div id="related-items">
-            {
-              relatedEntries.length ===0 ? <p> Loading... </p> :
-              relatedEntries.map((obj,index)=>{
-                return (
-                  <>
-                    <ContainerRelated>
-                      <ImageContainer img={obj.thumbnailURL}>
-                      </ImageContainer>
-                      <Category>{obj.category} </Category>
-                      <Name> {obj.name}</Name>
-                      <Price> ${obj.price} </Price>
-                      <Stars rating={obj.stars} instance={obj.instance} key={index}/>
-                    </ContainerRelated>
-                  </>
-                    )
-              })
-            }
-          </div>
+      <>
+        <div>
+        {console.log('rendering DOM')}
         </div>
-        <br></br>
-        <div id="outfit-container">
-          <div id="outfit-title">
-            <p> YOUR OUTFIT </p>
+        <div>
+        {console.log('relatedEntries is', relatedEntries)}
+        </div>
+        <div>
+        {console.log('outfitEntries is', outfitEntries)}
+        </div>
+
+        <div id="related-outfit-container">
+          <div id="related-container">
+            <div id="related-title">
+              <p> RELATED PRODUCTS</p>
+            </div>
+            <div id="related-items">
+              {
+                relatedEntries.length ===0 ? <p> Loading... </p> :
+                relatedEntries.map((obj,index)=>{
+                  return (
+                    <>
+                      <ContainerRelated>
+                        <ImageContainer img={obj.thumbnailURL}>
+                        </ImageContainer>
+                        <Category>{obj.category} </Category>
+                        <Name> {obj.name}</Name>
+                        <Price> ${obj.price} </Price>
+                        <Stars rating={obj.stars} instance={obj.instance} key={index}/>
+                        <ActionButton_Star key={index} index={index}></ActionButton_Star>
+                      </ContainerRelated>
+                    </>
+                      )
+                })
+              }
+            </div>
           </div>
-          <div id="outfit-items">
+
+          <br></br>
+
+          <div id="outfit-container">
+            <div id="outfit-title">
+              <p> YOUR OUTFIT </p>
+            </div>
+            <div id="outfit-items">
             {
               (
+                <>
                 <ContainerOutfit>
                   <AddToOutfit_Button onClick={AddToOutfit_Click}> PLUS SYMBOL </AddToOutfit_Button>
                   <AddToOutfit_Text> Add to Outfit </AddToOutfit_Text>
                 </ContainerOutfit>
+                {
+                  outfitEntries.length ===0 ? <></> :
+                  outfitEntries.map((outfit,index)=>{
+                    return (
+                      <>
+                        <ContainerOutfit>
+                          <ImageContainer img={outfit.thumbnailURL}> </ImageContainer>
+                          <Category>{outfit.category} </Category>
+                          <Name> {outfit.name}</Name>
+                          <Price> ${outfit.price} </Price>
+                          <Stars rating={outfit.stars} instance={outfit.instance} key={index}/>
+                        </ContainerOutfit>
+                      </>
+                    )
+                  })
+                }
+                </>
               )
 
             }
+            </div>
           </div>
         </div>
-      </div>
-
+      </>
     );
+
+    function AddToOutfit_Click(){
+      let currentProduct = props.details.product;
+      let currentReview = props.details.reviews;
+      let currentStyle = props.details.styles;
+      // console.log(' button clicked with currentProduct', currentProduct);
+      // console.log(' state of outfitEntries is', outfitEntries);
+      let cnp = {
+        data: currentProduct
+      }
+      let review = {
+        data: currentReview
+      }
+      let style = {
+        data: currentStyle
+      }
+      let allData = [cnp, review, style];
+
+      let formattedData = formatData(allData)[0];
+      // console.log(' in AddToOutfitClick_ formattedData is', formattedData);
+      let addingOutfits = [...outfitEntries, formattedData];
+
+      const uniqueOutfits = addingOutfits.filter((outfit, index) => {
+        const _outfit = JSON.stringify(outfit);
+        return index === addingOutfits.findIndex(obj => {
+          return JSON.stringify(obj) === _outfit;
+        });
+      });
+      console.log(uniqueOutfits);
+      setOutfitEntries(uniqueOutfits);
+
+
+
+    }
+
 };
 
 function formatData(allData){
@@ -99,11 +170,12 @@ function formatData(allData){
       // console.log('dataobj being pushed is', dataObj);
       data.push(dataObj);
     }
-    console.log('data array', data);
+    // console.log('data array', data);
     return data;
 
 };
 function calculateStars(obj){
+  console.log('in calculate stars with obj', obj);
   let count = obj.count;
   if (count === 0) return undefined;
   let sum = 0;
@@ -117,6 +189,7 @@ function calculateStars(obj){
   return averageRounded;
 }
 function Stars(props) {
+  // console.log('in <Stars> with props', props);
   // console.log('in stars component with rating', props.rating,' instance', props.instance);
   let instance = props.instance;
   let rating = props.rating;
@@ -146,7 +219,7 @@ function Stars(props) {
   )
 }
 function ratingToArray(rating){
-  console.log('in rating to array with rating', rating);
+  // console.log('in rating to array with rating', rating);
   let array = ['0%','0%','0%','0%','0%'];
   let whole = Math.floor(rating);
   let decimal = rating - whole;
@@ -165,9 +238,6 @@ function ratingToArray(rating){
   return array;
 }
 
-function AddToOutfit_Click(e){
-  console.log(' button clicked');
-}
 
 
 

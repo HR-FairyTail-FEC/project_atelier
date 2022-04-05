@@ -280,4 +280,13 @@
   left:10px;
 }
 
+/* outfit row */
+#outfit-items{
+  display: flex;
+}
 
+.actionbutton-star{
+  z-index: 9999;
+  position: absolute;
+  right:5px;
+}
