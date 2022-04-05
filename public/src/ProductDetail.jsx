@@ -1,8 +1,10 @@
 import React, { useLayoutEffect, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Overview from './Overview.jsx';
+import Related from './Related.jsx';
 
 const axios = require('axios');
+
 
 function ProductDetail() {
   const [productDetail, setDetail] = useState([]);
@@ -33,7 +35,8 @@ function ProductDetail() {
 
   return (
     <div className="page-container">
-      <Overview details={productDetail} />
+      <Overview details={productDetail}/>
+      <Related details={productDetail} />
     </div>
   );
 }
