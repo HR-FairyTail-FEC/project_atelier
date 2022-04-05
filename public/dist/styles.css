@@ -290,3 +290,22 @@
   position: absolute;
   right:5px;
 }
+
+.star-modal-show{
+  border-style: solid;
+  height:300px;
+  width:600px;
+  position: absolute;
+  background-color: #f5f5f5;
+  top: -100px;
+  left: 300px;
+  z-index:10000;
+}
+
+.star-modal-hide{
+  display:none;
+}
+
+.modal-title{
+  text-align:center;
+}

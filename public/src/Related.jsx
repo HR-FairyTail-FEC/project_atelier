@@ -19,14 +19,14 @@ const Related = (props)=> {
           let related = props.details.related;
           let promisesArr = [];
           related.forEach((relatedID) => {
-            console.log('calling relatedID', relatedID);
+            // console.log('calling relatedID', relatedID);
             promisesArr.push(axios.get(`http://localhost:3000/api/products/${relatedID}`)); //c n p
             // promisesArr.push(axios.get(`http://localhost:3000/api/reviews?product_id=${relatedID}`)); //for reviews
             promisesArr.push(axios.get(`http://localhost:3000/api/reviews/meta?product_id=${relatedID}`)); //for reviews
             promisesArr.push(axios.get(`http://localhost:3000/api/products/${relatedID}/styles`)); //for thumbnail in
           });
           Promise.all(promisesArr).then((allData)=>{
-            console.log('raw all promises holds', allData);
+            // console.log('raw all promises holds', allData);
             let formattedData = formatData(allData);
             // console.log('this is what relatedEntries holds', formattedData);
             setRelatedEntries(formattedData);
@@ -36,16 +36,6 @@ const Related = (props)=> {
 
     return (
       <>
-        <div>
-        {console.log('rendering DOM')}
-        </div>
-        <div>
-        {console.log('relatedEntries is', relatedEntries)}
-        </div>
-        <div>
-        {console.log('outfitEntries is', outfitEntries)}
-        </div>
-
         <div id="related-outfit-container">
           <div id="related-container">
             <div id="related-title">
@@ -64,7 +54,7 @@ const Related = (props)=> {
                         <Name> {obj.name}</Name>
                         <Price> ${obj.price} </Price>
                         <Stars rating={obj.stars} instance={obj.instance} key={index}/>
-                        <ActionButton_Star key={index} index={index}></ActionButton_Star>
+                        <ActionButton_Star key={index} index={index} mainProduct={props.details.product} relatedID={obj.id}></ActionButton_Star>
                       </ContainerRelated>
                     </>
                       )
@@ -140,7 +130,7 @@ const Related = (props)=> {
           return JSON.stringify(obj) === _outfit;
         });
       });
-      console.log(uniqueOutfits);
+      // console.log(uniqueOutfits);
       setOutfitEntries(uniqueOutfits);
 
 
@@ -150,9 +140,8 @@ const Related = (props)=> {
 };
 
 function formatData(allData){
-  console.log('in formatData with data', allData);
+  // console.log('in formatData with data', allData);
     let data = [];
-
     for (let i =0; i<allData.length;i = i+3){
       let averageStars = calculateStars(allData[i+1].data);//even is cnp data, odd has reviews
       let thumbnailURL = allData[i+2].data.results[0].photos[0].thumbnail_url || placeHolderURL;
@@ -160,6 +149,7 @@ function formatData(allData){
       // console.log('instance is', instance);
       // console.log(thumbnailURL);
       let dataObj = {
+        id: allData[i].data.id,
         instance: instance,
         thumbnailURL: thumbnailURL,
         category: allData[i].data.category,
@@ -175,17 +165,19 @@ function formatData(allData){
 
 };
 function calculateStars(obj){
-  console.log('in calculate stars with obj', obj);
-  let count = obj.count;
-  if (count === 0) return undefined;
-  let sum = 0;
-  let allRatings = obj.results;
-  for (const entry of allRatings){
-    sum += entry.rating;
+  // console.log('in calculate stars with obj', obj);
+  let ratings = obj.ratings;
+  let totalStars = 0;
+  let totalReviews = 0;
+  for (const starValue in ratings) {
+    let reviewsPerStar = parseInt(ratings[starValue]);
+    totalReviews += reviewsPerStar;
+    let starWeight = reviewsPerStar * starValue;
+    totalStars += starWeight;
   }
-  if (sum===0) return undefined;
-  let average = sum/count;
+  let average = totalStars/totalReviews;
   let averageRounded = (Math.round(average * 4) / 4).toFixed(2);
+  // console.log('averageRounded is', averageRounded);
   return averageRounded;
 }
 function Stars(props) {
