@@ -71,12 +71,13 @@ const QA = (props) => {
   }
 
   const postQuestion = (p_id) => {
-    axios.post(`http://localhost:3000/api/qa/questions`,
-      {
+    axios.post(`http://localhost:3000/api/qa/questions`,{
+      data: {
         body: state.question,
         name: state.nickname,
         email: state.email,
-        product_id: p_id
+        product_id: Number(p_id)
+      }
       })
     .then(function (response) {
       console.log(response);
@@ -112,9 +113,7 @@ const QA = (props) => {
       setReportedQ(reportedQ.filter(item => item != id));
     } else {
       setReportedQ(prevItem => [...prevItem, id]);
-      axios.put(`http://localhost:3000/api/qa/questions/${id}/report`, {
-        data: {question_id: id}
-      })
+      axios.put(`http://localhost:3000/api/qa/questions/${id}/report`,{})
       .then(function (response) {
         console.log(response);
       })
@@ -122,6 +121,7 @@ const QA = (props) => {
         console.log(err);
       })
     }
+
   }
 
   const handleReportedA = (id) => {
@@ -129,9 +129,7 @@ const QA = (props) => {
       setReportedA(reportedA.filter(item => item != id));
     } else {
       setReportedA(prevItem => [...prevItem, id]);
-      axios.put(`http://localhost:3000/api/qa/answers/${id}/report`, {
-        data: {answer_id: id}
-      })
+      axios.put(`http://localhost:3000/api/qa/answers/${id}/report`)
       .then(function (response) {
         console.log(response);
       })
@@ -147,9 +145,7 @@ const QA = (props) => {
       setHelpfulClickedQ(helpfulClickedQ.filter(item => item != id));
     } else {
       setHelpfulClickedQ(prevItem => [...prevItem, id]);
-      axios.put(`http://localhost:3000/api/qa/questions/${id}/helpful`, {
-        data: {question_id: id}
-      })
+      axios.put(`http://localhost:3000/api/qa/questions/${id}/helpful`)
       .then(function (response) {
         console.log(response);
       })
@@ -165,10 +161,7 @@ const QA = (props) => {
       setHelpfulClickedA(helpfulClickedA.filter(item => item != id));
     } else {
       setHelpfulClickedA(prevItem => [...prevItem, id]);
-      setHelpfulClickedQ(prevItem => [...prevItem, id]);
-      axios.put(`http://localhost:3000/api/qa/answers/${id}/helpful`, {
-        data: {answer_id: id}
-      })
+      axios.put(`http://localhost:3000/api/qa/answers/${id}/helpful`)
       .then(function (response) {
         console.log(response);
       })
