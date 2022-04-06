@@ -77,8 +77,8 @@ const ActionButton_Star = (props)=> {
       for (const feature of relProductFeatures){
         feature['side'] = 'right';
       }
-      // console.log('mainFeatures looks like:',mainProductFeatures);
-      // console.log('related product Features looks like:',relProductFeatures);
+      console.log('mainFeatures looks like:',mainProductFeatures);
+      console.log('related product Features looks like:',relProductFeatures);
       setAllFeatures([...mainProductFeatures, ...relProductFeatures]);
     })
   }

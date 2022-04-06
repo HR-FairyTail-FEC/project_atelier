@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 let placeHolderURL = 'https://www.eslc.org/wp-content/uploads/2019/08/placeholder-grey-square-600x600.jpg'
 import { ContainerRelated, Category, Name, Price, ImageContainer} from '../src/Styled Components/RelatedItems+Comparison/container-related.styled.js';
-import { ContainerOutfit, AddToOutfit_Text, AddToOutfit_Button} from '../src/Styled Components/RelatedItems+Comparison/container-outfit.styled.js';
+import { ContainerOutfit, AddToOutfit_Text, AddToOutfit_Button, ActionButtonX} from '../src/Styled Components/RelatedItems+Comparison/container-outfit.styled.js';
 import ActionButton_Star from './Related_ActionButton_Star.jsx';
 
 
@@ -36,6 +36,15 @@ const Related = (props)=> {
 
     return (
       <>
+      <ul>To Do
+        <li>Group: tests, journal worksheet</li>
+        <li>my module: add currentStyle to outfits list</li>
+        <li>my module: context api store the outfit, then add functionality for remove button</li>
+        <li>my module: fix errors key prop</li>
+        <li>my module: carousel</li>
+        <li>my module: hover effects</li>
+      </ul>
+
         <div id="related-outfit-container">
           <div id="related-container">
             <div id="related-title">
@@ -47,12 +56,11 @@ const Related = (props)=> {
                 relatedEntries.map((obj,index)=>{
                   return (
                     <>
-                      <ContainerRelated>
-                        <ImageContainer img={obj.thumbnailURL}>
-                        </ImageContainer>
-                        <Category>{obj.category} </Category>
-                        <Name> {obj.name}</Name>
-                        <Price> ${obj.price} </Price>
+                      <ContainerRelated key={index}>
+                        <ImageContainer img={obj.thumbnailURL}></ImageContainer>
+                        <Category key={index}>{obj.category} </Category>
+                        <Name key={index}> {obj.name}</Name>
+                        <Price key={index}> ${obj.price} </Price>
                         <Stars rating={obj.stars} instance={obj.instance} key={index}/>
                         <ActionButton_Star key={index} index={index} mainProduct={props.details.product} relatedID={obj.id}></ActionButton_Star>
                       </ContainerRelated>
@@ -74,22 +82,21 @@ const Related = (props)=> {
               (
                 <>
                 <ContainerOutfit>
-                  <AddToOutfit_Button onClick={AddToOutfit_Click}> PLUS SYMBOL </AddToOutfit_Button>
+                  <AddToOutfit_Button onClick={AddToOutfit_Click}> </AddToOutfit_Button>
                   <AddToOutfit_Text> Add to Outfit </AddToOutfit_Text>
                 </ContainerOutfit>
                 {
                   outfitEntries.length ===0 ? <></> :
                   outfitEntries.map((outfit,index)=>{
                     return (
-                      <>
                         <ContainerOutfit>
-                          <ImageContainer img={outfit.thumbnailURL}> </ImageContainer>
+                          <ActionButtonX onClick={DeleteFromOutfit_Click}/>
+                          <ImageContainer img={outfit.thumbnailURL} key={`outfit-${index}`}> </ImageContainer>
                           <Category>{outfit.category} </Category>
                           <Name> {outfit.name}</Name>
                           <Price> ${outfit.price} </Price>
                           <Stars rating={outfit.stars} instance={outfit.instance} key={index}/>
                         </ContainerOutfit>
-                      </>
                     )
                   })
                 }
@@ -119,11 +126,9 @@ const Related = (props)=> {
         data: currentStyle
       }
       let allData = [cnp, review, style];
-
       let formattedData = formatData(allData)[0];
       // console.log(' in AddToOutfitClick_ formattedData is', formattedData);
       let addingOutfits = [...outfitEntries, formattedData];
-
       const uniqueOutfits = addingOutfits.filter((outfit, index) => {
         const _outfit = JSON.stringify(outfit);
         return index === addingOutfits.findIndex(obj => {
@@ -132,9 +137,9 @@ const Related = (props)=> {
       });
       // console.log(uniqueOutfits);
       setOutfitEntries(uniqueOutfits);
-
-
-
+    }
+    function DeleteFromOutfit_Click(){
+      console.log('delete From outfit clicked');
     }
 
 };
