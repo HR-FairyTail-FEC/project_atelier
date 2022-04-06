@@ -36,7 +36,6 @@ function ProductDetail() {
   return (
     <div className="page-container">
       <Overview details={productDetail}/>
-      <Related details={productDetail} />
     </div>
   );
 }
