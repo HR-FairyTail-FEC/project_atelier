@@ -8,16 +8,19 @@ const QA = (props) => {
   let questions = props.details.questions;
   let display;
   let allQ = [];
-  const [numQShown, setNumQ] = useState(2);
+  const [numQShown, setNumQ] = useState(4);
   const [numAShown, setNumA] = useState(2);
   const [addQPost, setAddQ] = useState(false);
   const [state, setState] = useState({answer:'', question:'', nickname:'', email:''})
   const [clickedAnswer, setClickedAnswer] = useState([]);
+  //might have to be global variable
+  const [helpfulClickedQ, setHelpfulClickedQ] = useState([]);
+  const [helpfulClickedA, setHelpfulClickedA] = useState([]);
   // let qShown = [];
   // const [qShown, setQShown] = useState([{ result: props.details.questions[0].results, answers: [] }]);
 
   if (props.details.length < 1) {
-    display = <div>Loading Questions..</div>
+    display = <div>Loading Questions...</div>
     // initialize();
   } else {
     // console.log('always in here')
@@ -102,6 +105,22 @@ const QA = (props) => {
     })
   }
 
+  const handleHelpfulClickQ = (id) => {
+    if (helpfulClickedQ.includes(id)) {
+      setHelpfulClickedQ(helpfulClickedQ.filter(item => item != id));
+    } else {
+      setHelpfulClickedQ(prevItem => [...prevItem, id]);
+    }
+  }
+
+  const handleHelpfulClickA = (id) => {
+    if (helpfulClickedA.includes(id)) {
+      setHelpfulClickedA(helpfulClickedA.filter(item => item != id));
+    } else {
+      setHelpfulClickedA(prevItem => [...prevItem, id]);
+    }
+  }
+
   return (
     <div>
       <input placeholder='SEARCH FOR ANSWERS...'></input>
@@ -110,7 +129,7 @@ const QA = (props) => {
       <div>{allQ.slice(0, numQShown).map(q => <div key={q.result.question_id}>
         <div>
           <h3> Q: {q.result.question_body} </h3>
-          <span>asked by {q.result.asker_name} on {moment(q.result.question_date).format('MMMM Do YYYY')} | Helpful {q.result.question_helpfulness} </span>
+          <span>asked by {q.result.asker_name} on {moment(q.result.question_date).format('MMMM Do YYYY')} | Helpful? <span>{!helpfulClickedQ.includes(q.result.question_id)&& <button type='button' onClick={()=>handleHelpfulClickQ(q.result.question_id)}>Yes?</button>}</span> <span>({q.result.question_helpfulness})</span> </span>
 
           <div>
             <button onClick={()=>addA(q.result.question_id)} key={q.result.question_id}>Add Answer</button>
@@ -134,19 +153,19 @@ const QA = (props) => {
             <div key={a.id}>
               <h4>A: {a.body}</h4>
               <span>
-                answered on {moment(a.date).format('MMMM Do YYYY')} by {a.answerer_name} | helpful? {a.helpfulness}
+                answered on {moment(a.date).format('MMMM Do YYYY')} by {a.answerer_name} | Helpful? <span>{!helpfulClickedA.includes(a.id) && <button type='button' onClick={()=>handleHelpfulClickA(a.id)}>Yes?</button>}</span> <span>({a.helpfulness})</span>
               </span><br />
             </div>
           )}
           </div>
 
-          <div> {(q.answers.length > 2 && numAShown < q.answers.length) && <button onClick={showMoreA}> More Answers </button>} </div>
+          <div> {(q.answers.length > 2 && numAShown < q.answers.length) && <button onClick={showMoreA}> Load More Answers </button>} </div>
           <div> {(q.answers.length > 2 && numAShown >= q.answers.length) && <button onClick={hideA}> Collapse Answers </button>} </div>
         </div>
       </div>
       )}
 
-        {numQShown < allQ.length && <button onClick={showMoreQ}>More Answered Questions</button>}
+        {numQShown < allQ.length && <button onClick={showMoreQ}>Load More Questions</button>}
         <button onClick={addQ}>Add A Question</button>
       </div>
       <div>{addQPost === true &&
