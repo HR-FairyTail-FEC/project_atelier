@@ -16,6 +16,8 @@ const QA = (props) => {
   //might have to be global variable
   const [helpfulClickedQ, setHelpfulClickedQ] = useState([]);
   const [helpfulClickedA, setHelpfulClickedA] = useState([]);
+  const [reportedQ, setReportedQ] = useState([]);
+  const [reportedA, setReportedA] = useState([]);
   // let qShown = [];
   // const [qShown, setQShown] = useState([{ result: props.details.questions[0].results, answers: [] }]);
 
@@ -105,12 +107,57 @@ const QA = (props) => {
     })
   }
 
+  const handleReportedQ = (id) => {
+    if (reportedQ.includes(id)) {
+      setReportedQ(reportedQ.filter(item => item != id));
+    } else {
+      setReportedQ(prevItem => [...prevItem, id]);
+      axios.put(`http://localhost:3000/api/qa/questions/${id}/report`, {
+        data: {question_id: id}
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (err) {
+        console.log(err);
+      })
+    }
+  }
+
+  const handleReportedA = (id) => {
+    if (reportedA.includes(id)) {
+      setReportedA(reportedA.filter(item => item != id));
+    } else {
+      setReportedA(prevItem => [...prevItem, id]);
+      axios.put(`http://localhost:3000/api/qa/answers/${id}/report`, {
+        data: {answer_id: id}
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (err) {
+        console.log(err);
+      })
+    }
+  }
+
+
   const handleHelpfulClickQ = (id) => {
     if (helpfulClickedQ.includes(id)) {
       setHelpfulClickedQ(helpfulClickedQ.filter(item => item != id));
     } else {
       setHelpfulClickedQ(prevItem => [...prevItem, id]);
+      axios.put(`http://localhost:3000/api/qa/questions/${id}/helpful`, {
+        data: {question_id: id}
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (err) {
+        console.log(err);
+      })
     }
+
   }
 
   const handleHelpfulClickA = (id) => {
@@ -118,6 +165,16 @@ const QA = (props) => {
       setHelpfulClickedA(helpfulClickedA.filter(item => item != id));
     } else {
       setHelpfulClickedA(prevItem => [...prevItem, id]);
+      setHelpfulClickedQ(prevItem => [...prevItem, id]);
+      axios.put(`http://localhost:3000/api/qa/answers/${id}/helpful`, {
+        data: {answer_id: id}
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (err) {
+        console.log(err);
+      })
     }
   }
 
@@ -129,7 +186,7 @@ const QA = (props) => {
       <div>{allQ.slice(0, numQShown).map(q => <div key={q.result.question_id}>
         <div>
           <h3> Q: {q.result.question_body} </h3>
-          <span>asked by {q.result.asker_name} on {moment(q.result.question_date).format('MMMM Do YYYY')} | Helpful? <span>{!helpfulClickedQ.includes(q.result.question_id)&& <button type='button' onClick={()=>handleHelpfulClickQ(q.result.question_id)}>Yes?</button>}</span> <span>({q.result.question_helpfulness})</span> </span>
+          <span>asked by {q.result.asker_name} on {moment(q.result.question_date).format('MMMM Do YYYY')} | Helpful? <span>{!helpfulClickedQ.includes(q.result.question_id)&& <button type='button' onClick={()=>handleHelpfulClickQ(q.result.question_id)}>Yes?</button>}</span> <span>({q.result.question_helpfulness})</span> <span>{!reportedQ.includes(q.result.question_id) && <button onClick={()=>handleReportedQ(q.result.question_id)}> Report </button>}</span></span>
 
           <div>
             <button onClick={()=>addA(q.result.question_id)} key={q.result.question_id}>Add Answer</button>
@@ -153,7 +210,7 @@ const QA = (props) => {
             <div key={a.id}>
               <h4>A: {a.body}</h4>
               <span>
-                answered on {moment(a.date).format('MMMM Do YYYY')} by {a.answerer_name} | Helpful? <span>{!helpfulClickedA.includes(a.id) && <button type='button' onClick={()=>handleHelpfulClickA(a.id)}>Yes?</button>}</span> <span>({a.helpfulness})</span>
+                answered on {moment(a.date).format('MMMM Do YYYY')} by {a.answerer_name} | Helpful? <span>{!helpfulClickedA.includes(a.id) && <button type='button' onClick={()=>handleHelpfulClickA(a.id)}>Yes?</button>}</span> <span>({a.helpfulness})</span> <span>{!reportedA.includes(a.id) && <button onClick={()=>handleReportedA(a.id)}> Report </button>}</span>
               </span><br />
             </div>
           )}
