@@ -69,6 +69,23 @@ app.get('/api/cart', (request, response) => {
     .catch((err) => console.error(err));
 });
 
+
+//posting new questions and answers
+app.post('/api/qa/questions/:question_id/answers', (request, response) => {
+  const data = request.body;
+  const { question_id } = request.params;
+  axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${question_id}/answers`, data, { headers: Options })
+    .then((res) => response.json(res))
+    .catch((err) => console.error(err));
+});
+
+app.post('/api/qa/questions', (request, response) => {
+  const data = request.body;
+  axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions`, data, { headers: Options })
+    .then((res) => response.json(res))
+    .catch((err) => console.error(err));
+});
+
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });

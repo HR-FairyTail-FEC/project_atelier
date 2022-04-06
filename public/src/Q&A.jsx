@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import moment from 'moment';
+const axios = require('axios');
+const { Options } = require('../../config.js');
 
 
 const QA = (props) => {
@@ -24,9 +26,11 @@ const QA = (props) => {
       for (let answer in result.answers) {
         allA.push(result.answers[answer]);
       }
+      allA.sort((a,b)=>parseFloat(b.helpfulness) - parseFloat(a.helpfulness))
       allQ.push({ result: result, answers: allA });
     })
   }
+  allQ.sort((a,b)=>parseFloat(b.result.question_helpfulness) - parseFloat(a.result.question_helpfulness));
 
 
   const addQ = () => {
@@ -42,16 +46,47 @@ const QA = (props) => {
     } else {
       setClickedAnswer(prevItem => [id]);
     }
-    console.log('here');
   }
 
+  const postAnswer = (q_id) => {
+    axios.post(`http://localhost:3000/api/qa/questions/${q_id}/answers`, {
+      data: {
+      name: state.nickname,
+      email: state.email,
+      body: state.answer,
+      photos:[]
+      }
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
+
+  const postQuestion = (p_id) => {
+    axios.post(`http://localhost:3000/api/qa/questions`,
+      {
+        body: state.question,
+        name: state.nickname,
+        email: state.email,
+        product_id: p_id
+      })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (err) {
+      console.log(err);
+    })
+  }
 
 
   const showMoreQ = () => {
     setNumQ(numQShown + 2);
   }
 
-  const showMoreA = () => {
+  function showMoreA() {
     setNumA(numAShown + 2);
   }
 
@@ -84,12 +119,12 @@ const QA = (props) => {
             <label>
               Answer This Question:
               <br />
-              {}
+
               <span>*Your Answer <input type='textarea' name='answer' placeholder="Your Answer" value={state.answer} onChange={handleChange}/></span><br />
               <span>*Your Nickname <input type="text" name='nickname' placeholder="What's Your Nickname" value={state.nickname} onChange={handleChange}/></span>
               <span>*Your Email <input type='text' name='email' placeholder='Email Address' value={state.email} onChange={handleChange}/></span>
             </label>
-            <button>Submit Answer</button>
+            <button type='button' onClick={()=>postAnswer(q.result.question_id)}>Submit Answer</button>
           </form>
             } </div>
           </div>
@@ -123,7 +158,7 @@ const QA = (props) => {
             <span>*Your Nickname <input type="text" name='nickname' placeholder="What's Your Nickname" value={state.nickname} onChange={handleChange}/></span>
             <span>*Your Email <input type='text' name='email' placeholder='Email Address' value={state.email} onChange={handleChange}/></span>
           </label>
-          <button>Submit Question</button>
+          <button type='button' onClick={()=>postQuestion(questions.product_id)}>Submit Question</button>
         </form>
       }</div>
     </div>
