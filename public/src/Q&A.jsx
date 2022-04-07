@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import moment from 'moment';
+import {QAContainer, QATitle, QASearchBar, QAList} from './Styled Components/Q&A/qa.styled.js';
 const axios = require('axios');
 const { Options } = require('../../config.js');
 
@@ -172,52 +173,59 @@ const QA = (props) => {
   }
 
   return (
-    <div id="QA-container">
-      <input placeholder='SEARCH FOR ANSWERS...'></input>
-      {props.details.length < 1 && display}
-
-      <div>{allQ.slice(0, numQShown).map(q => <div key={q.result.question_id}>
-        <div>
-          <h3> Q: {q.result.question_body} </h3>
-          <span>asked by {q.result.asker_name} on {moment(q.result.question_date).format('MMMM Do YYYY')} | Helpful? <span>{!helpfulClickedQ.includes(q.result.question_id)&& <button type='button' onClick={()=>handleHelpfulClickQ(q.result.question_id)}>Yes?</button>}</span> <span>({q.result.question_helpfulness})</span> <span>{!reportedQ.includes(q.result.question_id) && <button onClick={()=>handleReportedQ(q.result.question_id)}> Report </button>}</span></span>
-
-          <div>
-            <button onClick={()=>addA(q.result.question_id)} key={q.result.question_id}>Add Answer</button>
-            <div> {clickedAnswer.includes(q.result.question_id) &&
-            <form>
-            <label>
-              Answer This Question:
-              <br />
-
-              <span>*Your Answer <input type='textarea' name='answer' placeholder="Your Answer" value={state.answer} onChange={handleChange}/></span><br />
-              <span>*Your Nickname <input type="text" name='nickname' placeholder="What's Your Nickname" value={state.nickname} onChange={handleChange}/></span>
-              <span>*Your Email <input type='text' name='email' placeholder='Email Address' value={state.email} onChange={handleChange}/></span>
-            </label>
-            <button type='button' onClick={()=>postAnswer(q.result.question_id)}>Submit Answer</button>
-          </form>
-            } </div>
-          </div>
-
-
-          <div>{q.answers.slice(0, numAShown).map(a =>
-            <div key={a.id}>
-              <h4>A: {a.body}</h4>
-              <span>
-                answered on {moment(a.date).format('MMMM Do YYYY')} by {a.answerer_name} | Helpful? <span>{!helpfulClickedA.includes(a.id) && <button type='button' onClick={()=>handleHelpfulClickA(a.id)}>Yes?</button>}</span> <span>({a.helpfulness})</span> <span>{!reportedA.includes(a.id) && <button onClick={()=>handleReportedA(a.id)}> Report </button>}</span>
-              </span><br />
+    <QAContainer>
+      <QATitle> `QUESTIONS & ANSWERS` </QATitle>
+      <QASearchBar> <input placeholder='SEARCH FOR ANSWERS...'></input> </QASearchBar>
+      <QAList>
+        {props.details.length < 1 && display}
+        <div>{allQ.slice(0, numQShown).map(q => {
+          return (
+            <div key={q.result.question_id}>
+            <div>
+              <h3> Q: {q.result.question_body} </h3>
+              <span>asked by {q.result.asker_name} on {moment(q.result.question_date).format('MMMM Do YYYY')} | Helpful? <span>{!helpfulClickedQ.includes(q.result.question_id)&& <button type='button' onClick={()=>handleHelpfulClickQ(q.result.question_id)}>Yes?</button>}</span> <span>({q.result.question_helpfulness})</span> <span>{!reportedQ.includes(q.result.question_id) && <button onClick={()=>handleReportedQ(q.result.question_id)}> Report </button>}</span></span>
+              <div>
+                <button onClick={()=>addA(q.result.question_id)} key={q.result.question_id}>Add Answer</button>
+                  <div> {clickedAnswer.includes(q.result.question_id) && variable
+              <form>
+                <label>
+                  Answer This Question:
+                  <br />
+                  <span>*Your Answer <input type='textarea' name='answer' placeholder="Your Answer" value={state.answer} onChange={handleChange}/></span><br />
+                  <span>*Your Nickname <input type="text" name='nickname' placeholder="What's Your Nickname" value={state.nickname} onChange={handleChange}/></span>
+                  <span>*Your Email <input type='text' name='email' placeholder='Email Address' value={state.email} onChange={handleChange}/></span>
+                </label>
+                <button type='button' onClick={()=>postAnswer(q.result.question_id)}>Submit Answer</button>
+              </form>
+              }
+              </div>
             </div>
-          )}
+
+
+            <div>{q.answers.slice(0, numAShown).map(a =>
+              <div key={a.id}>
+                <h4>A: {a.body}</h4>
+                <span>
+                  answered on {moment(a.date).format('MMMM Do YYYY')} by {a.answerer_name} | Helpful? <span>{!helpfulClickedA.includes(a.id) && <button type='button' onClick={()=>handleHelpfulClickA(a.id)}>Yes?</button>}</span> <span>({a.helpfulness})</span> <span>{!reportedA.includes(a.id) && <button onClick={()=>handleReportedA(a.id)}> Report </button>}</span>
+                </span><br />
+              </div>
+            )}
+            </div>
+
+            <div> {(q.answers.length > 2 && numAShown < q.answers.length) && <button onClick={showMoreA}> Load More Answers </button>} </div>
+            <div> {(q.answers.length > 2 && numAShown >= q.answers.length) && <button onClick={hideA}> Collapse Answers </button>} </div>
           </div>
-
-          <div> {(q.answers.length > 2 && numAShown < q.answers.length) && <button onClick={showMoreA}> Load More Answers </button>} </div>
-          <div> {(q.answers.length > 2 && numAShown >= q.answers.length) && <button onClick={hideA}> Collapse Answers </button>} </div>
         </div>
-      </div>
-      )}
+        )}
+          )
 
-        {numQShown < allQ.length && <button onClick={showMoreQ}>Load More Questions</button>}
-        <button onClick={addQ}>Add A Question</button>
-      </div>
+        });
+
+
+          {numQShown < allQ.length && <button onClick={showMoreQ}>Load More Questions</button>}
+          <button onClick={addQ}>Add A Question</button>
+        </div>
+      </QAList>
       <div>{addQPost === true &&
         <form>
           <label>
@@ -230,7 +238,7 @@ const QA = (props) => {
           <button type='button' onClick={()=>postQuestion(questions.product_id)}>Submit Question</button>
         </form>
       }</div>
-    </div>
+    </QAContainer>
 
   );
 }
