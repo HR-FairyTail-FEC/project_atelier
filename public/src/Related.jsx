@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 let placeHolderURL = 'https://www.eslc.org/wp-content/uploads/2019/08/placeholder-grey-square-600x600.jpg'
-import { ContainerRelated, Category, Name, Price, ImageContainer} from '../src/Styled Components/RelatedItems+Comparison/container-related.styled.js';
+import { ContainerRelated, Category, Name, Price, ImageContainer,LeftArrow, RightArrow, CarouselContainer}  from '../src/Styled Components/RelatedItems+Comparison/container-related.styled.js';
 import { ContainerOutfit, AddToOutfit_Text, AddToOutfit_Button, ActionButtonX} from '../src/Styled Components/RelatedItems+Comparison/container-outfit.styled.js';
 import ActionButton_Star from './Related_ActionButton_Star.jsx';
 
@@ -51,23 +51,28 @@ const Related = (props)=> {
               <p> RELATED PRODUCTS</p>
             </div>
             <div id="related-items">
-              {
-                relatedEntries.length ===0 ? <p> Loading... </p> :
-                relatedEntries.map((obj,index)=>{
-                  return (
-                    <>
-                      <ContainerRelated key={index}>
-                        <ImageContainer img={obj.thumbnailURL}></ImageContainer>
-                        <Category key={index}>{obj.category} </Category>
-                        <Name key={index}> {obj.name}</Name>
-                        <Price key={index}> ${obj.price} </Price>
-                        <Stars rating={obj.stars} instance={obj.instance} key={index}/>
-                        <ActionButton_Star key={index} index={index} mainProduct={props.details.product} relatedID={obj.id}></ActionButton_Star>
-                      </ContainerRelated>
-                    </>
-                      )
-                })
-              }
+            <LeftArrow/>
+              <CarouselContainer>
+                {
+                  relatedEntries.length ===0 ? <p> Loading... </p> :
+                  relatedEntries.map((obj,index)=>{
+                    return (
+                      <>
+                        <ContainerRelated key={index}>
+                          <ImageContainer img={obj.thumbnailURL}></ImageContainer>
+                          <Category key={index}>{obj.category} </Category>
+                          <Name key={index}> {obj.name}</Name>
+                          <Price key={index}> ${obj.price} </Price>
+                          <Stars rating={obj.stars} instance={obj.instance} key={index}/>
+                          <ActionButton_Star key={index} index={index} mainProduct={props.details.product} relatedID={obj.id}></ActionButton_Star>
+                        </ContainerRelated>
+                      </>
+                        )
+                  })
+                }
+              </CarouselContainer>
+
+            <RightArrow/>
             </div>
           </div>
 
