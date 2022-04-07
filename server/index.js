@@ -89,7 +89,6 @@ app.post('/api/qa/questions', (request, response) => {
 //put calls for helpful or reported Q
 app.put('/api/qa/questions/:question_id/helpful', (request, response) => {
   const { question_id } = request.params;
-  console.log(question_id)
   axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${question_id}/helpful`, {}, { headers: Options })
   .then((res) => response.json(res.data))
   .catch((err) => console.error(err));
