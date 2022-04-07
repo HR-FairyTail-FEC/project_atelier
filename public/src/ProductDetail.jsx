@@ -2,8 +2,10 @@ import React, { useLayoutEffect, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Overview from './Overview.jsx';
 import QA from './Q&A.jsx';
+import Related from './Related.jsx';
 
 const axios = require('axios');
+
 
 function ProductDetail() {
   const [productDetail, setDetail] = useState([]);
@@ -13,7 +15,7 @@ function ProductDetail() {
   useLayoutEffect(() => {
     const promises = [];
     let result = [];
-    const endpoints = [`/api/products?product_id=${id}`, `/api/products/${id}/styles`, `/api/products/${id}/related`, `/api/reviews?product_id=${id}&sort=relevant`, `/api/reviews/meta?product_id=${id}`, `/api/qa/questions?product_id=${id}`, '/api/cart'];
+    const endpoints = [`/api/products/${id}`, `/api/products/${id}/styles`, `/api/products/${id}/related`, `/api/reviews?product_id=${id}&sort=relevant`, `/api/reviews/meta?product_id=${id}`, `/api/qa/questions?product_id=${id}`, '/api/cart'];
     const fetch = async () => {
       for (let i = 0; i < endpoints.length; i += 1) {
         promises.push(axios.get(`http://localhost:3000${endpoints[i]}`));
@@ -34,8 +36,9 @@ function ProductDetail() {
   }, []);
 
   return (
-    <div>
-      <Overview details={productDetail} />
+    <div className="page-container">
+      <Overview details={productDetail}/>
+      <Related details={productDetail} />
       <QA details = {productDetail}/>
     </div>
   );

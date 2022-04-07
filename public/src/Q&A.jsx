@@ -172,7 +172,7 @@ const QA = (props) => {
   }
 
   return (
-    <div>
+    <div id="QA-container">
       <input placeholder='SEARCH FOR ANSWERS...'></input>
       {props.details.length < 1 && display}
 
