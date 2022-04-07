@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import moment from 'moment';
-import {QAContainer, QATitle, QASearchBar, QAList} from './Styled Components/Q&A/qa.styled.js';
+import { QAContainer, QATitle, QASearchBar, QAList, QAQuestionTop } from './Styled Components/Q&A/qa.styled.js';
 const axios = require('axios');
 const { Options } = require('../../config.js');
 
@@ -12,7 +12,7 @@ const QA = (props) => {
   const [numQShown, setNumQ] = useState(4);
   const [numAShown, setNumA] = useState(2);
   const [addQPost, setAddQ] = useState(false);
-  const [state, setState] = useState({answer:'', question:'', nickname:'', email:''})
+  const [state, setState] = useState({ answer: '', question: '', nickname: '', email: '' })
   const [clickedAnswer, setClickedAnswer] = useState([]);
   //might have to be global variable
   const [helpfulClickedQ, setHelpfulClickedQ] = useState([]);
@@ -32,11 +32,11 @@ const QA = (props) => {
       for (let answer in result.answers) {
         allA.push(result.answers[answer]);
       }
-      allA.sort((a,b)=>parseFloat(b.helpfulness) - parseFloat(a.helpfulness))
+      allA.sort((a, b) => parseFloat(b.helpfulness) - parseFloat(a.helpfulness))
       allQ.push({ result: result, answers: allA });
     })
   }
-  allQ.sort((a,b)=>parseFloat(b.result.question_helpfulness) - parseFloat(a.result.question_helpfulness));
+  allQ.sort((a, b) => parseFloat(b.result.question_helpfulness) - parseFloat(a.result.question_helpfulness));
 
 
   const addQ = () => {
@@ -57,35 +57,35 @@ const QA = (props) => {
   const postAnswer = (q_id) => {
     axios.post(`http://localhost:3000/api/qa/questions/${q_id}/answers`, {
       data: {
-      name: state.nickname,
-      email: state.email,
-      body: state.answer,
-      photos:[]
+        name: state.nickname,
+        email: state.email,
+        body: state.answer,
+        photos: []
       }
     })
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   const postQuestion = (p_id) => {
-    axios.post(`http://localhost:3000/api/qa/questions`,{
+    axios.post(`http://localhost:3000/api/qa/questions`, {
       data: {
         body: state.question,
         name: state.nickname,
         email: state.email,
         product_id: Number(p_id)
       }
+    })
+      .then(function (response) {
+        console.log(response);
       })
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (err) {
-      console.log(err);
-    })
+      .catch(function (err) {
+        console.log(err);
+      })
   }
 
 
@@ -114,13 +114,13 @@ const QA = (props) => {
       setReportedQ(reportedQ.filter(item => item != id));
     } else {
       setReportedQ(prevItem => [...prevItem, id]);
-      axios.put(`http://localhost:3000/api/qa/questions/${id}/report`,{})
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (err) {
-        console.log(err);
-      })
+      axios.put(`http://localhost:3000/api/qa/questions/${id}/report`, {})
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (err) {
+          console.log(err);
+        })
     }
 
   }
@@ -131,12 +131,12 @@ const QA = (props) => {
     } else {
       setReportedA(prevItem => [...prevItem, id]);
       axios.put(`http://localhost:3000/api/qa/answers/${id}/report`)
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (err) {
-        console.log(err);
-      })
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (err) {
+          console.log(err);
+        })
     }
   }
 
@@ -147,12 +147,12 @@ const QA = (props) => {
     } else {
       setHelpfulClickedQ(prevItem => [...prevItem, id]);
       axios.put(`http://localhost:3000/api/qa/questions/${id}/helpful`)
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (err) {
-        console.log(err);
-      })
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (err) {
+          console.log(err);
+        })
     }
 
   }
@@ -163,83 +163,108 @@ const QA = (props) => {
     } else {
       setHelpfulClickedA(prevItem => [...prevItem, id]);
       axios.put(`http://localhost:3000/api/qa/answers/${id}/helpful`)
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (err) {
-        console.log(err);
-      })
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (err) {
+          console.log(err);
+        })
     }
   }
 
   return (
     <QAContainer>
-      <QATitle> `QUESTIONS & ANSWERS` </QATitle>
+      <QATitle> QUESTIONS & ANSWERS </QATitle>
       <QASearchBar> <input placeholder='SEARCH FOR ANSWERS...'></input> </QASearchBar>
       <QAList>
         {props.details.length < 1 && display}
         <div>{allQ.slice(0, numQShown).map(q => {
           return (
-            <div key={q.result.question_id}>
-            <div>
-              <h3> Q: {q.result.question_body} </h3>
-              <span>asked by {q.result.asker_name} on {moment(q.result.question_date).format('MMMM Do YYYY')} | Helpful? <span>{!helpfulClickedQ.includes(q.result.question_id)&& <button type='button' onClick={()=>handleHelpfulClickQ(q.result.question_id)}>Yes?</button>}</span> <span>({q.result.question_helpfulness})</span> <span>{!reportedQ.includes(q.result.question_id) && <button onClick={()=>handleReportedQ(q.result.question_id)}> Report </button>}</span></span>
-              <div>
+            <QAResult>
+            <QAQuestionTop>
+              <QAQuestion>
+                <h3> Q: {q.result.question_body} </h3>
+              </QAQuestion>
+              <QAHelpful>
+                | Helpful?
+                <span>{!helpfulClickedQ.includes(q.result.question_id) &&
+                  <button type='button' onClick={()=>handleHelpfulClickQ(q.result.question_id)}>Yes?</button>}
+                </span>
+                <span>({q.result.question_helpfulness})</span>
+              </QAHelpful>
+              <QAReportQ>
+                <span>{!reportedQ.includes(q.result.question_id) &&
+                  <button onClick={()=>handleReportedQ(q.result.question_id)}> Report </button>}
+                </span>
+              </QAReportQ>
+              <QAaddA>
                 <button onClick={()=>addA(q.result.question_id)} key={q.result.question_id}>Add Answer</button>
-                  <div> {clickedAnswer.includes(q.result.question_id) && variable
-              <form>
-                <label>
-                  Answer This Question:
-                  <br />
-                  <span>*Your Answer <input type='textarea' name='answer' placeholder="Your Answer" value={state.answer} onChange={handleChange}/></span><br />
-                  <span>*Your Nickname <input type="text" name='nickname' placeholder="What's Your Nickname" value={state.nickname} onChange={handleChange}/></span>
-                  <span>*Your Email <input type='text' name='email' placeholder='Email Address' value={state.email} onChange={handleChange}/></span>
-                </label>
-                <button type='button' onClick={()=>postAnswer(q.result.question_id)}>Submit Answer</button>
-              </form>
-              }
+                {clickedAnswer.includes(q.result.question_id) &&
+                  <form>
+                    <label>
+                      Answer This Question:
+                      <br />
+                      <span>*Your Answer <input type='textarea' name='answer' placeholder="Your Answer" value={state.answer} onChange={handleChange}/></span>
+                      <span>*Your Nickname <input type="text" name='nickname' placeholder="What's Your Nickname" value={state.nickname} onChange={handleChange}/></span>
+                      <span>*Your Email <input type='text' name='email' placeholder='Email Address' value={state.email} onChange={handleChange}/></span>
+                    </label>
+                    <button type='button' onClick={()=>postAnswer(q.result.question_id)}>Submit Answer</button>
+                  </form>}
+              </QAaddA>
+            </QAQuestionTop>
+            <QAQuestionBot>
+              <span>asked by {q.result.asker_name} on {moment(q.result.question_date).format('MMMM Do YYYY')} </span>
+            </QAQuestionBot>
+
+              <div>{q.answers.slice(0, numAShown).map(a => {
+                return (
+                  <QAanswer>
+                  <QAanswerBody> <h4>A: {a.body}</h4> </QAanswerBody>
+                  <QAanswerBot>
+                    <QAanswerInfo>
+                      <span>
+                      answered on {moment(a.date).format('MMMM Do YYYY')} by {a.answerer_name} </span>
+                    </QAanswerInfo>
+                    <QAHelpful>
+                      | Helpful? <span>{!helpfulClickedA.includes(a.id) && <button type='button' onClick={()=>handleHelpfulClickA(a.id)}>Yes?</button>}</span>
+                      <span>({a.helpfulness})</span>
+                    </QAHelpful>
+                    <QAReportA>
+                      <span>{!reportedA.includes(a.id) &&
+                        <button onClick={()=>handleReportedA(a.id)}> Report </button>}
+                      </span>
+                    </QAReportA>
+                  </QAanswerBot>
+                </QAanswer>)}
+                )}
               </div>
-            </div>
-
-
-            <div>{q.answers.slice(0, numAShown).map(a =>
-              <div key={a.id}>
-                <h4>A: {a.body}</h4>
-                <span>
-                  answered on {moment(a.date).format('MMMM Do YYYY')} by {a.answerer_name} | Helpful? <span>{!helpfulClickedA.includes(a.id) && <button type='button' onClick={()=>handleHelpfulClickA(a.id)}>Yes?</button>}</span> <span>({a.helpfulness})</span> <span>{!reportedA.includes(a.id) && <button onClick={()=>handleReportedA(a.id)}> Report </button>}</span>
-                </span><br />
-              </div>
-            )}
-            </div>
-
-            <div> {(q.answers.length > 2 && numAShown < q.answers.length) && <button onClick={showMoreA}> Load More Answers </button>} </div>
-            <div> {(q.answers.length > 2 && numAShown >= q.answers.length) && <button onClick={hideA}> Collapse Answers </button>} </div>
-          </div>
-        </div>
-        )}
-          )
-
-        });
-
-
-          {numQShown < allQ.length && <button onClick={showMoreQ}>Load More Questions</button>}
-          <button onClick={addQ}>Add A Question</button>
+              <QALoadA>
+                <div> {(q.answers.length > 2 && numAShown < q.answers.length) && <button onClick={showMoreA}> Load More Answers </button>}</div>
+                <div> {(q.answers.length > 2 && numAShown >= q.answers.length) && <button onClick={hideA}> Collapse Answers </button>} </div>
+              </QALoadA>
+            </QAResult>
+          );
+        })}
         </div>
       </QAList>
-      <div>{addQPost === true &&
-        <form>
-          <label>
-            Ask A Quesion:
-            <br />
-            <span>*Your Question <input type='textarea' name='question' placeholder="Your Question" value={state.question} onChange={handleChange}/></span><br />
-            <span>*Your Nickname <input type="text" name='nickname' placeholder="What's Your Nickname" value={state.nickname} onChange={handleChange}/></span>
-            <span>*Your Email <input type='text' name='email' placeholder='Email Address' value={state.email} onChange={handleChange}/></span>
-          </label>
-          <button type='button' onClick={()=>postQuestion(questions.product_id)}>Submit Question</button>
-        </form>
-      }</div>
-    </QAContainer>
-
+      <QALoadQ>
+        {numQShown < allQ.length && <button onClick={showMoreQ}>Load More Questions</button>}
+      </QALoadQ>
+      <QAaddQ>
+        <button onClick={addQ}>Add A Question</button>
+        <div>{addQPost === true &&
+          <form>
+            <label>
+              Ask A Quesion:
+              <span>*Your Question <input type='textarea' name='question' placeholder="Your Question" value={state.question} onChange={handleChange}/></span>
+              <span>*Your Nickname <input type="text" name='nickname' placeholder="What's Your Nickname" value={state.nickname} onChange={handleChange}/></span>
+              <span>*Your Email <input type='text' name='email' placeholder='Email Address' value={state.email} onChange={handleChange}/></span>
+            </label>
+            <button type='button' onClick={()=>postQuestion(questions.product_id)}>Submit Question</button>
+          </form>}
+        </div>
+      </QAaddQ>
+    </QAContainer >
   );
 }
 

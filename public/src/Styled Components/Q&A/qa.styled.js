@@ -34,12 +34,18 @@ const QAList = styled.div`
   top:100px;
 `;
 
+const QAQuestionTop = styled.div`
+  border-style:solid;
+  width:100%;
+  position: absolute;
+  font-family: 'Lato', sans-serif;
+  top:150px;
+`;
 
 
 
 
 
-
-export {QAContainer, QATitle, QASearchBar, QAList};
+export {QAContainer, QATitle, QASearchBar, QAList, QAQuestionTop};
 
 
