@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+const axios = require('axios');
 
 function Overview(props) {
   let feature;
@@ -16,6 +17,8 @@ function Overview(props) {
   const [styleActive, setStyleActive] = useState(0);
   const [skuActive, setSkuActive] = useState(null);
   const [quantity, setQuantity] = useState(1);
+  const [openModal, setModal] = useState(false);
+  const [modalActive, setModalActive] = useState(false);
   const percentageFill = `${(rating / 5) * 100}%`;
   const innerStarStyle = {
     position: 'absolute',
@@ -68,6 +71,7 @@ function Overview(props) {
     setThumbnails(newStyle[0].photos);
     setStyleActive(e.target.id);
     setSkuActive(Object.keys(newStyle[0].skus)[0]);
+    setQuantity(1);
   };
 
   const handleSizeClick = (e) => {
@@ -94,17 +98,45 @@ function Overview(props) {
         return prevQuantity + 1;
       }
     })
-  }
+  };
+
+  const handleCartClick = () => {
+    console.log('clicked!');
+    let data = {style_id: style.style_id, sku_id: skuActive, quantity};
+    axios.post('http://localhost:3000/api/cart', data)
+      .then(res => res)
+      .catch(err => console.error(err));
+  };
 
   useEffect(() => {
-    if (loading) {
+    if (openModal && loading) {
+      let modal;
+      if (modalActive) {
+        modal =
+        <div className="modal-background">
+          <div className="modal-container">
+            <img className="modal-active" onClick={() => setModalActive(!modalActive)} src={style.photos[featured].thumbnail_url}></img>
+          </div>
+        </div>
+        setDisplay(modal);
+      } else {
+        modal =
+        <div className="modal-background">
+          <div className="modal-container">
+            <img onClick={() => setModalActive(!modalActive)} src={style.photos[featured].thumbnail_url}></img>
+          </div>
+        </div>
+        setDisplay(modal);
+      }
+    }
+    if (loading && openModal === false) {
       let featureUrl = thumbnails[featured].thumbnail_url;
-      let feature = <img className="feature-img" src={featureUrl}></img>;
+      let feature = <img onClick={() => setModal(true)} className="feature-img" src={featureUrl}></img>;
       let mapped = [];
       for (let i = 0; i < 4; i++) {
         let photo = thumbnails[i].thumbnail_url;
         if (i === thumbnailActive) {
-          mapped.push(<img onClick={handleThumbnailClick} key={i} id={i} className="active" src={photo}></img>);
+          mapped.push(<img onClick={handleThumbnailClick} key={i} id={i} className="thumbnail-img active" src={photo}></img>);
         } else {
           mapped.push(<img onClick={handleThumbnailClick} key={i} id={i} className="thumbnail-img" src={photo}></img>);
         }
@@ -149,7 +181,7 @@ function Overview(props) {
         }
       }
       if (sizes.length > 0) {
-        cart = <button className="cart-btn">Add to bag</button>;
+      cart = <button onClick={handleCartClick} className="cart-btn">Add to bag</button>;
         sizeSelector =
         <div className="size-selector">
           {sizes}
@@ -165,55 +197,55 @@ function Overview(props) {
         <i onClick={handleIncrease} className="fa-solid fa-plus plus-minus"></i>
       </div>
       let render =
-      <div className="overview-container">
-        <div className="left-container">
-          <div className="carousel-container">
-            <div className="thumbnail-container">
-              {mapped}
-              <img onClick={handleArrowClick} className="thumbnail-arrow" src="https://icons.veryicon.com/png/o/internet--web/prejudice/down-arrow-5.png"></img>
-            </div>
-            <div className="feature-container">
-              {feature}
-            </div>
-          </div>
+      <><div className="left-container">
+        <div className="thumbnail-container">
+          {mapped}
+          <svg onClick={handleArrowClick} className="thumbnail-arrow" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+          viewBox="0 0 330 330" style={{enableBackground: "new 0 0 330 330"}} xmlSpace="preserve">
+          <path id="XMLID_225_" d="M325.607,79.393c-5.857-5.857-15.355-5.858-21.213,0.001l-139.39,139.393L25.607,79.393
+          c-5.857-5.857-15.355-5.858-21.213,0.001c-5.858,5.858-5.858,15.355,0,21.213l150.004,150c2.813,2.813,6.628,4.393,10.606,4.393
+          s7.794-1.581,10.606-4.394l149.996-150C331.465,94.749,331.465,85.251,325.607,79.393z"/></svg>
         </div>
-        <div className="right-container">
-          <div className="padding-left-10">
-            <div className="stars-outer">
-              <div className="stars-inner" style={innerStarStyle}></div>
-            </div>
-            <span>Read all {totalRatings} reviews</span>
-          </div>
-          <div className="padding-left-10">
-            <span>{details.product.category}</span><br></br>
-            <span>{details.product.name}</span><br></br>
-            {price}
-          </div>
-          <div>
-            <span className="padding-left-10">Style > {style.name}</span>
-            <div className="styles">
-              {styles}
-            </div>
-          </div>
-          <div>
-            <span style={{paddingLeft: '10px'}}>Select Size</span>
-            {sizeSelector}
-          </div>
-          <div>
-            <span style={{paddingLeft: '10px'}}>Select Quantity</span>
-            {quantityDisplay}
-          </div>
-          <div>
-            {cart}
-          </div>
+        <div className="feature-container">
+          {feature}
         </div>
       </div>
+      <div className="right-container">
+        <div className="padding-left-10">
+          <div className="stars-outer">
+            <div className="stars-inner" style={innerStarStyle}></div>
+          </div>
+          <span>Read all {totalRatings} reviews</span>
+        </div>
+        <div className="padding-left-10">
+          <span>{details.product.category}</span><br></br>
+          <span>{details.product.name}</span><br></br>
+          {price}
+        </div>
+        <div>
+          <span className="padding-left-10">Style > {style.name}</span>
+          <div className="styles">
+            {styles}
+          </div>
+        </div>
+        <div>
+          <span style={{paddingLeft: '10px'}}>Select Size</span>
+          {sizeSelector}
+        </div>
+        <div>
+          <span style={{paddingLeft: '10px'}}>Select Quantity</span>
+          {quantityDisplay}
+        </div>
+        <div>
+          {cart}
+        </div>
+      </div></>
       setDisplay(render);
     }
-  }, [loading, thumbnails, featured, thumbnailActive, styleActive, style, skuActive, quantity]);
+  }, [loading, thumbnails, featured, thumbnailActive, styleActive, style, skuActive, quantity, openModal, modalActive]);
 
   return (
-    <div>
+    <div className="overview-container">
       {display}
     </div>
   );

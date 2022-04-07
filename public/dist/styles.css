@@ -40,15 +40,15 @@ body {
   font-size: 18px;
   text-decoration: none;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
-  padding: 1% 5%;
+  padding-left: 5.5%;
 }
 
 .logo {
-  width: 7.5%;
-  height: 7.5%;
+  width: 75px;
   cursor: pointer;
+  padding-left: 10px;
 }
 
 .nav-list {
@@ -165,44 +165,40 @@ body {
 
 .overview-container {
   width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: start;
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
 }
 
 .left-container {
-  margin: 25px;
+  margin-top: 25px;
+  margin-right: 150px;
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .right-container {
-  margin: 25px;
-}
-
-.carousel-container {
-  width: 800px;
-  height: 500px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  margin-top: 25px;
+  margin-right: 200px;
 }
 
 .thumbnail-container {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  margin-right: 75px;
-  margin-left: 75px;
+  align-items: center;
+  width: 25%;
 }
 
 .feature-container {
-  margin-right: 75px;
-  margin-left: 75px;
+  width: 75%;
 }
 
 .product-detail-container {
@@ -212,49 +208,44 @@ body {
 }
 
 .feature-img {
-  width: 500px;
+  width: 100%;
   height: 500px;
   align-items: center;
   object-fit: contain;
+  aspect-ratio: 1/1;
   box-shadow: 0.3em 0.3em 1em rgba(0,0,0,0.3);
-  border-radius: 23px;
+  user-select: none;
 }
 
 .thumbnail-img {
   object-fit: cover;
-  width: 125px;
-  height: 75px;
+  width: 35%;
+  height: 50px;
   cursor: pointer;
   opacity: 0.5;
   margin: 5px;
   transition: opacity .35s ease-out 0s;
   transition: box-shadow .35s ease-out 0s;
-  border-radius: 8px;
 }
 
 .thumbnail-img:hover {
   opacity: 1;
-  box-shadow: -5px 5px 5px rgba(0,0,0,0.3);
+  box-shadow: 0px 5px 5px rgba(0,0,0,0.3);
 }
 
 .active {
-  object-fit: cover;
-  width: 125px;
-  height: 75px;
-  cursor: pointer;
-  margin: 5px;
   box-shadow: 0px 5px 5px rgba(0,0,0,0.3);
-  border-radius: 8px;
+  opacity: 1;
 }
 
 .thumbnail-arrow {
-  object-fit: cover;
-  width: 125px;
-  height: 75px;
+  object-fit: contain;
+  width: 35%;
+  height: 50px;
   cursor: pointer;
   opacity: 1;
+  padding: 5px;
   margin: 5px;
-  border-radius: 8px;
   box-shadow: 0px 7.5px 5px rgba(0,0,0,0.3);
   border: 2px solid rgba(0,0,0,0.3);
   transition: border .35s ease-out 0s;
@@ -332,7 +323,6 @@ body {
   height: 49px;
   width: 69px;
   border: 1.75px solid rgba(0,0,0,0.3);
-  border-radius: 4px;
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -371,14 +361,12 @@ body {
   cursor: pointer;
   border: 2px solid black;
   padding: 3.5px;
-  border-radius: 4px;
   margin-left: 10px;
 }
 
 .cart-btn {
   background: black;
   color: white;
-  border-radius: 12px;
   font-size: 20px;
   cursor: pointer;
   text-transform: uppercase;
@@ -393,6 +381,42 @@ body {
    color: rgb(128,128,128);
    box-shadow: 5px 5px 5px grey;
    transition: all 0.20s ease 0s;
+}
+
+.modal-background {
+  background-color: grey;
+  width: 100%;
+  height: 650px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.modal-container img {
+  object-fit: cover;
+  height: 90%;
+}
+
+.modal-container img:focus {
+  transform: scale(2.5);
+}
+
+/* .modal-active {
+  transform: scale(2.5);
+} */
+
+.fa-circle {
+  color: black;
+  padding-left: 5px;
+  padding-right: 5px;
+  box-shadow: 5px 5px 5px black;
 }
 
 #related-outfit-container{

@@ -64,9 +64,10 @@ app.get('/api/qa/questions', (request, response) => {
     .catch((err) => console.error(err));
 });
 
-app.get('/api/cart', (request, response) => {
-  axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/cart', { headers: Options })
-    .then((res) => response.json(res.data))
+app.post('/api/cart', (request, response) => {
+  let data = JSON.stringify(request.body);
+  axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/cart', data, { headers: Options })
+    .then((res) => console.log(res))
     .catch((err) => console.error(err));
 });
 
