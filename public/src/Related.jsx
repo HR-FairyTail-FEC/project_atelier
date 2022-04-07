@@ -52,7 +52,6 @@ const Related = (props)=> {
           <li>my module: add currentStyle to outfits list</li>
           <li>my module: fix errors key prop</li>
           <li>my module: hover effects</li>
-          <li> Add productName + Comparison name</li>
         </ul>
 
         <div id="related-outfit-container">
@@ -101,7 +100,7 @@ const Related = (props)=> {
               <Name key={index}> {obj.name}</Name>
               <Price key={index}> ${obj.price} </Price>
               <Stars rating={obj.stars} instance={obj.instance} key={index}/>
-              <ActionButton_Star key={index} index={index} mainProduct={props.details.product} relatedID={obj.id}></ActionButton_Star>
+              <ActionButton_Star key={index} index={index} mainProduct={props.details.product} relatedID={obj.id} relProductName={obj.name}></ActionButton_Star>
             </ContainerRelated>
         )
       })

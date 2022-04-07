@@ -4,15 +4,16 @@ import {ModalTitle, ComparingModal, TitleContainer,  TitleMain, TitleRelated, Fe
 import axios from 'axios';
 
 const ActionButton_Star = (props)=> {
-  // console.log('in actionButton_Star with props', props);
-  let relatedID = props.relatedID;
+  console.log('<ActionButton_Star> with props', props);
+  let mainProductName = props.mainProduct.name;
+  let relProductName = props.relProductName;
   let mainProductFeatures = [...props.mainProduct.features];
   const [isActive, setActive] = useState(false);
   const [allFeatures, setAllFeatures] = useState([]);
 
   useEffect(()=>{
-    // console.log('<ActionButtonStar> in UseEffect');
-  },[allFeatures]);
+    console.log('<ActionButtonStar> in UseEffect');
+  },[]);
 
   let index = props.index;
     return (
@@ -33,8 +34,8 @@ const ActionButton_Star = (props)=> {
           <ModalTitle> Comparing </ModalTitle>
           <ComparingModal>
             <TitleContainer>
-              <TitleMain>Main Product</TitleMain>
-              <TitleRelated> Related Product</TitleRelated>
+              <TitleMain>{mainProductName}</TitleMain>
+              <TitleRelated> {relProductName}</TitleRelated>
             </TitleContainer>
             <Features>
             {
@@ -61,6 +62,7 @@ const ActionButton_Star = (props)=> {
 
   function starClick(){
     // console.log('CLICK - main product features are', mainProductFeatures);
+    let relatedID = props.relatedID;
     axios.get(`http://localhost:3000/api/products/${relatedID}`).then(response=>{
       // console.log('data is', response);
       let relProductFeatures = response.data.features;
