@@ -1,6 +1,7 @@
 import React, { useLayoutEffect, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Overview from './Overview.jsx';
+import QA from './Q&A.jsx';
 import Related from './Related.jsx';
 
 const axios = require('axios');
@@ -29,6 +30,7 @@ function ProductDetail() {
         final[elements[index]] = item;
       });
       setDetail(final);
+      console.log(final);
     };
     fetch();
   }, []);
@@ -37,6 +39,7 @@ function ProductDetail() {
     <div className="page-container">
       <Overview details={productDetail}/>
       <Related details={productDetail} />
+      <QA details = {productDetail}/>
     </div>
   );
 }
