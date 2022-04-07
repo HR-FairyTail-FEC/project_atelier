@@ -8,14 +8,20 @@ import ActionButton_Star from './Related_ActionButton_Star.jsx';
 
 const Related = (props)=> {
   console.log('in related with props', props);
-    const [relatedEntries, setRelatedEntries] = useState([]); //looks like
-    const [outfitEntries, setOutfitEntries] = useState([]);
+    const [relatedEntries, setRelatedEntries] = useState([]);
+    const [startIndexRelated, setStartIndexRelated] = useState(0);
+    const [endIndexRelated, setEndIndexRelated] = useState(3);  //for carousel
+
+    // const [outfitEntries, setOutfitEntries] = useState([]);
+    const [outfitEntries, setOutfitEntries] = useState(JSON.parse(localStorage.getItem('outfitEntries')));
+
+    const [startIndexOutfit, setStartIndexOutfit] = useState(0);
+    const [endIndexOutfit, setEndIndexOutfit] = useState(2);  //for carousel
+
 
     useEffect(()=>{
-        if (props.details.length === 0) {
-          setRelatedEntries([]);
-        }
-        else {
+      console.log('<Related> useEffect')
+        if (props.details.length !== 0){
           let related = props.details.related;
           let promisesArr = [];
           related.forEach((relatedID) => {
@@ -31,80 +37,65 @@ const Related = (props)=> {
             // console.log('this is what relatedEntries holds', formattedData);
             setRelatedEntries(formattedData);
           })
+          localStorage.setItem('outfitEntries', JSON.stringify(outfitEntries)); //store it
         }
-    },[props.details], outfitEntries);
+    },[props.details, outfitEntries]);
 
     return (
       <>
-      <ul>To Do
-        <li>Group: tests, journal worksheet</li>
-        <li>my module: add currentStyle to outfits list</li>
-        <li>my module: context api store the outfit, then add functionality for remove button</li>
-        <li>my module: fix errors key prop</li>
-        <li>my module: carousel</li>
-        <li>my module: hover effects</li>
-      </ul>
+        <div>
+          {console.log('rendering <Related>')}
+        </div>
+
+        <ul>To Do
+          <li>Group: tests, journal worksheet</li>
+          <li>my module: add currentStyle to outfits list</li>
+          <li>my module: context api store the outfit, then add functionality for remove button</li>
+          <li>my module: fix errors key prop</li>
+          <li>my module: carousel</li>
+          <li>my module: hover effects</li>
+        </ul>
 
         <div id="related-outfit-container">
-          <div id="related-container">
-            <div id="related-title">
-              <p> RELATED PRODUCTS</p>
-            </div>
-            <div id="related-items">
-            <LeftArrow/>
-              <CarouselContainer>
-                {
-                  relatedEntries.length ===0 ? <p> Loading... </p> : relatedEntriesMapped()
-                }
-              </CarouselContainer>
 
-            <RightArrow/>
+          <div id="related-container">
+            <div id="related-title"> <p> RELATED PRODUCTS</p> </div>
+            <div id="related-items">
+              {(startIndexRelated>0) ? <LeftArrow changeIndexFN={()=>changeIndex(['decrement', 'related'])}/> : <LeftArrow view={'onlyColumn'}/>}
+              <CarouselContainer>
+                {relatedEntries.length ===0 ? <p> Loading... </p> : relatedEntriesMapped(startIndexRelated, endIndexRelated)}
+              </CarouselContainer>
+              {(endIndexRelated<relatedEntries.length-1) ? <RightArrow changeIndexFN={()=>changeIndex(['increment', 'related'])}/>: <RightArrow view={'onlyColumn'}/> }
             </div>
           </div>
 
           <br></br>
 
           <div id="outfit-container">
-            <div id="outfit-title">
-              <p> YOUR OUTFIT </p>
-            </div>
+            <div id="outfit-title"> <p> YOUR OUTFIT </p> </div>
             <div id="outfit-items">
-            {
-              (
-                <>
+              {(startIndexOutfit>0) ? <LeftArrow changeIndexFN={()=>changeIndex(['decrement', 'outfit'])}/> : <LeftArrow view={'onlyColumn'}/>}
+
+              <CarouselContainer>
                 <ContainerOutfit>
                   <AddToOutfit_Button onClick={AddToOutfit_Click}> </AddToOutfit_Button>
                   <AddToOutfit_Text> Add to Outfit </AddToOutfit_Text>
                 </ContainerOutfit>
-                {
-                  outfitEntries.length ===0 ? <></> :
-                  outfitEntries.map((outfit,index)=>{
-                    return (
-                        <ContainerOutfit>
-                          <ActionButtonX onClick={DeleteFromOutfit_Click}/>
-                          <ImageContainer img={outfit.thumbnailURL} key={`outfit-${index}`}> </ImageContainer>
-                          <Category>{outfit.category} </Category>
-                          <Name> {outfit.name}</Name>
-                          <Price> ${outfit.price} </Price>
-                          <Stars rating={outfit.stars} instance={outfit.instance} key={index}/>
-                        </ContainerOutfit>
-                    )
-                  })
-                }
-                </>
-              )
-
-            }
+                {(outfitEntries.length ===0) ? <></> : outfitEntriesMapped(startIndexOutfit, endIndexOutfit)}
+              </CarouselContainer>
+              {(endIndexOutfit<outfitEntries.length-1) ? <RightArrow changeIndexFN={()=>changeIndex(['increment', 'outfit'])}/>: <RightArrow view={'onlyColumn'}/> }
             </div>
           </div>
+
         </div>
       </>
     );
 
-    function relatedEntriesMapped(){
-      let allEntries = relatedEntries.map((obj,index)=>{
+    function relatedEntriesMapped(startIndexRelated, endIndexRelated){
+      console.log('in relatedEntriesMapped');
+      console.log('sliced entries are', relatedEntries.slice(startIndexRelated, endIndexRelated+1));
+      return relatedEntries.slice(startIndexRelated,endIndexRelated+1).map((obj,index)=>{
         return (
-          <>
             <ContainerRelated key={index}>
               <ImageContainer img={obj.thumbnailURL}></ImageContainer>
               <Category key={index}>{obj.category} </Category>
@@ -113,10 +104,40 @@ const Related = (props)=> {
               <Stars rating={obj.stars} instance={obj.instance} key={index}/>
               <ActionButton_Star key={index} index={index} mainProduct={props.details.product} relatedID={obj.id}></ActionButton_Star>
             </ContainerRelated>
-          </>
         )
       })
-      console.log('all entries in relatedEntriesMapped is', allEntries);
+    }
+    function outfitEntriesMapped(startIndexOutfit, endIndexOutfit){
+      return outfitEntries.slice(startIndexOutfit, endIndexOutfit+1).map((outfit,index)=>{
+        return (
+          <ContainerOutfit>
+            <ActionButtonX onClick={()=>DeleteFromOutfit_Click(outfit.id)}/>
+            <ImageContainer img={outfit.thumbnailURL} key={`outfit-${index}`}> </ImageContainer>
+            <Category>{outfit.category} </Category>
+            <Name> {outfit.name}</Name>
+            <Price> ${outfit.price} </Price>
+            <Stars rating={outfit.stars} instance={outfit.instance} key={index}/>
+          </ContainerOutfit>
+        )
+      })
+    }
+    function changeIndex([action, whichCarousel]){
+      console.log('in changeIndex');
+      if (action ==='increment' && whichCarousel==='related'){
+        console.log('increment clicked', whichCarousel,  ' has last index ', relatedEntries.length-1);
+        if (endIndexRelated < relatedEntries.length-1){
+          setStartIndexRelated(prevCount=> prevCount+1);
+          setEndIndexRelated(prevCount=>prevCount+1);
+        }
+      }
+      if (action === 'decrement' && whichCarousel==='related'){
+        console.log('increment clicked', whichCarousel);
+        if (startIndexRelated > 0 ){
+          setStartIndexRelated(prevCount=> prevCount-1);
+          setEndIndexRelated(prevCount=>prevCount-1);
+        }
+      }
+
     }
 
     function AddToOutfit_Click(){
@@ -147,8 +168,16 @@ const Related = (props)=> {
       // console.log(uniqueOutfits);
       setOutfitEntries(uniqueOutfits);
     }
-    function DeleteFromOutfit_Click(){
-      console.log('delete From outfit clicked');
+    function DeleteFromOutfit_Click(idTarget){
+      console.log('delete From outfit clicked on id', idTarget,'current outfitEntries is', outfitEntries);
+      let copy = [...outfitEntries];
+      for (let i =0; i<copy.length; i++){
+        if (copy[i].id ===idTarget){
+          copy.splice(i,1);
+        }
+      }
+      setOutfitEntries(copy);
+      console.log('deleted entry outfitEntries looks like', copy);
     }
 
 };

@@ -3,14 +3,14 @@ import styled from "styled-components"
 
 const ContainerRelated = styled.div`
   border-style: solid;
-  margin-left: 30px;
-  margin-right: 30px;
+  margin-left: 15px;
+  margin-right: 15px;
   width: 250px;
   height: 370px;
   font-family: 'Lato', sans-serif;
   position: relative;
+  background-color: white;
 `;
-
 
 console.log('access image container');
 const ImageContainer = styled.div`
@@ -58,7 +58,7 @@ const LeftArrowCol = styled.div`
   width:50px;
   border-style:solid;
   position: relative;
-
+  background-color: red;
 `;
 
 const LeftArrowDiv = styled.div`
@@ -70,28 +70,33 @@ const LeftArrowDiv = styled.div`
   bottom: calc((100%/2));
 `;
 
-const LeftArrow=()=>{
+const LeftArrow=(props)=>{
+  if (props.view ==='onlyColumn'){
+    return (
+      <LeftArrowCol/>
+    )
+  }
+  // console.log('left arrow props are', props);
+  let parentFunction = props.changeIndexFN;
   return (
     <LeftArrowCol>
-      <LeftArrowDiv>
+      <LeftArrowDiv onClick={parentFunction}>
         <svg x="0px" y="0px" viewBox="0 0 512 512" >
           <path d="M168.837,256L388.418,36.418c8.331-8.331,8.331-21.839,0-30.17c-8.331-8.331-21.839-8.331-30.17,0L123.582,240.915 c-8.331,8.331-8.331,21.839,0,30.17l234.667,234.667c8.331,8.331,21.839,8.331,30.17,0c8.331-8.331,8.331-21.839,0-30.17 L168.837,256z"/>
         </svg>
       </LeftArrowDiv>
-
     </LeftArrowCol>
 
   )
 }
 
-
 const RightArrowCol = styled.div`
   width:50px;
   border-style:solid;
   position: relative;
+  background-color: red;
 
 `;
-
 const RightArrowDiv = styled.div`
   border-style:dotted;
   color: blue;
@@ -100,11 +105,16 @@ const RightArrowDiv = styled.div`
   height:50px;
   bottom: calc((100%/2));
 `;
-
-const RightArrow=()=>{
+const RightArrow=(props)=>{
+  if (props.view ==='onlyColumn'){
+    return (
+      <RightArrowCol/>
+    )
+  }
+  let parentFunction = props.changeIndexFN;
   return (
     <RightArrowCol>
-      <RightArrowDiv>
+      <RightArrowDiv onClick={parentFunction}>
         <svg x="0px" y="0px" viewBox="0 0 512 512" >
           <path d="M388.418,240.915L153.752,6.248c-8.331-8.331-21.839-8.331-30.17,0c-8.331,8.331-8.331,21.839,0,30.17L343.163,256
           L123.582,475.582c-8.331,8.331-8.331,21.839,0,30.17c8.331,8.331,21.839,8.331,30.17,0l234.667-234.667
@@ -119,7 +129,8 @@ const RightArrow=()=>{
 
 const CarouselContainer = styled.div`
   display:flex;
-  background-color:blue;
+  width:100%;
+  background-color:green;
 `;
 
 

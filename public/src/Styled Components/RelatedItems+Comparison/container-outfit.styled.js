@@ -5,12 +5,14 @@ import {Close} from '@styled-icons/evaicons-solid/Close';
 
 const ContainerOutfit = styled.div`
   border-style: solid;
-  margin-left: 30px;
-  margin-right: 30px;
+  margin-left: 15px;
+  margin-right: 15px;
   width: 250px;
   height: 370px;
   font-family: 'Lato', sans-serif;
   position: relative;
+  background-color: white;
+
 `;
 
 
