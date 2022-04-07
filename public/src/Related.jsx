@@ -48,12 +48,11 @@ const Related = (props)=> {
         </div>
 
         <ul>To Do
-          <li>Group: tests, journal worksheet</li>
+          <li>Group: </li>
           <li>my module: add currentStyle to outfits list</li>
-          <li>my module: context api store the outfit, then add functionality for remove button</li>
           <li>my module: fix errors key prop</li>
-          <li>my module: carousel</li>
           <li>my module: hover effects</li>
+          <li> Add productName + Comparison name</li>
         </ul>
 
         <div id="related-outfit-container">
@@ -135,6 +134,20 @@ const Related = (props)=> {
         if (startIndexRelated > 0 ){
           setStartIndexRelated(prevCount=> prevCount-1);
           setEndIndexRelated(prevCount=>prevCount-1);
+        }
+      }
+      if (action ==='increment' && whichCarousel==='outfit'){
+        console.log('increment clicked', whichCarousel,  ' has last index ', outfitEntries.length-1);
+        if (endIndexOutfit < outfitEntries.length-1){
+          setStartIndexOutfit(prevCount=> prevCount+1);
+          setEndIndexOutfit(prevCount=>prevCount+1);
+        }
+      }
+      if (action === 'decrement' && whichCarousel==='outfit'){
+        console.log('increment clicked', whichCarousel);
+        if (startIndexOutfit > 0 ){
+          setStartIndexOutfit(prevCount=> prevCount-1);
+          setEndIndexOutfit(prevCount=>prevCount-1);
         }
       }
 
