@@ -4,7 +4,7 @@ function Overview(props) {
   let feature;
   let photos;
   let details = props.details;
-  console.log(details);
+  // console.log(details);
   const [featured, setFeatured] = useState(0);
   const [thumbnailActive, setThumbnailActive] = useState(0);
   const [thumbnails, setThumbnails] = useState(null);
@@ -31,7 +31,7 @@ function Overview(props) {
       let total = 0;
       let count = 0;
       let ratings = details.meta.ratings;
-      console.log(ratings);
+      // console.log(ratings);
       for (let rating in ratings) {
         total += rating * ratings[rating];
         count += Number(ratings[rating]);
@@ -128,6 +128,7 @@ function Overview(props) {
 
   return (
     <div>
+      {console.log('rendering <Overview>')}
       {display}
     </div>
   );
