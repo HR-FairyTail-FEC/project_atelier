@@ -54,21 +54,7 @@ const Related = (props)=> {
             <LeftArrow/>
               <CarouselContainer>
                 {
-                  relatedEntries.length ===0 ? <p> Loading... </p> :
-                  relatedEntries.map((obj,index)=>{
-                    return (
-                      <>
-                        <ContainerRelated key={index}>
-                          <ImageContainer img={obj.thumbnailURL}></ImageContainer>
-                          <Category key={index}>{obj.category} </Category>
-                          <Name key={index}> {obj.name}</Name>
-                          <Price key={index}> ${obj.price} </Price>
-                          <Stars rating={obj.stars} instance={obj.instance} key={index}/>
-                          <ActionButton_Star key={index} index={index} mainProduct={props.details.product} relatedID={obj.id}></ActionButton_Star>
-                        </ContainerRelated>
-                      </>
-                        )
-                  })
+                  relatedEntries.length ===0 ? <p> Loading... </p> : relatedEntriesMapped()
                 }
               </CarouselContainer>
 
@@ -114,6 +100,24 @@ const Related = (props)=> {
         </div>
       </>
     );
+
+    function relatedEntriesMapped(){
+      let allEntries = relatedEntries.map((obj,index)=>{
+        return (
+          <>
+            <ContainerRelated key={index}>
+              <ImageContainer img={obj.thumbnailURL}></ImageContainer>
+              <Category key={index}>{obj.category} </Category>
+              <Name key={index}> {obj.name}</Name>
+              <Price key={index}> ${obj.price} </Price>
+              <Stars rating={obj.stars} instance={obj.instance} key={index}/>
+              <ActionButton_Star key={index} index={index} mainProduct={props.details.product} relatedID={obj.id}></ActionButton_Star>
+            </ContainerRelated>
+          </>
+        )
+      })
+      console.log('all entries in relatedEntriesMapped is', allEntries);
+    }
 
     function AddToOutfit_Click(){
       let currentProduct = props.details.product;
