@@ -6,7 +6,8 @@ function Overview(props) {
   let feature;
   let photos;
   let details = props.details;
-  // console.log(details);
+  console.log('in overview w/ props: ', details);
+  const [currentId, setId] = useState(null);
   const [featured, setFeatured] = useState(0);
   const [thumbnailActive, setThumbnailActive] = useState(0);
   const [thumbnails, setThumbnails] = useState(null);
@@ -43,11 +44,33 @@ function Overview(props) {
       let rating = total / count;
       let rounded = (Math.round(rating * 4) / 4).toFixed(2);
       let skus = details.styles.results[0].skus;
+      setId(details.product.id);
       setStyle(curr);
       setStyleActive(details.styles.results[0].style_id);
       setTotalRatings(count);
       setRating(rounded);
       setLoading(true);
+      setThumbnails(photos);
+      setSkuActive(Object.keys(skus)[0]);
+    }
+    if (Number(details.product.id) !== Number(currentId)) {
+      let curr = details.styles.results[0];
+      let photos = curr.photos;
+      let total = 0;
+      let count = 0;
+      let ratings = details.meta.ratings;
+      for (let rating in ratings) {
+        total += rating * ratings[rating];
+        count += Number(ratings[rating]);
+      }
+      let rating = total / count;
+      let rounded = (Math.round(rating * 4) / 4).toFixed(2);
+      let skus = details.styles.results[0].skus;
+      setId(details.product.id);
+      setStyle(curr);
+      setStyleActive(details.styles.results[0].style_id);
+      setTotalRatings(count);
+      setRating(rounded);
       setThumbnails(photos);
       setSkuActive(Object.keys(skus)[0]);
     }
@@ -279,7 +302,7 @@ function Overview(props) {
       </>
       setDisplay(render);
     }
-  }, [loading, thumbnails, featured, thumbnailActive, styleActive, style, skuActive, quantity, openModal]);
+  }, [loading, thumbnails, featured, thumbnailActive, styleActive, style, skuActive, quantity, openModal, props]);
 
   return (
     <div className="overview-container">
