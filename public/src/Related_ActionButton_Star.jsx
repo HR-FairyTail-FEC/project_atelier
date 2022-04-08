@@ -20,7 +20,7 @@ const ActionButton_Star = (props)=> {
       <>
         <div className="actionbutton-star" onClick={event => {
           event.stopPropagation();
-          console.log('button clicked');
+          // console.log('button clicked');
           starClick();
         }}>
           <svg width="24px" height="24px" viewBox="0 0 32 32">
@@ -65,7 +65,7 @@ const ActionButton_Star = (props)=> {
 
 
   function starClick(){
-    console.log('actionbuttonStar clicked');
+    // console.log('actionbuttonStar clicked');
     // console.log('CLICK - main product features are', mainProductFeatures);
     let relatedID = props.relatedID;
     axios.get(`http://localhost:3000/api/products/${relatedID}`).then(response=>{

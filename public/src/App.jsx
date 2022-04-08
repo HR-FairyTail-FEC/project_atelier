@@ -42,12 +42,15 @@ function App() {
     <Router>
       <div className="padNavTop"> </div>
       <nav className="topNav">
-        <img className="logo" src="logo.png" alt=""></img>
-        <ul>
+        <div style={{width: '33%'}}>
+          <img className="logo" src="logo.png" alt=""></img>
+        </div>
+        <ul style={{width: '33%'}}>
           <li className="nav-list"><Link className="nav-links" to="/">Home</Link></li>
           <li className="nav-list"><Link className="nav-links" to="/products">Products</Link></li>
           <li className="nav-list"><Link className="nav-links" to="/cart">Cart</Link></li>
         </ul>
+        <div style={{width: '33%'}}></div>
       </nav>
       <div className="padNavBottom"> </div>
       <Routes>

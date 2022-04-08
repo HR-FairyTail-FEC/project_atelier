@@ -17,7 +17,7 @@ function ProductDetail() {
   useLayoutEffect(() => {
     const promises = [];
     let result = [];
-    const endpoints = [`/api/products/${productID}`, `/api/products/${productID}/styles`, `/api/products/${productID}/related`, `/api/reviews?product_id=${productID}&sort=relevant`, `/api/reviews/meta?product_id=${productID}`, `/api/qa/questions?product_id=${productID}`, '/api/cart'];
+    const endpoints = [`/api/products/${productID}`, `/api/products/${productID}/styles`, `/api/products/${productID}/related`, `/api/reviews?product_id=${productID}&sort=relevant`, `/api/reviews/meta?product_id=${productID}`, `/api/qa/questions?product_id=${productID}`];
     const fetch = async () => {
       for (let i = 0; i < endpoints.length; i += 1) {
         promises.push(axios.get(`http://localhost:3000${endpoints[i]}`));
@@ -27,12 +27,11 @@ function ProductDetail() {
         result = [...result, item.data];
       });
       const final = {};
-      const elements = ['product', 'styles', 'related', 'reviews', 'meta', 'questions', 'cart'];
+      const elements = ['product', 'styles', 'related', 'reviews', 'meta', 'questions'];
       result.forEach((item, index) => {
         final[elements[index]] = item;
       });
       setDetail(final);
-      // console.log(final);
     };
     fetch();
   }, [productID]);

@@ -13,7 +13,7 @@ const Related = (props)=> {
     const [startIndexRelated, setStartIndexRelated] = useState(0);
     const [endIndexRelated, setEndIndexRelated] = useState(3);  //for carousel
     // const [outfitEntries, setOutfitEntries] = useState([]);
-    const [outfitEntries, setOutfitEntries] = useState(JSON.parse(localStorage.getItem('outfitEntries')));
+    const [outfitEntries, setOutfitEntries] = useState(JSON.parse(localStorage.getItem('outfitEntries')) || []);
     const [startIndexOutfit, setStartIndexOutfit] = useState(0);
     const [endIndexOutfit, setEndIndexOutfit] = useState(2);  //for carousel
     const navigate = useNavigate();
@@ -42,7 +42,7 @@ const Related = (props)=> {
     return (
       <>
         <div>
-          {console.log('rendering <Related>')}
+          {/* {console.log('rendering <Related>')} */}
         </div>
 
         <ul>To Do
@@ -154,7 +154,7 @@ const Related = (props)=> {
 
     }
     function handleContainerSelect(event){
-      console.log('whole ContainerRelated clicked event:', event);
+      // console.log('whole ContainerRelated clicked event:', event);
       navigate(`/products/${event}`);
       props.setProductID(event)
 
@@ -189,7 +189,7 @@ const Related = (props)=> {
       setOutfitEntries(uniqueOutfits);
     }
     function DeleteFromOutfit_Click(idTarget){
-      console.log('delete From outfit clicked on id', idTarget,'current outfitEntries is', outfitEntries);
+      // console.log('delete From outfit clicked on id', idTarget,'current outfitEntries is', outfitEntries);
       let copy = [...outfitEntries];
       for (let i =0; i<copy.length; i++){
         if (copy[i].id ===idTarget){
@@ -197,7 +197,7 @@ const Related = (props)=> {
         }
       }
       setOutfitEntries(copy);
-      console.log('deleted entry outfitEntries looks like', copy);
+      // console.log('deleted entry outfitEntries looks like', copy);
     }
 
 };
