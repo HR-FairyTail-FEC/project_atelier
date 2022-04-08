@@ -8,14 +8,16 @@ const axios = require('axios');
 
 
 function ProductDetail() {
+  // console.log('<ProductDetail>')
   const [productDetail, setDetail] = useState([]);
-
   const { id } = useParams();
+  const [productID, setProductID] = useState(id); //used to refresh productID in useEffect
+
 
   useLayoutEffect(() => {
     const promises = [];
     let result = [];
-    const endpoints = [`/api/products/${id}`, `/api/products/${id}/styles`, `/api/products/${id}/related`, `/api/reviews?product_id=${id}&sort=relevant`, `/api/reviews/meta?product_id=${id}`, `/api/qa/questions?product_id=${id}`, '/api/cart'];
+    const endpoints = [`/api/products/${productID}`, `/api/products/${productID}/styles`, `/api/products/${productID}/related`, `/api/reviews?product_id=${productID}&sort=relevant`, `/api/reviews/meta?product_id=${productID}`, `/api/qa/questions?product_id=${productID}`, '/api/cart'];
     const fetch = async () => {
       for (let i = 0; i < endpoints.length; i += 1) {
         promises.push(axios.get(`http://localhost:3000${endpoints[i]}`));
@@ -30,15 +32,15 @@ function ProductDetail() {
         final[elements[index]] = item;
       });
       setDetail(final);
-      console.log(final);
+      // console.log(final);
     };
     fetch();
-  }, []);
+  }, [productID]);
 
   return (
     <div className="page-container">
       <Overview details={productDetail}/>
-      <Related details={productDetail} />
+      <Related details={productDetail} setProductID={setProductID} />
       <QA details = {productDetail}/>
     </div>
   );

@@ -41,7 +41,7 @@ const Name = styled.p`
   font-weight: bold;
   font-size:21px;
   position: absolute;
-  top: 230px;
+  top: 235px;
   left: 10px;
   height:60px;
 `;
