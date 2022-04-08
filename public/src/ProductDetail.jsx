@@ -8,7 +8,7 @@ const axios = require('axios');
 
 
 function ProductDetail() {
-  console.log('<ProductDetail>')
+  // console.log('<ProductDetail>')
   const [productDetail, setDetail] = useState([]);
   const { id } = useParams();
   const [productID, setProductID] = useState(id); //used to refresh productID in useEffect
@@ -32,7 +32,7 @@ function ProductDetail() {
         final[elements[index]] = item;
       });
       setDetail(final);
-      console.log(final);
+      // console.log(final);
     };
     fetch();
   }, [productID]);

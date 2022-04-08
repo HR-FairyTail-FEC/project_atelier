@@ -8,7 +8,7 @@ import ActionButton_Star from './Related_ActionButton_Star.jsx';
 
 
 const Related = (props)=> {
-  console.log('in related with props', props);
+  // console.log('in related with props', props);
     const [relatedEntries, setRelatedEntries] = useState([]);
     const [startIndexRelated, setStartIndexRelated] = useState(0);
     const [endIndexRelated, setEndIndexRelated] = useState(3);  //for carousel
@@ -18,7 +18,7 @@ const Related = (props)=> {
     const [endIndexOutfit, setEndIndexOutfit] = useState(2);  //for carousel
     const navigate = useNavigate();
     useEffect(()=>{
-      console.log('<Related> useEffect')
+      // console.log('<Related> useEffect')
         if (props.details.length !== 0){
           let related = props.details.related;
           let promisesArr = [];
@@ -97,7 +97,7 @@ const Related = (props)=> {
       // console.log('sliced entries are', relatedEntries.slice(startIndexRelated, endIndexRelated+1));
       return relatedEntries.slice(startIndexRelated,endIndexRelated+1).map((obj,index)=>{
         return (
-            <ContainerRelated key={index} onClick={() => handleImageSelect(obj.id)}>
+            <ContainerRelated key={index} onClick={() => handleContainerSelect(obj.id)}>
               <ImageContainer img={obj.thumbnailURL}></ImageContainer>
               <Category key={index}>{obj.category} </Category>
               <Name key={index}> {obj.name}</Name>
@@ -123,30 +123,29 @@ const Related = (props)=> {
       })
     }
     function changeIndex([action, whichCarousel]){
-      console.log('in changeIndex');
-      if (action ==='increment' && whichCarousel==='related'){
-        console.log('increment clicked', whichCarousel,  ' has last index ', relatedEntries.length-1);
+;      if (action ==='increment' && whichCarousel==='related'){
+        // console.log('increment clicked', whichCarousel,  ' has last index ', relatedEntries.length-1);
         if (endIndexRelated < relatedEntries.length-1){
           setStartIndexRelated(prevCount=> prevCount+1);
           setEndIndexRelated(prevCount=>prevCount+1);
         }
       }
       if (action === 'decrement' && whichCarousel==='related'){
-        console.log('increment clicked', whichCarousel);
+        // console.log('increment clicked', whichCarousel);
         if (startIndexRelated > 0 ){
           setStartIndexRelated(prevCount=> prevCount-1);
           setEndIndexRelated(prevCount=>prevCount-1);
         }
       }
       if (action ==='increment' && whichCarousel==='outfit'){
-        console.log('increment clicked', whichCarousel,  ' has last index ', outfitEntries.length-1);
+        // console.log('increment clicked', whichCarousel,  ' has last index ', outfitEntries.length-1);
         if (endIndexOutfit < outfitEntries.length-1){
           setStartIndexOutfit(prevCount=> prevCount+1);
           setEndIndexOutfit(prevCount=>prevCount+1);
         }
       }
       if (action === 'decrement' && whichCarousel==='outfit'){
-        console.log('increment clicked', whichCarousel);
+        // console.log('increment clicked', whichCarousel);
         if (startIndexOutfit > 0 ){
           setStartIndexOutfit(prevCount=> prevCount-1);
           setEndIndexOutfit(prevCount=>prevCount-1);
@@ -154,8 +153,8 @@ const Related = (props)=> {
       }
 
     }
-    function handleImageSelect(event){
-      console.log('clicked Div');
+    function handleContainerSelect(event){
+      console.log('whole ContainerRelated clicked event:', event);
       navigate(`/products/${event}`);
       props.setProductID(event)
 

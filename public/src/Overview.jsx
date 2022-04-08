@@ -128,7 +128,6 @@ function Overview(props) {
 
   return (
     <div>
-      {console.log('rendering <Overview>')}
       {display}
     </div>
   );
