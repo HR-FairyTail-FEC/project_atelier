@@ -8,11 +8,7 @@
     "build": "webpack --config webpack.config.js -w",
     "server-dev": "nodemon ./server/index.js",
     "start": "webpack serve --open",
-<<<<<<< HEAD
-    "test": "jest"
-=======
     "test": "jest --coverage"
->>>>>>> main
   },
   "repository": {
     "type": "git",
