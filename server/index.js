@@ -66,8 +66,12 @@ app.get('/api/qa/questions', (request, response) => {
 
 app.post('/api/cart', (request, response) => {
   let data = JSON.stringify(request.body);
-  axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/cart', data, { headers: Options })
-    .then((res) => console.log(res))
+  axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/cart', data, { headers: {
+    Authorization: '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',
+    'Content-Type': 'application/json'
+  }
+  })
+    .then((res) => response.sendStatus(201))
     .catch((err) => console.error(err));
 });
 

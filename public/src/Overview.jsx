@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Magnifier from './Magnifier.jsx';
 const axios = require('axios');
 
 function Overview(props) {
@@ -18,7 +19,6 @@ function Overview(props) {
   const [skuActive, setSkuActive] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const [openModal, setModal] = useState(false);
-  const [modalActive, setModalActive] = useState(false);
   const percentageFill = `${(rating / 5) * 100}%`;
   const innerStarStyle = {
     position: 'absolute',
@@ -101,33 +101,46 @@ function Overview(props) {
   };
 
   const handleCartClick = () => {
-    console.log('clicked!');
-    let data = {style_id: style.style_id, sku_id: skuActive, quantity};
+    let data = {sku_id: Number(skuActive), count: Number(quantity)};
     axios.post('http://localhost:3000/api/cart', data)
       .then(res => res)
       .catch(err => console.error(err));
   };
 
+  const handleModalDecrease = () => {
+    if (featured === 0) {
+      setFeatured(thumbnails.length - 1);
+    } else {
+      setFeatured((prev) => prev - 1);
+    }
+  };
+
+  const handleModalIncrease = () => {
+    if (featured === thumbnails.length - 1) {
+      setFeatured(0);
+    } else {
+      setFeatured((prev) => prev + 1);
+    }
+  };
+
   useEffect(() => {
     if (openModal && loading) {
-      let modal;
-      if (modalActive) {
-        modal =
-        <div className="modal-background">
-          <div className="modal-container">
-            <img className="modal-active" onClick={() => setModalActive(!modalActive)} src={style.photos[featured].thumbnail_url}></img>
+      let modal =
+      <div className="modal-background">
+        <div className="modal-container">
+          <i onClick={() => setModal(false)} className="fa-solid fa-square-xmark exit-btn"></i>
+          <div className="inner-modal-container">
+            <div onClick={handleModalDecrease} className="modal-arrow-container">
+              <i className="fa-solid fa-angles-left modal-arrow"></i>
+            </div>
+            <Magnifier src={style.photos[featured].thumbnail_url} width={400} height={500} />
+            <div onClick={handleModalIncrease} className="modal-arrow-container">
+              <i className="fa-solid fa-angles-right modal-arrow"></i>
+            </div>
           </div>
         </div>
-        setDisplay(modal);
-      } else {
-        modal =
-        <div className="modal-background">
-          <div className="modal-container">
-            <img onClick={() => setModalActive(!modalActive)} src={style.photos[featured].thumbnail_url}></img>
-          </div>
-        </div>
-        setDisplay(modal);
-      }
+      </div>
+      setDisplay(modal);
     }
     if (loading && openModal === false) {
       let featureUrl = thumbnails[featured].thumbnail_url;
@@ -195,7 +208,20 @@ function Overview(props) {
         <i onClick={handleDecrease} className="fa-solid fa-minus plus-minus"></i>
         <span className="quantity">{quantity}</span>
         <i onClick={handleIncrease} className="fa-solid fa-plus plus-minus"></i>
-      </div>
+      </div>;
+      let slogan;
+      details.product.slogan ? slogan = <span className="slogan">{details.product.slogan}</span> : <></>;
+      let description;
+      details.product.description ? description = <span className="description">{details.product.description}</span> : <></>;
+      let features = [];
+      for (let i = 0; i < details.product.features.length; i++) {
+        let feature = details.product.features[i];
+        features.push(
+        <div>
+          <span>{feature.feature}: </span>
+          <span>{feature.value}</span>
+        </div>);
+      }
       let render =
       <><div className="left-container">
         <div className="thumbnail-container">
@@ -212,14 +238,15 @@ function Overview(props) {
       </div>
       <div className="right-container">
         <div className="padding-left-10">
-          <div className="stars-outer">
-            <div className="stars-inner" style={innerStarStyle}></div>
+          <div style={{display: 'flex', justifyContent: 'space-between', lineHeight: '35px'}}>
+            <span style={{fontWeight: '300', fontSize: '18px', letterSpacing: '1.5px'}}>{details.product.category}</span>
+            <div>
+              <div className="stars-outer"><div className="stars-inner" style={innerStarStyle}></div></div><span className="underline">Read all {totalRatings} reviews</span>
+            </div>
           </div>
-          <span>Read all {totalRatings} reviews</span>
         </div>
         <div className="padding-left-10">
-          <span>{details.product.category}</span><br></br>
-          <span>{details.product.name}</span><br></br>
+          <span style={{fontWeight: '700', fontStyle: 'italic', fontSize: '32px', lineHeight: '35px'}}>{details.product.name}</span><br></br>
           {price}
         </div>
         <div>
@@ -239,10 +266,20 @@ function Overview(props) {
         <div>
           {cart}
         </div>
-      </div></>
+      </div>
+      <div className="description-and-feature-wrapper">
+        <div className="description-container">
+          {slogan}<br></br>
+          {description}
+        </div>
+        <div className="features-container">
+          {features}
+        </div>
+      </div>
+      </>
       setDisplay(render);
     }
-  }, [loading, thumbnails, featured, thumbnailActive, styleActive, style, skuActive, quantity, openModal, modalActive]);
+  }, [loading, thumbnails, featured, thumbnailActive, styleActive, style, skuActive, quantity, openModal]);
 
   return (
     <div className="overview-container">
