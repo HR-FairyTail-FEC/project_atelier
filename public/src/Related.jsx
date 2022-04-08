@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 let placeHolderURL = 'https://www.eslc.org/wp-content/uploads/2019/08/placeholder-grey-square-600x600.jpg'
 import { ContainerRelated, Category, Name, Price, ImageContainer,LeftArrow, RightArrow, CarouselContainer}  from '../src/Styled Components/RelatedItems+Comparison/container-related.styled.js';
@@ -11,14 +12,11 @@ const Related = (props)=> {
     const [relatedEntries, setRelatedEntries] = useState([]);
     const [startIndexRelated, setStartIndexRelated] = useState(0);
     const [endIndexRelated, setEndIndexRelated] = useState(3);  //for carousel
-
     // const [outfitEntries, setOutfitEntries] = useState([]);
     const [outfitEntries, setOutfitEntries] = useState(JSON.parse(localStorage.getItem('outfitEntries')));
-
     const [startIndexOutfit, setStartIndexOutfit] = useState(0);
     const [endIndexOutfit, setEndIndexOutfit] = useState(2);  //for carousel
-
-
+    const navigate = useNavigate();
     useEffect(()=>{
       console.log('<Related> useEffect')
         if (props.details.length !== 0){
@@ -49,10 +47,15 @@ const Related = (props)=> {
 
         <ul>To Do
           <li>Group: </li>
-          <li>my module: add currentStyle to outfits list</li>
-          <li>my module: fix errors key prop</li>
-          <li>my module: hover effects</li>
+          <li>Related Module: add currentStyle? to outfits list</li>
+          <li>Related Module: fix errors key prop</li>
+          <li>Related Module: hover effects</li>
+          <li>Related Module: modal: if similar characteristic, remove duplicates, also put value instead of checkmarks</li>
+          <li>Related Module: React Router: click on anywhere in div (besides action) will route to new product detail page</li>
         </ul>
+        <br></br>
+        <br></br>
+
 
         <div id="related-outfit-container">
 
@@ -90,11 +93,11 @@ const Related = (props)=> {
     );
 
     function relatedEntriesMapped(startIndexRelated, endIndexRelated){
-      console.log('in relatedEntriesMapped');
-      console.log('sliced entries are', relatedEntries.slice(startIndexRelated, endIndexRelated+1));
+      // console.log('in relatedEntriesMapped');
+      // console.log('sliced entries are', relatedEntries.slice(startIndexRelated, endIndexRelated+1));
       return relatedEntries.slice(startIndexRelated,endIndexRelated+1).map((obj,index)=>{
         return (
-            <ContainerRelated key={index}>
+            <ContainerRelated key={index} onClick={() => handleImageSelect(obj.id)}>
               <ImageContainer img={obj.thumbnailURL}></ImageContainer>
               <Category key={index}>{obj.category} </Category>
               <Name key={index}> {obj.name}</Name>
@@ -151,6 +154,12 @@ const Related = (props)=> {
       }
 
     }
+    function handleImageSelect(event){
+      console.log('clicked Div');
+      navigate(`/products/${event}`);
+      props.setProductID(event)
+
+    };
 
     function AddToOutfit_Click(){
       let currentProduct = props.details.product;

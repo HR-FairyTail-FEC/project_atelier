@@ -4,7 +4,7 @@ import {ModalTitle, ComparingModal, TitleContainer,  TitleMain, TitleRelated, Fe
 import axios from 'axios';
 
 const ActionButton_Star = (props)=> {
-  console.log('<ActionButton_Star> with props', props);
+  // console.log('<ActionButton_Star> with props', props);
   let mainProductName = props.mainProduct.name;
   let relProductName = props.relProductName;
   let mainProductFeatures = [...props.mainProduct.features];
@@ -12,7 +12,7 @@ const ActionButton_Star = (props)=> {
   const [allFeatures, setAllFeatures] = useState([]);
 
   useEffect(()=>{
-    console.log('<ActionButtonStar> in UseEffect');
+    // console.log('<ActionButtonStar> in UseEffect');
   },[]);
 
   let index = props.index;
