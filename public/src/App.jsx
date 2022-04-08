@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {
-  BrowserRouter as Router, Routes, Route, Link,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom';
 import Home from './Home.jsx';
 import Products from './Products.jsx';
 import Cart from './Cart.jsx';

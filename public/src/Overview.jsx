@@ -6,7 +6,7 @@ function Overview(props) {
   let feature;
   let photos;
   let details = props.details;
-  console.log(details);
+  // console.log(details);
   const [featured, setFeatured] = useState(0);
   const [thumbnailActive, setThumbnailActive] = useState(0);
   const [thumbnails, setThumbnails] = useState(null);

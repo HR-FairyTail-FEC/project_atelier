@@ -59,7 +59,7 @@ app.get('/api/reviews/meta', (request, response) => {
 
 app.get('/api/qa/questions', (request, response) => {
   const id = request.query.product_id;
-  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions?product_id=${id}`, { headers: Options })
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions?product_id=${id}&count=9999`, { headers: Options })
     .then((res) => response.json(res.data))
     .catch((err) => console.error(err));
 });
@@ -74,6 +74,55 @@ app.post('/api/cart', (request, response) => {
     .then((res) => response.sendStatus(201))
     .catch((err) => console.error(err));
 });
+
+
+//posting new questions and answers
+app.post('/api/qa/questions/:question_id/answers', (request, response) => {
+  const data = request.body.data;
+  const { question_id } = request.params;
+  axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${question_id}/answers`, data, { headers: Options })
+    .then((res) => response.json(res.data))
+    .catch((err) => console.error(err));
+});
+
+app.post('/api/qa/questions', (request, response) => {
+  const data = request.body.data;
+  axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions`, data, { headers: Options })
+    .then((res) => response.json(res.data))
+    .catch((err) => console.error(err));
+});
+
+//put calls for helpful or reported Q
+app.put('/api/qa/questions/:question_id/helpful', (request, response) => {
+  const { question_id } = request.params;
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${question_id}/helpful`, {}, { headers: Options })
+  .then((res) => response.json(res.data))
+  .catch((err) => console.error(err));
+});
+
+app.put('/api/qa/questions/:question_id/report', (request, response) => {
+  const { question_id } = request.params;
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${question_id}/report`, {}, { headers: Options })
+  .then((res)=>response.json(res.data))
+  .catch((err) => console.error(err));
+});
+
+
+//put calls for helpful or reported A
+app.put('/api/qa/answers/:answer_id/helpful', (request, response) => {
+  const { answer_id } = request.params;
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/answers/${answer_id}/helpful`, {}, {headers: Options })
+  .then((res) => response.json(res.data))
+  .catch((err) => console.error(err));
+});
+
+app.put('/api/qa/answers/:answer_id/report', (request, response) => {
+  const { answer_id } = request.params;
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/answers/${answer_id}/report`, {}, { headers: Options })
+  .then((res) => response.json(res.data))
+  .catch((err) => console.error(err));
+});
+
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);

@@ -8,7 +8,11 @@
     "build": "webpack --config webpack.config.js -w",
     "server-dev": "nodemon ./server/index.js",
     "start": "webpack serve --open",
+<<<<<<< HEAD
     "test": "jest"
+=======
+    "test": "jest --coverage"
+>>>>>>> main
   },
   "repository": {
     "type": "git",
@@ -47,8 +51,10 @@
   },
   "dependencies": {
     "axios": "^0.26.1",
+    "babel-jest": "^27.5.1",
     "cors": "^2.8.5",
     "express": "^4.17.3",
+    "moment": "^2.29.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.2.2",
