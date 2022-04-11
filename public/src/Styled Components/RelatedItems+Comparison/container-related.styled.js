@@ -2,25 +2,27 @@ import React from 'react';
 import styled from "styled-components"
 
 const ContainerRelated = styled.div`
-  border-style: solid;
+  border: 2px solid rgba(0,0,0,0.3);
   margin-left: 15px;
   margin-right: 15px;
   width: 250px;
   height: 370px;
   font-family: 'Lato', sans-serif;
   position: relative;
-  background-color: white;
+  /* background-color: yellow; */
+  box-shadow: 0.3em 0.3em 1em rgba(0,0,0,0.3);
+
 `;
 
 console.log('access image container');
 const ImageContainer = styled.div`
+  /* border-style:solid; */
+  /* background-color:blue; */
   position: absolute;
   top: 10px;
   left: 10px;
   bottom: 150px;
   right:10px;
-  border-style:solid;
-  background-color:blue;
   background-image: url(${props=>props.img});
   background-size: contain;
   background-repeat:no-repeat;
@@ -55,19 +57,26 @@ const Price = styled.p`
 `;
 
 const LeftArrowCol = styled.div`
+  /* border-style:solid; */
+  /* background-color: red; */
   width:50px;
-  border-style:solid;
   position: relative;
-  background-color: red;
 `;
 
 const LeftArrowDiv = styled.div`
-  border-style:dotted;
-  color: blue;
+  /* border-style:dotted; */
+  /* background-color: blue; */
+  border: 2px solid rgba(0,0,0,0.3);
+  padding:10px;
   position: absolute;
-  width:50px;
-  height:50px;
+  width:60px;
+  height:60px;
   bottom: calc((100%/2));
+  box-shadow: 0px 7.5px 5px rgba(0,0,0,0.3);
+  :hover {
+  border: 2px solid black;
+  transform: scale(1.1);
+  }
 `;
 
 const LeftArrow=(props)=>{
@@ -91,19 +100,23 @@ const LeftArrow=(props)=>{
 }
 
 const RightArrowCol = styled.div`
+  /* background-color: red; */
+  /* border-style:solid; */
   width:50px;
-  border-style:solid;
   position: relative;
-  background-color: red;
-
 `;
 const RightArrowDiv = styled.div`
-  border-style:dotted;
-  color: blue;
+  border: 2px solid rgba(0,0,0,0.3);
+  padding:10px;
   position: absolute;
-  width:50px;
-  height:50px;
+  width:60px;
+  height:60px;
   bottom: calc((100%/2));
+  box-shadow: 0px 7.5px 5px rgba(0,0,0,0.3);
+  :hover {
+  border: 2px solid black;
+  transform: scale(1.1);
+  }
 `;
 const RightArrow=(props)=>{
   if (props.view ==='onlyColumn'){
@@ -129,8 +142,8 @@ const RightArrow=(props)=>{
 
 const CarouselContainer = styled.div`
   display:flex;
-  width:100%;
-  background-color:green;
+  width:1252px;
+  /* background-color:gray; */
 `;
 
 
