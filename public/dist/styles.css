@@ -544,7 +544,6 @@ body {
   /* background-color: green */
   height:440px;
   position: relative;
-
 }
 #related-items{
   /* border-style:solid; */
@@ -595,8 +594,8 @@ body {
   /* border: 2px solid red; */
   z-index: 9999;
   position: absolute;
-  right:31px;
-  top:-20px;
+  right:33px;
+  top:-23px;
 }
 
 .star-modal-show{

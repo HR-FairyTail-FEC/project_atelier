@@ -4,7 +4,7 @@ import {PlusSquare} from '@styled-icons/bootstrap/PlusSquare';
 import {Close} from '@styled-icons/evaicons-solid/Close';
 
 const ContainerOutfit = styled.div`
-  border-style: solid;
+  border: 2px solid rgba(0,0,0,0.3);
   margin-left: 15px;
   margin-right: 15px;
   width: 250px;
@@ -13,7 +13,6 @@ const ContainerOutfit = styled.div`
   position: relative;
   background-color: white;
   box-shadow: 0.3em 0.3em 1em rgba(0,0,0,0.3);
-
 `;
 const AddToOutfit_Text = styled.p`
   /* border-style:solid; */
