@@ -4,7 +4,7 @@ import axios from 'axios';
 let placeHolderURL = 'https://www.eslc.org/wp-content/uploads/2019/08/placeholder-grey-square-600x600.jpg'
 import { ContainerRelated, Category, Name, Price, ImageContainer,LeftArrow, RightArrow, CarouselContainer}  from '../src/Styled Components/RelatedItems+Comparison/container-related.styled.js';
 import { ContainerOutfit, AddToOutfit_Text, AddToOutfit_Button, ActionButtonX} from '../src/Styled Components/RelatedItems+Comparison/container-outfit.styled.js';
-import {RelatedTitle, OutfitTitle} from './Styled Components/RelatedItems+Comparison/container-related-outfit.styled.js';
+import {RelatedTitle, OutfitTitle, SpaceHolderColumn} from './Styled Components/RelatedItems+Comparison/container-related-outfit.styled.js';
 import ActionButton_Star from './Related_ActionButton_Star.jsx';
 
 
@@ -64,6 +64,7 @@ const Related = (props)=> {
             <RelatedTitle> RELATED PRODUCTS </RelatedTitle>
             <div id="related-items">
               {(startIndexRelated>0) ? <LeftArrow changeIndexFN={()=>changeIndex(['decrement', 'related'])}/> : <LeftArrow view={'onlyColumn'}/>}
+              <SpaceHolderColumn></SpaceHolderColumn>
               <CarouselContainer>
                 {relatedEntries.length ===0 ? <p> Loading... </p> : relatedEntriesMapped(startIndexRelated, endIndexRelated)}
               </CarouselContainer>
@@ -75,7 +76,7 @@ const Related = (props)=> {
             <OutfitTitle> YOUR OUTFIT</OutfitTitle>
             <div id="outfit-items">
               {(startIndexOutfit>0) ? <LeftArrow changeIndexFN={()=>changeIndex(['decrement', 'outfit'])}/> : <LeftArrow view={'onlyColumn'}/>}
-
+              <SpaceHolderColumn></SpaceHolderColumn>
               <CarouselContainer>
                 <ContainerOutfit>
                   <AddToOutfit_Button onClick={AddToOutfit_Click}> </AddToOutfit_Button>
@@ -102,7 +103,7 @@ const Related = (props)=> {
               <Name key={index}> {obj.name}</Name>
               <Price key={index}> ${obj.price} </Price>
               <Stars rating={obj.stars} instance={obj.instance} key={index}/>
-              <ActionButton_Star key={index} index={index} mainProduct={props.details.product} relatedID={obj.id} relProductName={obj.name}></ActionButton_Star>
+              <ActionButton_Star key={index} index={index} mainProduct={props.details.product} relatedID={obj.id} relProductName={obj.name}/>
             </ContainerRelated>
         )
       })
@@ -111,12 +112,15 @@ const Related = (props)=> {
       return outfitEntries.slice(startIndexOutfit, endIndexOutfit+1).map((outfit,index)=>{
         return (
           <ContainerOutfit>
-            <ActionButtonX onClick={()=>DeleteFromOutfit_Click(outfit.id)}/>
             <ImageContainer img={outfit.thumbnailURL} key={`outfit-${index}`}> </ImageContainer>
             <Category>{outfit.category} </Category>
             <Name> {outfit.name}</Name>
             <Price> ${outfit.price} </Price>
             <Stars rating={outfit.stars} instance={outfit.instance} key={index}/>
+            <div className = "actionbutton-x">
+            <ActionButtonX onClick={()=>DeleteFromOutfit_Click(outfit.id)}/>
+            </div>
+
           </ContainerOutfit>
         )
       })

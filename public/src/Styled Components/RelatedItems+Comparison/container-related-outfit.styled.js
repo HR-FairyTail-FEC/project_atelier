@@ -2,30 +2,34 @@ import React from 'react';
 import styled from "styled-components"
 
 const RelatedTitle = styled.div`
-  /* border-style: dotted; */
-  /* color:blue; */
-  /* background-color: pink; */
   height:30px;
   font-family: 'Lato', sans-serif;
   font-weight: 400;
   font-size: 20px;
   position: absolute;
   left: 70px;
+  /* margin-bottom:10px; */
 `;
 
-const OutfitTitle = styled.h3`
-  /* border-style: dotted; */
-  /* color:blue; */
-  /* background-color: pink; */
+const OutfitTitle = styled.div`
   height:30px;
   font-family: 'Lato', sans-serif;
   font-weight: 400;
   font-size:20px;
   position: absolute;
+  top:10px;
   left: 70px;
+  margin-top:10px;
+`;
 
+const SpaceHolderColumn = styled.div`
+  height: 370px;
+  width:100px;
+  /* border: 5px solid black; */
+  /* background-color: black; */
 `;
 
 
-export {RelatedTitle, OutfitTitle};
+
+export {RelatedTitle, OutfitTitle, SpaceHolderColumn};
 
