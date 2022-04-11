@@ -45,6 +45,4 @@ const ActionButtonX = styled(Close)`
   z-index:10000;
 `;
 
-
-
 export {ContainerOutfit, AddToOutfit_Text, AddToOutfit_Button, ActionButtonX};

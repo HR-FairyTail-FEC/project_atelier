@@ -4,6 +4,7 @@ import axios from 'axios';
 let placeHolderURL = 'https://www.eslc.org/wp-content/uploads/2019/08/placeholder-grey-square-600x600.jpg'
 import { ContainerRelated, Category, Name, Price, ImageContainer,LeftArrow, RightArrow, CarouselContainer}  from '../src/Styled Components/RelatedItems+Comparison/container-related.styled.js';
 import { ContainerOutfit, AddToOutfit_Text, AddToOutfit_Button, ActionButtonX} from '../src/Styled Components/RelatedItems+Comparison/container-outfit.styled.js';
+import {RelatedTitle, OutfitTitle} from './Styled Components/RelatedItems+Comparison/container-related-outfit.styled.js';
 import ActionButton_Star from './Related_ActionButton_Star.jsx';
 
 
@@ -60,7 +61,7 @@ const Related = (props)=> {
         <div id="related-outfit-container">
 
           <div id="related-container">
-            <div id="related-title"> <p> RELATED PRODUCTS</p> </div>
+            <RelatedTitle> RELATED PRODUCTS </RelatedTitle>
             <div id="related-items">
               {(startIndexRelated>0) ? <LeftArrow changeIndexFN={()=>changeIndex(['decrement', 'related'])}/> : <LeftArrow view={'onlyColumn'}/>}
               <CarouselContainer>
@@ -70,10 +71,8 @@ const Related = (props)=> {
             </div>
           </div>
 
-          <br></br>
-
           <div id="outfit-container">
-            <div id="outfit-title"> <p> YOUR OUTFIT </p> </div>
+            <OutfitTitle> YOUR OUTFIT</OutfitTitle>
             <div id="outfit-items">
               {(startIndexOutfit>0) ? <LeftArrow changeIndexFN={()=>changeIndex(['decrement', 'outfit'])}/> : <LeftArrow view={'onlyColumn'}/>}
 

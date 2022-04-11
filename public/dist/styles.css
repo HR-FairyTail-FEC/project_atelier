@@ -544,24 +544,23 @@ body {
   height:400px;
   border-style:dotted;
   position: relative;
+  background-color: green
 
 }
 #outfit-container{
   height:400px;
-  /* border-style:solid; */
+  position: relative;
+  background-color: yellow;
 }
 
-
-#related-title{
-  border-style: dotted;
-  color:blue;
-  height:20px;
-}
 
 #related-items{
   display: flex;
   border-style:solid;
   color:red;
+  position: absolute;
+  bottom:0px;
+  left: 70px;
 }
 
 .related-item{
@@ -584,6 +583,9 @@ body {
   display: flex;
   border-style:solid;
   color:red;
+  position: absolute;
+  bottom:0px;
+  left: 70px;
 
 }
 
