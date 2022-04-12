@@ -3,9 +3,9 @@ import { useParams } from 'react-router-dom';
 import Overview from './Overview.jsx';
 import QA from './Q&A.jsx';
 import Related from './Related.jsx';
+import Reviews from './Reviews/Reviews.jsx';
 
 const axios = require('axios');
-
 
 function ProductDetail() {
   // console.log('<ProductDetail>')
@@ -38,7 +38,8 @@ function ProductDetail() {
     <div className="page-container">
       <Overview details={productDetail}/>
       <Related details={productDetail} setProductID={setProductID} />
-      <QA details = {productDetail}/>
+      <Reviews details={productDetail}/>
+
     </div>
   );
 }
