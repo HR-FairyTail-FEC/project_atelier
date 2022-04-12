@@ -12,8 +12,6 @@ function ProductDetail() {
   const [productDetail, setDetail] = useState([]);
   const { id } = useParams();
   const [productID, setProductID] = useState(id); //used to refresh productID in useEffect
-
-
   useLayoutEffect(() => {
     const promises = [];
     let result = [];
