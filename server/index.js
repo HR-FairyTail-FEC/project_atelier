@@ -14,18 +14,19 @@ app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.static(fullPath));
 
-app.get('/api/products', (request, response) => {
-  const id = request.query.product_id;
-  if (id) {
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products?product_id=${id}`, { headers: Options })
+app.get('/api/products/:id', (request, response) => {
+  const { id } = request.params;
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${id}`, { headers: Options })
     .then(res => response.json(res.data))
     .catch(err => console.error(err));
-  } else {
-    axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products', { headers: Options })
-    .then(res => response.json(res.data))
-    .catch(err => console.error(err));
-  }
 });
+
+app.get('/api/products', (request, response) => {
+  axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products', { headers: Options })
+  .then(res => response.json(res.data))
+  .catch(err => console.error(err));
+});
+
 
 app.get('/api/products/:id/styles', (request, response) => {
   const { id } = request.params;
@@ -113,16 +114,70 @@ app.post('/api/reviews/', (request, response) => {
 
 app.get('/api/qa/questions', (request, response) => {
   const id = request.query.product_id;
-  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions?product_id=${id}`, { headers: Options })
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions?product_id=${id}&count=9999`, { headers: Options })
     .then((res) => response.json(res.data))
     .catch((err) => console.error(err));
 });
 
-app.get('/api/cart', (request, response) => {
-  axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/cart', { headers: Options })
+app.post('/api/cart', (request, response) => {
+  let data = JSON.stringify(request.body);
+  axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/cart', data, { headers: {
+    Authorization: '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',
+    'Content-Type': 'application/json'
+  }
+  })
+    .then((res) => response.sendStatus(201))
+    .catch((err) => console.error(err));
+});
+
+
+//posting new questions and answers
+app.post('/api/qa/questions/:question_id/answers', (request, response) => {
+  const data = request.body.data;
+  const { question_id } = request.params;
+  axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${question_id}/answers`, data, { headers: Options })
     .then((res) => response.json(res.data))
     .catch((err) => console.error(err));
 });
+
+app.post('/api/qa/questions', (request, response) => {
+  const data = request.body.data;
+  axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions`, data, { headers: Options })
+    .then((res) => response.json(res.data))
+    .catch((err) => console.error(err));
+});
+
+//put calls for helpful or reported Q
+app.put('/api/qa/questions/:question_id/helpful', (request, response) => {
+  const { question_id } = request.params;
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${question_id}/helpful`, {}, { headers: Options })
+  .then((res) => response.json(res.data))
+  .catch((err) => console.error(err));
+});
+
+app.put('/api/qa/questions/:question_id/report', (request, response) => {
+  const { question_id } = request.params;
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${question_id}/report`, {}, { headers: Options })
+  .then((res)=>response.json(res.data))
+  .catch((err) => console.error(err));
+});
+
+
+//put calls for helpful or reported A
+app.put('/api/qa/answers/:answer_id/helpful', (request, response) => {
+  const { answer_id } = request.params;
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/answers/${answer_id}/helpful`, {}, {headers: Options })
+  .then((res) => response.json(res.data))
+  .catch((err) => console.error(err));
+});
+
+app.put('/api/qa/answers/:answer_id/report', (request, response) => {
+  const { answer_id } = request.params;
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/answers/${answer_id}/report`, {}, { headers: Options })
+  .then((res) => response.json(res.data))
+  .catch((err) => console.error(err));
+});
+
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);

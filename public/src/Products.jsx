@@ -14,7 +14,7 @@ function Product(props) {
   ));
 
   return (
-    <div className="page-container">
+    <div>
       <div className="row">
         {mapped}
       </div>
