@@ -1,9 +1,8 @@
 import React, { useLayoutEffect, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Overview from './Overview.jsx';
-import QA from './Q&A.jsx';
+import Reviews from './Reviews/Reviews.jsx';
 import Related from './Related.jsx';
-
 const axios = require('axios');
 
 
@@ -12,8 +11,6 @@ function ProductDetail() {
   const [productDetail, setDetail] = useState([]);
   const { id } = useParams();
   const [productID, setProductID] = useState(id); //used to refresh productID in useEffect
-
-
   useLayoutEffect(() => {
     const promises = [];
     let result = [];
@@ -22,7 +19,7 @@ function ProductDetail() {
       for (let i = 0; i < endpoints.length; i += 1) {
         promises.push(axios.get(`http://localhost:3000${endpoints[i]}`));
       }
-      const data = await Promise.all(promises);
+      const data = await Promise.all(promises);;
       data.forEach((item) => {
         result = [...result, item.data];
       });
@@ -41,6 +38,7 @@ function ProductDetail() {
       <Overview details={productDetail}/>
       <Related details={productDetail} setProductID={setProductID} />
       <QA details = {productDetail}/>
+      <Reviews details={productDetail} />
     </div>
   );
 }

@@ -318,308 +318,175 @@ body {
   opacity: 1;
 }
 
-.size-selector {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-gap: 10px;
+/* DK CSS */
+.reviews-container{
+  width:1000px;
+  height:1000px;
+  /* border-style:solid; */
+  display:flex;
+}
+
+.title-review {
+  display: flex;
+}
+
+.left-side {
+  /* border-style:solid; */
+  width:40%;
+
+}
+.rating-breakdown {
+  /* border-style:dotted; */
+  height:600px;
+  width:300px;
+  top:20px;
+  right:2px;
+
+}
+.right-side{
+  /* border-style:solid; */
+  width:60%;
+}
+
+/* .reviewEntryBorder {
+  border: 2px solid;
+  border-radius: 5px;
+} */
+
+.star-container{
+  display: flex;
+}
+
+/************* Ratings *************/
+
+/* Three column layout */
+.row-rating {
+  display: flex;
+  flex-direction: column;
+  /* border: 10px solid; */
+}
+.column-rating {
+  float:left;
+}
+.side-rating {
+  /* float: left;
+  width: 15%;
+  margin-top:10px; */
+  flex: 15%;
+}
+
+.middle {
+  /* margin-top:10px;
+  float: left;
+  width: 85%; */
+  flex: 85%;
+}
+
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* The bar container */
+.bar-container {
+  width: 100%;
+  background-color: #f1f1f1;
+  text-align: center;
+  color: white;
+}
+
+/* Individual bars */
+.bar-5 {height: 10px; background-color: #282828;}
+.bar-4 {height: 10px; background-color: #282828;}
+.bar-3 {height: 10px; background-color: #282828;}
+.bar-2 {height: 10px; background-color: #282828;}
+.bar-1 {height: 10px; background-color: #282828;}
+
+/* Responsive layout - make the columns stack on top of each other instead of next to each other */
+@media (max-width: 300px) {
+  .side, .middle {
+    width: 100%;
+  }
+  .right {
+    display: none;
+  }
+}
+
+/********** Charbar css *********/
+.row-charbar {
+  margin-top: 20px;
+}
+
+.bar-fit {height: 10px; border-right: 10px solid; border-color: #282828;}
+.bar-length {height: 10px; border-right: 10px solid; border-color: #282828;}
+.bar-comfort {height: 10px; border-right: 10px solid; border-color: #282828;}
+.bar-quality { height: 10px; border-right: 10px solid; border-color: #282828;}
+
+
+/****** href color ******/
+a {
+  color: #696969;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: black;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+/********** reviewlist css *******/
+
+.response-review {
+
+  background-color: #282828;
+}
+
+/********** MODAL CSS ************/
+
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  width: 500px;
+  background-color: #fff;
+}
+
+.modal-header, .modal-footer {
   padding: 10px;
 }
 
-.size-item-container {
-  height: 49px;
-  width: 69px;
-  border: 1.75px solid rgba(0,0,0,0.3);
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.modal-title {
+  margin:0;
 }
 
-.size-active {
-  border: 1.75px solid black;
+.modal-body {
+  padding: 100px;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
 }
 
-.size-item-container:hover {
-  border: 1.75px solid black;
+/******* add review input text ******/
+
+textarea  {
+   font-family:"Times New Roman", Times, serif;
+   font-size: 12px;
 }
 
-.size-item {
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  padding-top: 14px;
-}
-
-.quantity-container {
-  display: flex;
-  justify-content: space-around;
-  padding-left: 10px;
-  width: 100%;
-  padding-top: 25px;
-}
-
-.quantity {
-  padding-top: 3.5px;
-  padding-bottom: 3.5px;
-}
-
-.plus-minus {
-  cursor: pointer;
-  border: 2px solid black;
-  padding: 3.5px;
-  margin-left: 10px;
-}
-
-.cart-btn {
-  background: black;
-  color: white;
-  font-size: 20px;
-  cursor: pointer;
-  text-transform: uppercase;
-  margin-left: 10px;
-  margin-top: 25px;
-  border: none;
-  height: 50px;
-  width: 100%;
-  transition: all 0.20s ease 0s;
- }
-
-.cart-btn:hover {
-   color: rgb(128,128,128);
-   box-shadow: 5px 5px 5px grey;
-}
-
-.modal-background {
-  width: 100%;
-  height: 650px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.modal-container {
-  width: 80%;
-  height: 100%;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 5px 5px 10px rgba(0,0,0,0.3);
-  margin-top: 50px;
-}
-
-.exit-btn {
-  position: absolute;
-  top: 25px;
-  left: 25px;
-  width: 25px;
-  height: 25px;
-  font-size: 25px;
-  color: black;
-  object-fit: fill;
-  cursor: pointer;
-  transition: all 0.35s ease-out 0s;
-}
-
-.exit-btn:hover {
-  transform: scale(1.15);
-}
-
-.inner-modal-container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.inner-modal-container img {
-  object-fit: contain;
-  height: 500px;
-  width: 400px;
-  padding: 25px;
-  box-shadow: 0.3em 0.3em 1em rgba(0,0,0,0.3);
-}
-
-.modal-arrow-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-right: 75px;
-  margin-left: 75px;
-  width: 50px;
-  height: 50px;
-  opacity: 0.5;
-  cursor: pointer;
-  background-color: rgb(185, 183, 183);
-  box-shadow: 0px 5px 5px rgba(0,0,0,0.3);
-  transition: all 0.25s ease-out 0s;
-  z-index: 1;
-}
-
-.modal-arrow-container:hover {
-  opacity: 1;
-  box-shadow: 0px 5px 7.5px rgba(0,0,0,0.3);
-  transform: scale(1.15);
-}
-
-.modal-arrow {
-  object-fit: contain;
-  cursor: pointer;
-  z-index: 0;
-}
-
-.fa-circle {
-  color: black;
-  padding-left: 5px;
-  padding-right: 5px;
-  box-shadow: 5px 5px 5px black;
-}
-
-.description-and-feature-wrapper {
-  width: 100%;
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  padding-top: 60px;
-}
-
-.description-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  inline-size: 80%;
-  width: 50%;
-  margin-left: 75px;
-  height: 150px;
-}
-
-.features-container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  width: 200px;
-  margin-left: 155px;
-  border-left: 2.5px solid grey;
-  padding-left: 30px;
-  height: 150px;
-  font-family: 'Lato', sans-serif;
-  font-size: 17px;
-  color: rgb(66, 66, 66);
-  letter-spacing: 0.5px;
-  line-height: 50px;
-}
-
-.slogan {
-  font-family: 'Dancing Script', sans-serif;
-  font-size: 36px;
-  letter-spacing: 1.5px;
-}
-
-.description {
-  font-family: 'Lato', sans-serif;
-  font-size: 17px;
-  color: rgb(66, 66, 66);
-  letter-spacing: 0.5px;
-  line-height: 27px;
-}
-
-.underline {
-  font-size: 12px;
-  font-weight: 400;
-  margin-left: 5px;
-  cursor: pointer;
-  text-decoration: underline;
-}
-#related-outfit-container{
-  /* border-style: solid; */
-  width: 100%;
-  height: 890px;
-  top: 500px;
-}
-#related-container{
-  /* border-style:dotted; */
-  /* background-color: green */
-  height:440px;
-  position: relative;
-}
-#related-items{
-  /* border-style:solid; */
-  display: flex;
-  position: absolute;
-  bottom:0px;
-  left: 70px;
-}
-.related-item{
-  /* border-style: solid; */
-  margin-left: 30px;
-  margin-right: 30px;
-  width: 400px;
-  height: 370px;
-}
-
-.star-container{
-  display:flex;
-  position: absolute;
-  bottom:10px;
-  left:10px;
-}
-
-#outfit-container{
-  /* background-color: yellow; */
-  height:440px;
-  position: relative;
-}
-/* outfit row */
-#outfit-items{
-  /* border-style:solid; */
-
-  display: flex;
-  position: absolute;
-  bottom:0px;
-  left: 70px;
-}
-
-.actionbutton-star{
-  /* top right of each related container */
-  z-index: 9999;
-  position: absolute;
-  right:3px;
-  top:3px;
-}
-
-.actionbutton-x{
-  /* border: 2px solid red; */
-  z-index: 9999;
-  position: absolute;
-  right:33px;
-  top:-23px;
-}
-
-.star-modal-show{
-  border-style: solid;
-  height:300px;
-  width:600px;
-  position: absolute;
-  background-color: #f5f5f5;
-  top: -100px;
-  left: 300px;
-  z-index:10000;
-}
-
-.star-modal-hide{
-  display:none;
-}
-
-.modal-title{
-  text-align:center;
-}
-
-#QA-container{
-  width: 100%;
-  height: 800px;
-  position: relative;
-  top: 800px;
+.add-review-text  {
+   font-family:"Times New Roman", Times, serif;
+   font-size: 12px;
 }
