@@ -277,7 +277,7 @@ function Stars(props) {
   )
 }
 function ratingToArray(rating){
-  // console.log('in rating to array with rating', rating);
+  // console.log('Related.jsx - ratingToArray with rating', rating);
   let array = ['0%','0%','0%','0%','0%'];
   let whole = Math.floor(rating);
   let decimal = rating - whole;
@@ -290,9 +290,12 @@ function ratingToArray(rating){
     0.5: '50%',
     0.75: '75%'
   }
-  let percentage = decimalToPercentage[decimal];
-  array[whole] = percentage;
-  // console.log('array is', array);
+  if (decimal !== 0){
+    let percentage = decimalToPercentage[decimal];
+    array[whole] = percentage;
+  }
+
+
   return array;
 }
 
