@@ -7,7 +7,7 @@ import ActionButton_Star from './Related_ActionButton_Star.jsx';
 
 
 const Related = (props)=> {
-  console.log('in related with props', props);
+  // console.log('in related with props', props);
     const [relatedEntries, setRelatedEntries] = useState([]); //looks like
     const [outfitEntries, setOutfitEntries] = useState([]);
 

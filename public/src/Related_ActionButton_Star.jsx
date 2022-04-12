@@ -29,9 +29,6 @@ const ActionButton_Star = (props)=> {
         </svg>
       </div>
 
-      <div>
-      {console.log('IN RENDER all features are', allFeatures)}
-      </div>
       <div className={isActive ? "star-modal-show" : "star-modal-hide"}>
         <ModalTitle> Comparing </ModalTitle>
         <ComparingModal>
