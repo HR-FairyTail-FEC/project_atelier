@@ -41,20 +41,75 @@ app.get('/api/products/:id/related', (request, response) => {
     .catch((err) => console.error(err));
 });
 
+// ratings and reviews
+
 app.get('/api/reviews', (request, response) => {
   const id = request.query.product_id;
+  // console.log('requet.query: ', request.query)
   const { sort } = request.query;
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews?product_id=${id}&sort=${sort}`, { headers: Options })
-    .then((res) => response.json(res.data))
+    .then((res) => {response.json(res.data)
+    // console.log('res.data from get review: ', res.data)
+    })
     .catch((err) => console.error(err));
 });
-
+  // meta
 app.get('/api/reviews/meta', (request, response) => {
   const id = request.query.product_id;
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta?product_id=${id}`, { headers: Options })
-    .then((res) => response.json(res.data))
+    .then(res => response.json(res.data))
     .catch((err) => console.error(err));
 });
+
+  // helpfulness put
+app.put('/api/reviews/:review_id/helpful', (request, response) => {
+  console.log('request.params: ', request.params)
+  // console.log('request.body: ', request.body)
+  const { review_id } = request.params;
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/${review_id}/helpful`, null , { headers: Options })
+    .then(res => {
+      response.json(res.data);
+      console.log('Put request!')})
+    .catch((err => {
+      console.log(err)
+      response.json(err)
+    }));
+})
+/*
+let obj = { dk: 'heyllo' }
+let des = obj.dk              => 'heylllo'
+    ====
+let { dk } = obj              => ^^
+
+*/
+  // reportReview
+app.put('/api/reviews/:review_id/report', (request, response) => {
+  console.log('req param from report', request.params)
+  const {review_id } = request.params;
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/${review_id}/report`, null, { headers: Options })
+  .then(res => {
+    response.json(res.data);
+    console.log('Put request for report')
+  })
+  .catch(err => {
+    console.log(err)
+    response.json(err);
+  })
+})
+
+  // postReview
+app.post('/api/reviews/', (request, response) => {
+  console.log('req body from post: ', request.body)
+  axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews`, request.body, { headers: Options })
+    .then(res => {
+      response.json(res.data)
+      console.log('post request!!!!!!!!!!!')
+    })
+    .catch(err => {
+      console.log(err)
+      response.json(err)
+    })
+})
 
 app.get('/api/qa/questions', (request, response) => {
   const id = request.query.product_id;

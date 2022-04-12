@@ -59,7 +59,9 @@
 }
 
 .page-container {
-  height: 600px;
+  height: 1100px;
+  width:100%;
+  /* border-style:dotted; */
   margin: 0;
   padding: 0;
   display: flex;
@@ -219,4 +221,177 @@
 
 .active {
   opacity: 1;
+}
+
+/* DK CSS */
+.reviews-container{
+  width:1000px;
+  height:1000px;
+  /* border-style:solid; */
+  display:flex;
+}
+
+.title-review {
+  display: flex;
+}
+
+.left-side {
+  /* border-style:solid; */
+  width:40%;
+
+}
+.rating-breakdown {
+  /* border-style:dotted; */
+  height:600px;
+  width:300px;
+  top:20px;
+  right:2px;
+
+}
+.right-side{
+  /* border-style:solid; */
+  width:60%;
+}
+
+/* .reviewEntryBorder {
+  border: 2px solid;
+  border-radius: 5px;
+} */
+
+.star-container{
+  display: flex;
+}
+
+/************* Ratings *************/
+
+/* Three column layout */
+.row-rating {
+  display: flex;
+  flex-direction: column;
+  /* border: 10px solid; */
+}
+.column-rating {
+  float:left;
+}
+.side-rating {
+  /* float: left;
+  width: 15%;
+  margin-top:10px; */
+  flex: 15%;
+}
+
+.middle {
+  /* margin-top:10px;
+  float: left;
+  width: 85%; */
+  flex: 85%;
+}
+
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* The bar container */
+.bar-container {
+  width: 100%;
+  background-color: #f1f1f1;
+  text-align: center;
+  color: white;
+}
+
+/* Individual bars */
+.bar-5 {height: 10px; background-color: #282828;}
+.bar-4 {height: 10px; background-color: #282828;}
+.bar-3 {height: 10px; background-color: #282828;}
+.bar-2 {height: 10px; background-color: #282828;}
+.bar-1 {height: 10px; background-color: #282828;}
+
+/* Responsive layout - make the columns stack on top of each other instead of next to each other */
+@media (max-width: 300px) {
+  .side, .middle {
+    width: 100%;
+  }
+  .right {
+    display: none;
+  }
+}
+
+/********** Charbar css *********/
+.row-charbar {
+  margin-top: 20px;
+}
+
+.bar-fit {height: 10px; border-right: 10px solid; border-color: #282828;}
+.bar-length {height: 10px; border-right: 10px solid; border-color: #282828;}
+.bar-comfort {height: 10px; border-right: 10px solid; border-color: #282828;}
+.bar-quality { height: 10px; border-right: 10px solid; border-color: #282828;}
+
+
+/****** href color ******/
+a {
+  color: #696969;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: black;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+/********** reviewlist css *******/
+
+.response-review {
+
+  background-color: #282828;
+}
+
+/********** MODAL CSS ************/
+
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  width: 500px;
+  background-color: #fff;
+}
+
+.modal-header, .modal-footer {
+  padding: 10px;
+}
+
+.modal-title {
+  margin:0;
+}
+
+.modal-body {
+  padding: 100px;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+
+/******* add review input text ******/
+
+textarea  {
+   font-family:"Times New Roman", Times, serif;
+   font-size: 12px;
+}
+
+.add-review-text  {
+   font-family:"Times New Roman", Times, serif;
+   font-size: 12px;
 }
