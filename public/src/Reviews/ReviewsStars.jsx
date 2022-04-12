@@ -3,9 +3,12 @@ import React, { useState } from 'react';
 const ReviewsStars = (props) => {
   // console.log('<ReviewsStars> with props', props);
   let rating = props.rating;
+  let ratingRounded = (Math.round(rating * 4) / 4).toFixed(2);
+  console.log('rating was ', rating, 'got rounded to ', ratingRounded);
+  let starValues = ratingToArray(ratingRounded);
+
   let entryIndex = props.entryIndex;
-  let starValues = ratingToArray(rating);
-  // console.log('the star value array is', starValues);
+  console.log('the star value array is', starValues);
   return (
     <div className="rating-breakdown-stars">
       {
@@ -31,31 +34,28 @@ const ReviewsStars = (props) => {
   )
 
     //for rounding look in my github branch at calculateStars function - this rounds 3.73-> 3.75
-  function ratingToArray(rating){
+    function ratingToArray(rating){
+      // console.log('in rating to array with rating', rating);
+      let array = ['0%','0%','0%','0%','0%'];
+      let whole = Math.floor(rating);
+      let decimal = rating - whole;
+      // console.log('whole is', whole, 'dec is ', decimal);
+      for (let i =0; i<whole; i++){
+        array[i] = '100%';
+      }
+      let decimalToPercentage = {
+        0.25: '25%',
+        0.5: '50%',
+        0.75: '75%'
+      }
+      if (decimal !== 0){
+        let percentage = decimalToPercentage[decimal];
+        array[whole] = percentage;
+      }
 
-    // console.log('in rating to array with rating', rating);
 
-    //if rating is 3.75 ->  output = ['100%', '100%', '100%', '25%', '0%']
-    let array = ['0%','0%','0%','0%','0%'];
-    let whole = Math.floor(rating);
-    let decimal = rating - whole;
-    // console.log('whole is', whole, 'dec is ', decimal);
-    for (let i = 0; i <whole; i++) {
-      array[i] = '100%';
+      return array;
     }
-    let decimalToPercentage = {
-      0.25: '25%',
-      0.5: '50%',
-      0.75: '75%'
-    }
-    let percentage = decimalToPercentage[decimal];
-    array[whole] = percentage;
-    // console.log('array is', array);
-    return array;
-  }
-
-
-
 }
 
 export default ReviewsStars;
