@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import {
-  BrowserRouter as Router, Routes, Route, Link,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom';
 import Home from './Home.jsx';
 import Products from './Products.jsx';
 import Cart from './Cart.jsx';
 import ProductDetail from './ProductDetail.jsx';
+
 
 const axios = require('axios');
 
@@ -44,12 +43,15 @@ function App() {
     <Router>
       <div className="padNavTop"> </div>
       <nav className="topNav">
-        <img className="logo" src="logo.png" alt=""></img>
-        <ul>
+        <div style={{width: '33%'}}>
+          <img className="logo" src="logo.png" alt=""></img>
+        </div>
+        <ul style={{width: '33%'}}>
           <li className="nav-list"><Link className="nav-links" to="/">Home</Link></li>
           <li className="nav-list"><Link className="nav-links" to="/products">Products</Link></li>
           <li className="nav-list"><Link className="nav-links" to="/cart">Cart</Link></li>
         </ul>
+        <div style={{width: '33%'}}></div>
       </nav>
       <div className="padNavBottom"> </div>
       <Routes>

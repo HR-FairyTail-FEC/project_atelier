@@ -43,6 +43,7 @@ const Feature = styled.div`
 `;
 const CheckmarkRed = styled(Checkmark)`
   color: red;
+  stroke-width: 2;
   height:16px;
   width:16px;
   float: ${props=>props.side};
