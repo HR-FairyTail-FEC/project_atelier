@@ -181,14 +181,19 @@ const Reviews = (props) => {
         <div className="title-review">RATINGS & REVIEWS</div>
           <div className="rating-container">
             <div className="left-side">
-              <div className="rating-breakdown">
-                <h1>{averageRatingCalc(props.details.meta.ratings)}</h1>
-                <ReviewsStars rating={averageRatingCalc(props.details.meta.ratings)} />
+                <div className="rating-breakdown">
+                  <h1 className="rating-breakdown-number">{averageRatingCalc(props.details.meta.ratings)}</h1>
+                  <ReviewsStars rating={averageRatingCalc(props.details.meta.ratings)} />
+                </div>
                 <div>{recommendPercent(props.details.meta.recommended)}% of reviews recommend this product</div>
                 <RatingBreakdown ratingBreakdownPercent={ratingBreakdownPercent(props.details.meta.ratings)} />
                 <CharBar charBarPercent={charBarPercent(props.details.meta.characteristics)}/>
-              </div>
             </div>
+
+            <div className="middle-column">
+            </div>
+
+
             <div className="right-side">
               {reviewList.length} reviews, sorted by
               <select onChange={changeOption} value={option}>

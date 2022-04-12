@@ -7,7 +7,7 @@ const ReviewsStars = (props) => {
   let starValues = ratingToArray(rating);
   // console.log('the star value array is', starValues);
   return (
-    <div className="reviewEntryStars">
+    <div className="rating-breakdown-stars">
       {
         starValues.map((percentage,starIndex)=>{
           return (

@@ -544,34 +544,72 @@ body {
 }
 /* ____________END DENNIS RELATED ITEMS CSS____________________ */
 
-/* ____________START DK REVIEWS CSS____________________ */
 
+/* ____________START DK REVIEWS CSS____________________ */
 .dk-container{
-  width:100%;
+  width:82%;
   height:1000px;
   border-style:solid;
   padding-top:10px;
   margin-top:30px;
+  margin-left:-180px;
+  background-color: pink;
+  font-family: 'Lato', sans-serif;
 }
 .title-review {
-  /* border: 1px solid red; */
+  background-color: blue;
+  font-weight: 400;
+  font-size: 20px;
+  margin-bottom:10px;
 }
 .rating-container {
-  border: 1px solid black;
-  display: flex;
+  /* border: 1px solid black; */
+  background-color: lightslategray;
+  font-family: 'Lato', sans-serif;
+  display:flex;
+}
+
+.left-side {
+  /* border-style:solid; */
+  width:30%;
+  background-color: red;
+}
+.middle-column{
+  background-color: blue;
+  width:10%;
+}
+.right-side{
+  float:right;
+  border-style:solid;
+  width:60%;
+  background-color:slateblue;
 }
 
 
-.left-side {
-  border-style:solid;
-  width:40%;
+/* start left side CSS__________________ */
+
+
+.rating-breakdown{
+  /* this just includes the big rating number plus 5 stars next to it */
+  display:flex;
+}
+.rating-breakdown-number{
+  border: 1px solid black;
+  font-size:88px;
+  float:left;
+  background-color: salmon;
+}
+
+.rating-breakdown-stars{
+  display:flex;
+  margin-left: 15px;
 }
 
 /* Three column layout */
 .row-rating {
   display: flex;
   flex-direction: column;
-  /* border: 10px solid; */
+  border: 10px solid;
 }
 .column-rating {
   float:left;
@@ -582,21 +620,18 @@ body {
   margin-top:10px; */
   flex: 15%;
 }
-
 .middle {
   /* margin-top:10px;
   float: left;
   width: 85%; */
   flex: 85%;
 }
-
 /* Clear floats after the columns */
 .row:after {
   content: "";
   display: table;
   clear: both;
 }
-
 /* The bar container */
 .bar-container {
   width: 100%;
@@ -604,7 +639,6 @@ body {
   text-align: center;
   color: white;
 }
-
 /* Individual bars */
 .bar-5 {height: 10px; background-color: #282828;}
 .bar-4 {height: 10px; background-color: #282828;}
@@ -621,21 +655,8 @@ body {
     display: none;
   }
 }
-.rating-breakdown {
-  /* border-style:dotted; */
-  height:600px;
-  width:300px;
-  top:20px;
-  right:2px;
-}
 
 /* end of left side  ______________________________*/
-
-
-.right-side{
-  border-style:solid;
-  width:60%;
-}
 
 
 .reviewEntryStars{
