@@ -235,7 +235,9 @@ const QA = (props) => {
                   </QAReportQ>
                   <QAaddA>
                     <button onClick={() => addA(q.result.question_id)} key={q.result.question_id}>Add Answer</button>
-                    {clickedAnswer.includes(q.result.question_id) &&
+
+                  </QAaddA>
+                      {clickedAnswer.includes(q.result.question_id) &&
                       <form>
                         <label>
                           Answer This Question:
@@ -246,7 +248,6 @@ const QA = (props) => {
                         </label>
                         <button type='button' onClick={() => postAnswer(q.result.question_id)}>Submit Answer</button>
                       </form>}
-                  </QAaddA>
                 </QAQuestionDetails>
               </QAQuestionTop>
 
@@ -299,7 +300,7 @@ const QA = (props) => {
             </form>}
           </div>
       </ContainerBot>
-
+      <QAModal/>
     </QAContainer >
   );
 }
