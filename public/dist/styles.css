@@ -379,11 +379,12 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 0;
+  z-index: 9;
+  /* opacity: 0;
   transition: all 0.3s ease-in-out;
-  pointer-events: none;
+  pointer-events: none; */
 }
-/*
+
 .modal.enter-done {
   opacity: 1;
   pointer-events: visible;
@@ -396,8 +397,8 @@ body {
 .modal-content {
   width: 500px;
   background-color: #fff;
-  transition: all 0.3s ease-in-out;
-  transform: translateY(-200px);
+  /* transition: all 0.3s ease-in-out;
+  transform: translateY(-200px); */
 }
 
 .modal.enter-done .modal-content {
@@ -421,4 +422,4 @@ body {
   padding: 10px;
   border-top: 1px solid #eee;
   border-bottom: 1px solid #eee;
-} */
+}

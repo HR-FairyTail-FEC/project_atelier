@@ -6,6 +6,7 @@ const axios = require('axios');
 const { Options } = require('../../config.js');
 import QAModal from './QAModal.jsx';
 import useQAModal from './useQAModal.jsx';
+import QAModalA from './QAModalA.jsx';
 
 const QA = (props) => {
   // let productId = props.details.questions.product_id;
@@ -24,7 +25,8 @@ const QA = (props) => {
   const [reportedA, setReportedA] = useState([]);
   // let qShown = [];
   const [qShown, setQShown] = useState([]);
-  const { isShowing, toggle } = useQAModal();
+  const [show, setShow] = useState(false);
+  const [showA, setShowA] = useState(false);
   const [post, setPost] = useState(false);
 
 
@@ -51,8 +53,6 @@ const QA = (props) => {
         allQ = filterQ(allQ, state.query);
         setQShown(allQ);
       })
-      // console.log('always in here')
-
     }
   }, [props.details, state.query, post])
 
@@ -68,26 +68,30 @@ const QA = (props) => {
   }
 
   const addQ = () => {
+
     if (addQPost === false) {
       setAddQ(true);
+      setShow(true);
     } else {
       setAddQ(false);
     }
+
   }
   const addA = (id) => {
     if (clickedAnswer.includes(id)) {
       setClickedAnswer(clickedAnswer.filter(item => item != id));
+      setShowA(true);
     } else {
       setClickedAnswer(prevItem => [id]);
     }
   }
 
-  const postAnswer = (q_id) => {
+  const postAnswer = (q_id, name, email, body) => {
     axios.post(`http://localhost:3000/api/qa/questions/${q_id}/answers`, {
       data: {
-        name: state.nickname,
-        email: state.email,
-        body: state.answer,
+        name: name,
+        email: email,
+        body: body,
         photos: []
       }
     })
@@ -101,12 +105,12 @@ const QA = (props) => {
 
   }
 
-  const postQuestion = (p_id) => {
+  const postQuestion = (p_id, body, name, email) => {
     axios.post(`http://localhost:3000/api/qa/questions`, {
       data: {
-        body: state.question,
-        name: state.nickname,
-        email: state.email,
+        body: body,
+        name: name,
+        email: email,
         product_id: Number(p_id)
       }
     })
@@ -117,7 +121,6 @@ const QA = (props) => {
       .catch(function (err) {
         console.log(err);
       })
-    console.log('should be one more', props.details.questions.results)
   }
 
 
@@ -189,7 +192,6 @@ const QA = (props) => {
           console.log(err);
         })
     }
-
   }
 
   const handleHelpfulClickA = (id) => {
@@ -235,19 +237,11 @@ const QA = (props) => {
                   </QAReportQ>
                   <QAaddA>
                     <button onClick={() => addA(q.result.question_id)} key={q.result.question_id}>Add Answer</button>
-
+                    {clickedAnswer.includes(q.result.question_id) &&
+                        <QAModalA id={q.result.question_id} postAnswer={postAnswer} onClose={()=>setShowA(false)} showA={showA}/>
+                      }
                   </QAaddA>
-                      {clickedAnswer.includes(q.result.question_id) &&
-                      <form>
-                        <label>
-                          Answer This Question:
-                          <br />
-                          <span>*Your Answer <input type='textarea' name='answer' placeholder="Your Answer" value={state.answer} onChange={handleChange} /></span>
-                          <span>*Your Nickname <input type="text" name='nickname' placeholder="What's Your Nickname" value={state.nickname} onChange={handleChange} /></span>
-                          <span>*Your Email <input type='text' name='email' placeholder='Email Address' value={state.email} onChange={handleChange} /></span>
-                        </label>
-                        <button type='button' onClick={() => postAnswer(q.result.question_id)}>Submit Answer</button>
-                      </form>}
+
                 </QAQuestionDetails>
               </QAQuestionTop>
 
@@ -283,24 +277,21 @@ const QA = (props) => {
 
           );
         })}
+
       </QAList>
+
       <ContainerBot>
           {numQShown < qShown.length && <QALoadQ onClick={showMoreQ}>Load More Questions</QALoadQ>}
 
           <QAaddQ onClick={addQ}>Add A Question</QAaddQ>
           <div>{addQPost === true &&
             <form>
-              <label>
-                Ask A Quesion:
-                <span>*Your Question <input type='textarea' name='question' placeholder="Your Question" value={state.question} onChange={handleChange} /></span>
-                <span>*Your Nickname <input type="text" name='nickname' placeholder="What's Your Nickname" value={state.nickname} onChange={handleChange} /></span>
-                <span>*Your Email <input type='text' name='email' placeholder='Email Address' value={state.email} onChange={handleChange} /></span>
-              </label>
-              <button type='button' onClick={() => postQuestion(props.details.questions.product_id)}>Submit Question</button>
+              <QAModal id={props.details.questions.product_id} postQuestion={postQuestion} onClose={()=>setShow(false)} show={show}/>
             </form>}
           </div>
+
       </ContainerBot>
-      <QAModal/>
+
     </QAContainer >
   );
 }
