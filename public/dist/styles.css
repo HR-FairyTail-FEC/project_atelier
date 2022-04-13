@@ -552,7 +552,7 @@ body {
   height:1000px;
   border-style:solid;
   padding-top:10px;
-  margin-top:30px;
+  margin-top:150px;
   margin-left:-180px;
   font-family: 'Lato', sans-serif;
 }
@@ -754,6 +754,75 @@ body {
   background-color: yellow;
 }
 
+/********** MODAL CSS ************/
+
+#QA-container{
+  width: 100%;
+  height: 800px;
+  position: relative;
+  top: 800px;
+}
+
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9;
+  /* opacity: 0;
+  transition: all 0.3s ease-in-out;
+  pointer-events: none; */
+}
+
+.modal.enter-done {
+  opacity: 1;
+  pointer-events: visible;
+}
+
+.modal.exit {
+  opacity: 0;
+}
+
+.modal-content {
+  width: 500px;
+  background-color: #fff;
+  /* transition: all 0.3s ease-in-out;
+  transform: translateY(-200px); */
+}
+
+.modal.enter-done .modal-content {
+  transform: translateY(0);
+}
+
+.modal.exit .modal-content {
+  transform: translateY(-200px);
+}
+
+.modal-header,
+.modal-footer {
+  padding: 10px;
+}
+
+.modal-title {
+  margin: 0;
+}
+
+.modal-body {
+  padding: 10px;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+/******* add review input text ******/
+
+.textarea {
+   font-family:"Times New Roman", Times, serif;
+   font-size: 12px;
+}
 .entry-helpful-report-container {
   border: 1px solid black;
   background-color: orange;
