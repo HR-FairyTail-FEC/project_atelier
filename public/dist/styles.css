@@ -508,12 +508,13 @@ a:hover {
   padding: 10px;
   border-top: 1px solid #eee;
   border-bottom: 1px solid #eee;
+}
 /******* add review input text ******/
 
-/* textarea  {
+textarea {
    font-family:"Times New Roman", Times, serif;
    font-size: 12px;
-} */
+}
 
 .add-review-text  {
    font-family:"Times New Roman", Times, serif;

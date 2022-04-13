@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import Overview from './Overview.jsx';
 import Reviews from './Reviews/Reviews.jsx';
 import Related from './Related.jsx';
+import QA from './Q&A.jsx';
 const axios = require('axios');
 
 
@@ -38,7 +39,7 @@ function ProductDetail() {
       <Overview details={productDetail}/>
       <Related details={productDetail} setProductID={setProductID} />
       <QA details = {productDetail}/>
-      <Reviews details={productDetail} />
+      {/* <Reviews details={productDetail} /> */}
     </div>
   );
 }

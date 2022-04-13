@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import moment from 'moment';
-import { QAContainer, QATitle, QASearchBar, QAList, QAQuestionTop, QAQuestion, QAHelpfulQ, QAHelpfulA, QAReportQ, QAaddA, QAQuestionDetails, QAanswer, QAanswerBody, QAanswerBot, QAanswerInfo, QAReportA, QALoadA, QALoadQ, QAaddQ, QAResult, ContainerBot, QAAnswerList } from './Styled Components/Q&A/qa.styled.js';
+import { QAContainer, QATitle, QASearchBar, QAList, QAQuestionTop, QAQuestion, QAHelpfulQ, QAHelpfulA, QAReportQ, QAaddA, QAQuestionDetails, QAanswer, QAanswerBody, QAanswerBot, QAanswerInfo, QAReportA, QALoadA, QALoadQ, QAaddQ, QAResult, ContainerBot, QAAnswerList, QSearch, styledButton} from './Styled Components/Q&A/qa.styled.js';
 
 const axios = require('axios');
 const { Options } = require('../../config.js');
@@ -213,7 +213,7 @@ const QA = (props) => {
   return (
     <QAContainer>
       <QATitle> QUESTIONS & ANSWERS </QATitle>
-      <QASearchBar> <input name='query' value={state.query} onChange={handleChange} placeholder='HAVE A QUESTION? SEARCH FOR ANSWERS...'></input> </QASearchBar>
+      <QASearchBar> <input name='query' value={state.query} onChange={handleChange} placeholder='HAVE A QUESTION? SEARCH FOR ANSWERS...'></input><QSearch/> </QASearchBar>
       <QAList>
         {props.details.length < 1 && display}
         {qShown.slice(0, numQShown).map(q => {
@@ -226,17 +226,17 @@ const QA = (props) => {
                 <QAQuestionDetails>
                   asked by {q.result.asker_name} on {moment(q.result.question_date).format('MMMM Do YYYY')}&nbsp;
                   <QAHelpfulQ>
-                   | Helpful?
+                   | Helpful?&nbsp;
                     {!helpfulClickedQ.includes(q.result.question_id) &&
-                      <button type='button' onClick={() => handleHelpfulClickQ(q.result.question_id)}>Yes?</button>}
-                    ({q.result.question_helpfulness}) |
+                      <styledButton type='button' onClick={() => handleHelpfulClickQ(q.result.question_id)}><u>Yes</u>&nbsp;</styledButton>}
+                    ({q.result.question_helpfulness}) |&nbsp;
                   </QAHelpfulQ>
                   <QAReportQ>
                     {!reportedQ.includes(q.result.question_id) &&
-                      <button onClick={() => handleReportedQ(q.result.question_id)}> Report </button>}
+                      <styledButton onClick={() => handleReportedQ(q.result.question_id)}> <u>Report</u> |</styledButton>}&nbsp;
                   </QAReportQ>
                   <QAaddA>
-                    <button onClick={() => addA(q.result.question_id)} key={q.result.question_id}>Add Answer</button>
+                    <styledButton onClick={() => addA(q.result.question_id)} key={q.result.question_id}><u>Add Answer</u></styledButton>
                     {clickedAnswer.includes(q.result.question_id) &&
                         <QAModalA id={q.result.question_id} postAnswer={postAnswer} onClose={()=>setShowA(false)} showA={showA}/>
                       }
@@ -256,12 +256,12 @@ const QA = (props) => {
                             <p> answered by {a.answerer_name} on {moment(a.date).format('MMMM Do YYYY')}&nbsp; </p>
                           </QAanswerInfo>
                           <QAHelpfulA>
-                            | Helpful? {!helpfulClickedA.includes(a.id) && <button type='button' onClick={() => handleHelpfulClickA(a.id)}>Yes?</button>}
-                            ({a.helpfulness})
+                            | Helpful? {!helpfulClickedA.includes(a.id) && <styledButton type='button' onClick={() => handleHelpfulClickA(a.id)}><u>Yes</u>&nbsp;</styledButton>}
+                            ({a.helpfulness})&nbsp;|&nbsp;
                           </QAHelpfulA>
                           <QAReportA>
                             {!reportedA.includes(a.id) &&
-                              <button onClick={() => handleReportedA(a.id)}> Report </button>}
+                              <styledButton onClick={() => handleReportedA(a.id)}> <u>Report</u> </styledButton>}
                           </QAReportA>
                         </QAanswerBot>
                       </QAanswer>
@@ -269,8 +269,8 @@ const QA = (props) => {
                   })
                 }
                 <QALoadA>
-                  {(q.answers.length > 2 && numAShown < q.answers.length) && <button onClick={showMoreA}> Load More Answers </button>}
-                  {(q.answers.length > 2 && numAShown >= q.answers.length) && <button onClick={hideA}> Collapse Answers </button>}
+                  {(q.answers.length > 2 && numAShown < q.answers.length) && <styledButton onClick={showMoreA}> <u>Load More Answers</u></styledButton>}
+                  {(q.answers.length > 2 && numAShown >= q.answers.length) && <styledButton onClick={hideA}> <u>Collapse Answers</u> </styledButton>}
                 </QALoadA>
               </QAAnswerList>
             </QAResult>
@@ -283,7 +283,7 @@ const QA = (props) => {
       <ContainerBot>
           {numQShown < qShown.length && <QALoadQ onClick={showMoreQ}>Load More Questions</QALoadQ>}
 
-          <QAaddQ onClick={addQ}>Add A Question</QAaddQ>
+          <QAaddQ onClick={addQ}>Add A Question +</QAaddQ>
           <div>{addQPost === true &&
             <form>
               <QAModal id={props.details.questions.product_id} postQuestion={postQuestion} onClose={()=>setShow(false)} show={show}/>

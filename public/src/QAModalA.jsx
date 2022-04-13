@@ -24,14 +24,14 @@ const QAModalA = (props) => {
     <div className="modal" onClick={props.onClose}>
       <div className="modal-content" onClick={e => e.stopPropagation()}>
         <div className="modal-header">
-          <p>
+          <h3>
             Answer Question:
-          </p>
+          </h3>
         </div>
         <div className='modal-body'>
           <form>
             <label>
-              <span>*Your Answer <input type='textarea' name='answer' placeholder="Your Answer" value={state.answer} onChange={handleChange} /></span>
+              <span>*Your Answer <input type='textarea' name='answer' placeholder="Your Answer" value={state.answer} onChange={handleChange} /></span>&nbsp;
               <span>*Your Nickname <input type="text" name='nickname' placeholder="What's Your Nickname" value={state.nickname} onChange={handleChange} /></span>
               <span>*Your Email <input type='text' name='email' placeholder='Email Address' value={state.email} onChange={handleChange} /></span>
             </label>

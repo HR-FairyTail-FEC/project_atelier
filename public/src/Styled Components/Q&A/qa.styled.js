@@ -1,8 +1,9 @@
 import React from 'react';
-import styled from "styled-components"
+import styled from "styled-components";
+import { Search } from '@styled-icons/bootstrap/Search';
 
 const QAContainer = styled.div`
-  width: 90%;
+  width: 80%;
   text-align: center;
   height: 600px;
   position: relative;
@@ -20,18 +21,24 @@ const QATitle = styled.div`
 `;
 const QASearchBar = styled.div`
   width: 100%;
-  height: 50px;
+  height: 70px;
   font-family: 'Lato', sans-serif;
   position: absolute;
   top: 40px;
   text-align:center;
   padding-top: 10px;
-
+  display: flex;
+  flex-direction: row;
+  flex: 1,
+  flexDirection: 'row';
+  justifyContent: 'center';
+  alignItems: 'center';
   & input {
-    width: 75%;
-    height: 100%;
+    width: 95%;
+    height: 60px;
     font-size: 25px;
-    box-shadow: 10px 5px 5px #D3D3D3;
+    box-shadow: 5px 5px 5px #D3D3D3;
+
   }
 `;
 
@@ -40,12 +47,13 @@ const QAList = styled.div`
   height: 450px;
   text-align: center;
   position: absolute;
-  top:100px;
+  top:150px;
   display:flex;
   flex-direction: column;
   overflow-y:scroll;
-  box-shadow: 10px 10px 10px 10px #D3D3D3;
-  padding-left: 50px;
+  box-shadow: 10px 10px 10px #D3D3D3;
+  padding-left: 5px;
+
 
 `;
 
@@ -90,6 +98,7 @@ const QAQuestionDetails = styled.div`
   font-family: 'Lato', sans-serif;
   top: 45px;
   color: #696969;
+  font-size: 14px;
 `;
 
 const QAAnswerList = styled.div`
@@ -123,6 +132,7 @@ const QAanswerBot = styled.div`
   font-family: 'Lato', sans-serif;
   bottom: 1px;
   color: #696969;
+  font-size: 14px;
 `;
 
 const QAanswerInfo = styled.div`
@@ -143,7 +153,6 @@ const QAHelpfulA = styled.div`
 const QALoadA = styled.div`
   position: relative;
   font-family: 'Lato', sans-serif;
-  text-align: right;
   padding-right: 50px;
 `;
 
@@ -152,8 +161,8 @@ const ContainerBot = styled.div`
   position: absolute;
   display: flex;
   align-items: center;
-  justify-content: center;
-  top: 600px;
+  justify-content: left;
+  top: 640px;
   height:30px;
   width:100%;
   flex-direction: row;
@@ -162,7 +171,6 @@ const ContainerBot = styled.div`
 const QALoadQ = styled.button`
   font-size: 2em;
   font-family: 'Lato', sans-serif;
-  margin: 1em;
   padding: 0.25em 1em;
   border: 2px solid #D3D3D3;
 
@@ -174,11 +182,29 @@ const QALoadQ = styled.button`
 const QAaddQ = styled.button`
   font-size: 2em;
   font-family: 'Lato', sans-serif;
-  margin: 1em;
+
   padding: 0.25em 1em;
   border: 2px solid #D3D3D3;
   border-radius: 3px;
   background: white;
+`;
+
+const QSearch = styled(Search)`
+  color: black;
+  stroke-width: 2;
+  height:50px;
+  width:50px;
+  position: absolute, right;
+  font-family: 'Lato', sans-serif;
+  z-index: 8;
+  padding-top: 8px;
+  padding-left: 8px;
+`;
+
+const styledButton = styled.button`
+  padding: 0;
+  border: black;
+  background: none;
 `;
 
 
@@ -186,6 +212,6 @@ const QAaddQ = styled.button`
 
 
 
-export {QAContainer, QATitle, QASearchBar, QAList, QAQuestionTop, QAQuestion, QAHelpfulQ, QAHelpfulA, QAReportQ, QAaddA, QAQuestionDetails, QAanswer, QAanswerBody, QAanswerBot, QAanswerInfo, QAReportA, QALoadA, QALoadQ, QAaddQ, QAResult, ContainerBot, QAAnswerList};
+export {QAContainer, QATitle, QASearchBar, QAList, QAQuestionTop, QAQuestion, QAHelpfulQ, QAHelpfulA, QAReportQ, QAaddA, QAQuestionDetails, QAanswer, QAanswerBody, QAanswerBot, QAanswerInfo, QAReportA, QALoadA, QALoadQ, QAaddQ, QAResult, ContainerBot, QAAnswerList, QSearch, styledButton};
 
 
