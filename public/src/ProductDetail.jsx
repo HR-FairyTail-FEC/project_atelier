@@ -38,13 +38,9 @@ function ProductDetail() {
     <div className="page-container">
       <Overview details={productDetail}/>
       <Related details={productDetail} setProductID={setProductID} />
-<<<<<<< HEAD
       <QA details = {productDetail}/>
-      {/* <Reviews details={productDetail} /> */}
-=======
       <Reviews details={productDetail}/>
 
->>>>>>> main
     </div>
   );
 }

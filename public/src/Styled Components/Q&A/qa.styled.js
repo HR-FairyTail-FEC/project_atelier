@@ -7,7 +7,7 @@ const QAContainer = styled.div`
   text-align: center;
   height: 600px;
   position: relative;
-  top: 750px;
+  top: 30px;
   font-family: 'Lato', sans-serif;
 `;
 const QATitle = styled.div`
