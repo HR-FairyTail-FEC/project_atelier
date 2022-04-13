@@ -76,14 +76,7 @@ app.put('/api/reviews/:review_id/helpful', (request, response) => {
       response.json(err)
     }));
 })
-/*
-let obj = { dk: 'heyllo' }
-let des = obj.dk              => 'heylllo'
-    ====
-let { dk } = obj              => ^^
 
-*/
-  // reportReview
 app.put('/api/reviews/:review_id/report', (request, response) => {
   console.log('req param from report', request.params)
   const {review_id } = request.params;
@@ -162,7 +155,6 @@ app.put('/api/qa/questions/:question_id/report', (request, response) => {
   .catch((err) => console.error(err));
 });
 
-
 //put calls for helpful or reported A
 app.put('/api/qa/answers/:answer_id/helpful', (request, response) => {
   const { answer_id } = request.params;
@@ -177,6 +169,17 @@ app.put('/api/qa/answers/:answer_id/report', (request, response) => {
   .then((res) => response.json(res.data))
   .catch((err) => console.error(err));
 });
+
+app.post('/api/interactions', (request, response) => {
+  let data = request.body;
+  console.log('in index js with data', data);
+  axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/interactions', data, { headers: Options})
+    .then((res) => {
+      console.log('response from post is', res);
+      response.sendStatus(201);
+    })
+});
+
 
 
 app.listen(port, () => {

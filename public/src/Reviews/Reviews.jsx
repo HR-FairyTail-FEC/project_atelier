@@ -8,6 +8,7 @@ import ReviewsStars from './ReviewsStars.jsx';
 import CharBar from './CharBar.jsx';
 
 const Reviews = (props) => {
+  console.log('<Reviews> with props', props);
   const [reviewList, setReviewList] = useState([]);
   const [option, setOption] = useState('relevant');
   const [show, setShow] = useState(false);
@@ -176,7 +177,6 @@ const Reviews = (props) => {
           {/* {console.log('reviewList: ', reviewList)} */}
           {/* {console.log('props.details.meta.ratings: ', props.details.meta.ratings)} */}
           {/* {console.log('props.details.meta: ', props.details.meta)} */}
-          {/* {console.log('ratings: ', ratings)} */}
           {/* {console.log("jeelllooo", charBarPercent(props.details.meta.characteristics))} */}
         <div className="title-review">RATINGS & REVIEWS</div>
           <div className="rating-container">

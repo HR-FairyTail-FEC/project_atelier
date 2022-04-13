@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
-// import {Checkmark} from '@styled-icons/fluentui-system-filled/Checkmark';
+import {Checkmark} from '@styled-icons/fluentui-system-filled/Checkmark';
 
 const ModalTitle = styled.div`
   /* border-style:solid; */
@@ -8,7 +8,7 @@ const ModalTitle = styled.div`
 `;
 
 const ComparingModal = styled.div`
-  border-style:solid;
+  /* border-style:solid; */
   height: 100%;
   position: relative;
 `;
@@ -41,12 +41,13 @@ const Feature = styled.div`
   /* border-style:dotted; */
   text-align: center;
 `;
-// const CheckmarkRed = styled(Checkmark)`
-//   color: red;
-//   stroke-width: 2;
-//   height:16px;
-//   width:16px;
-//   float: ${props=>props.side};
-// `;
 
-export {ModalTitle, ComparingModal, TitleContainer,  TitleMain, TitleRelated, Features, Feature }; //took out checkmarkred
+const CheckmarkRed = styled(Checkmark)`
+  color: red;
+  stroke-width: 2;
+  height:16px;
+  width:16px;
+  float: ${props=>props.side};
+`;
+
+export {ModalTitle, ComparingModal, TitleContainer,  TitleMain, TitleRelated, Features, Feature, CheckmarkRed };
