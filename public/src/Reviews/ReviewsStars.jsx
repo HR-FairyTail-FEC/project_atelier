@@ -4,10 +4,10 @@ const ReviewsStars = (props) => {
   // console.log('<ReviewsStars> with props', props);
   let rating = props.rating;
   let ratingRounded = (Math.round(rating * 4) / 4).toFixed(2);
-  console.log('rating was ', rating, 'got rounded to ', ratingRounded);
+  // console.log('rating was ', rating, 'got rounded to ', ratingRounded);
   let starValues = ratingToArray(ratingRounded);
   let entryIndex = props.entryIndex;
-  console.log('the star value array is', starValues);
+  // console.log('the star value array is', starValues);
   return (
     <div className="rating-breakdown-stars">
       {

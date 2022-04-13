@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {ModalTitle, ComparingModal, TitleContainer,  TitleMain, TitleRelated, Features, Feature, CheckmarkRed} from './Styled Components/RelatedItems+Comparison/comparing-modal.styled.js';
 import axios from 'axios';
+import {callInteraction} from './Global_Interactions.js';
 
 const ActionButton_Star = (props)=> {
   // console.log('<ActionButton_Star> with props', props);
@@ -19,8 +20,8 @@ const ActionButton_Star = (props)=> {
       <>
         <div className="actionbutton-star" onClick={event => {
           event.stopPropagation();
-          // console.log('button clicked');
           starClick();
+          callInteraction('Related Product Card Action Button Compare Star', 'Related Items & Comparison', new Date());
         }}>
           <svg width="24px" height="24px" viewBox="0 0 32 32">
             <defs>
@@ -62,13 +63,9 @@ const ActionButton_Star = (props)=> {
 
     )
 
-
   function starClick(){
-    // console.log('actionbuttonStar clicked');
-    // console.log('CLICK - main product features are', mainProductFeatures);
     let relatedID = props.relatedID;
     axios.get(`http://localhost:3000/api/products/${relatedID}`).then(response=>{
-      // console.log('data is', response);
       let relProductFeatures = response.data.features;
       return relProductFeatures;
     }).then((relProductFeatures)=>{

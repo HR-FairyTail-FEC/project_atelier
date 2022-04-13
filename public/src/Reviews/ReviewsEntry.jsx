@@ -36,7 +36,7 @@ const ReviewsEntry = (props) => {
           <div className="entry-helpful">Helpful? <a href="#" onClick={()=> {
             props.incrementHelpfulness(result.review_id, result.helpfulness);
             incremented(
-              console.log("increment executed")
+              // console.log("increment executed")
             );
           }}>Yes</a> ({result.helpfulness}) | </div>
           <div className="entry-report"><a href="#" onClick={()=> props.reportReview(result.review_id)}>Report</a></div>
@@ -54,11 +54,10 @@ const EntryReviewsStars = (props) => {
   // console.log('<ReviewsStars> with props', props);
   let rating = props.rating;
   let ratingRounded = (Math.round(rating * 4) / 4).toFixed(2);
-  console.log('rating was ', rating, 'got rounded to ', ratingRounded);
   let starValues = ratingToArray(ratingRounded);
 
   let entryIndex = props.entryIndex;
-  console.log('the star value array is', starValues);
+  // console.log('the star value array is', starValues);
   return (
     <>
       {

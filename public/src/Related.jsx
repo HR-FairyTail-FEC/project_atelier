@@ -6,10 +6,12 @@ import { ContainerRelated, Category, Name, Price, ImageContainer,LeftArrow, Righ
 import { ContainerOutfit, AddToOutfit_Text, AddToOutfit_Button, ActionButtonX} from '../src/Styled Components/RelatedItems+Comparison/container-outfit.styled.js';
 import {RelatedTitle, OutfitTitle, SpaceHolderColumn} from './Styled Components/RelatedItems+Comparison/container-related-outfit.styled.js';
 import ActionButton_Star from './Related_ActionButton_Star.jsx';
+import {callInteraction}from './Global_Interactions.js';
 
 
 const Related = (props)=> {
   // console.log('in related with props', props);
+
     const [relatedEntries, setRelatedEntries] = useState([]);
     const [startIndexRelated, setStartIndexRelated] = useState(0);
     const [endIndexRelated, setEndIndexRelated] = useState(3);  //for carousel
@@ -74,7 +76,10 @@ const Related = (props)=> {
               <SpaceHolderColumn></SpaceHolderColumn>
               <CarouselContainer>
                 <ContainerOutfit>
-                  <AddToOutfit_Button onClick={AddToOutfit_Click}> </AddToOutfit_Button>
+                  <AddToOutfit_Button onClick={()=>{
+                    AddToOutfit_Click();
+                    callInteraction('Related Product AddToOutfit Button', 'Related Items & Comparison', new Date());
+                  }}/>
                   <AddToOutfit_Text> Add to Outfit </AddToOutfit_Text>
                 </ContainerOutfit>
                 {(outfitEntries.length ===0) ? <></> : outfitEntriesMapped(startIndexOutfit, endIndexOutfit)}
@@ -92,7 +97,10 @@ const Related = (props)=> {
       // console.log('sliced entries are', relatedEntries.slice(startIndexRelated, endIndexRelated+1));
       return relatedEntries.slice(startIndexRelated,endIndexRelated+1).map((obj,index)=>{
         return (
-            <ContainerRelated key={index} onClick={() => handleContainerSelect(obj.id)}>
+            <ContainerRelated key={index} onClick={() => {
+              handleContainerSelect(obj.id);
+              callInteraction('Related Product Card', 'Related Items & Comparison', new Date());
+            }}>
               <ImageContainer img={obj.thumbnailURL}></ImageContainer>
               <Category key={index}>{obj.category} </Category>
               <Name key={index}> {obj.name}</Name>
@@ -113,7 +121,10 @@ const Related = (props)=> {
             <Price> ${outfit.price} </Price>
             <Stars rating={outfit.stars} instance={outfit.instance} key={index}/>
             <div className = "actionbutton-x">
-            <ActionButtonX onClick={()=>DeleteFromOutfit_Click(outfit.id)}/>
+            <ActionButtonX onClick={()=>{
+              DeleteFromOutfit_Click(outfit.id);
+              callInteraction('Related Product Outfit Card Remove Button', 'Related Items & Comparison', new Date());
+            }}/>
             </div>
 
           </ContainerOutfit>

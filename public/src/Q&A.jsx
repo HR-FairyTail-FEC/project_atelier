@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import moment from 'moment';
 import { QAContainer, QATitle, QASearchBar, QAList, QAQuestionTop, QAQuestion, QAHelpfulQ, QAHelpfulA, QAReportQ, QAaddA, QAQuestionDetails, QAanswer, QAanswerBody, QAanswerBot, QAanswerInfo, QAReportA, QALoadA, QALoadQ, QAaddQ, QAResult, ContainerBot, QAAnswerList, QSearch, styledButton} from './Styled Components/Q&A/qa.styled.js';
-
+import {callInteraction} from './Global_Interactions.js';
 const axios = require('axios');
 const { Options } = require('../../config.js');
 import QAModal from './QAModal.jsx';
@@ -39,7 +39,6 @@ const QA = (props) => {
       let getQuestions = [];
       getQuestions.push(axios.get(`http://localhost:3000/api/qa/questions?product_id=${productId}`));
       Promise.all(getQuestions).then((results) => {
-        console.log('this result', results[0].data.results);
         let allQ = [];
         results[0].data.results.forEach(result => {
           let allA = [];

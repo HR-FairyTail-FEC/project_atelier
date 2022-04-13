@@ -515,6 +515,7 @@ body {
 }
 .actionbutton-star{
   /* top right of each related container */
+  cursor: pointer;
   z-index: 9999;
   position: absolute;
   right:3px;

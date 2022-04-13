@@ -36,6 +36,7 @@ const AddToOutfit_Button = styled(PlusSquare)`
 `;
 const ActionButtonX = styled(Close)`
   /* border: 2px solid red; */
+  cursor: pointer;
   width:40px;
   height:80px;
   position: absolute;

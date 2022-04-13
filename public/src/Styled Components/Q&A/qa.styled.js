@@ -172,6 +172,7 @@ const QALoadQ = styled.button`
   border: 2px solid #D3D3D3;
   border-radius: 3px;
   background: white;
+  cursor: pointer;
 
 
 `;
@@ -182,6 +183,7 @@ const QAaddQ = styled.button`
   border: 2px solid #D3D3D3;
   border-radius: 3px;
   background: white;
+  cursor: pointer;
 `;
 
 const QSearch = styled(Search)`
@@ -200,6 +202,7 @@ const styledButton = styled.button`
   padding: 0;
   border: black;
   background: none;
+  cursor: pointer;
 `;
 
 
