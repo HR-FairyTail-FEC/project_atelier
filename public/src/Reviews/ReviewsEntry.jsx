@@ -42,10 +42,8 @@ const ReviewsEntry = (props) => {
           <div className="entry-report"><a href="#" onClick={()=> props.reportReview(result.review_id)}>Report</a></div>
         </div>
       </div>
-      <div className="entry-hr">
-        <hr style={{border: "3px solid black"}}></hr>
-      </div>
-
+      <hr></hr>
+      <div className="entry-hr"></div>
 
     </div>
   )

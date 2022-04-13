@@ -29,12 +29,13 @@ const AddToOutfit_Button = styled(PlusSquare)`
   position: absolute;
   top:50px;
   left: 60px;
-  :hover{
-    background-color:red;
+  :hover {
+    /* border: 2px solid black; */
+    transform: scale(1.1);
   }
 `;
 const ActionButtonX = styled(Close)`
-  border: 2px solid red;
+  /* border: 2px solid red; */
   width:40px;
   height:80px;
   position: absolute;

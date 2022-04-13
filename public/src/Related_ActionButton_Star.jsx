@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
-//took out checkmarred
-import {ModalTitle, ComparingModal, TitleContainer,  TitleMain, TitleRelated, Features, Feature} from '../src/Styled Components/comparing-modal.styled.js';
+import {ModalTitle, ComparingModal, TitleContainer,  TitleMain, TitleRelated, Features, Feature, CheckmarkRed} from './Styled Components/RelatedItems+Comparison/comparing-modal.styled.js';
 import axios from 'axios';
 
 const ActionButton_Star = (props)=> {
@@ -47,7 +46,7 @@ const ActionButton_Star = (props)=> {
                 return (
                   <>
                     <Feature> {feature.feature} : {feature.value}
-                    {/* <CheckmarkRed side={feature.side} ></CheckmarkRed> */}
+                    {<CheckmarkRed side={feature.side} ></CheckmarkRed>}
                     </Feature>
                     <br></br>
                   </>

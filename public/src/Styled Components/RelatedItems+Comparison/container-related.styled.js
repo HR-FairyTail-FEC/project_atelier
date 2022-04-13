@@ -34,7 +34,7 @@ const ImageContainer = styled.div`
 const Category = styled.p`
   font-weight: lighter;
   position: absolute;
-  bottom: 130px;
+  bottom: 120px;
   left: 10px;
 `;
 
@@ -43,7 +43,7 @@ const Name = styled.p`
   font-weight: bold;
   font-size:21px;
   position: absolute;
-  top: 235px;
+  top: 245px;
   left: 10px;
   height:60px;
 `;
@@ -52,7 +52,7 @@ const Price = styled.p`
   font-weight: 300;
   position: absolute;
   font-weight: 300;
-  bottom: 86px;
+  bottom: 76px;
   left: 10px;
 `;
 
