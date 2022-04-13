@@ -1,11 +1,11 @@
 import React, { useLayoutEffect, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Overview from './Overview.jsx';
-import Reviews from './Reviews/Reviews.jsx';
-import Related from './Related.jsx';
 import QA from './Q&A.jsx';
-const axios = require('axios');
+import Related from './Related.jsx';
+import Reviews from './Reviews/Reviews.jsx';
 
+const axios = require('axios');
 
 function ProductDetail() {
   // console.log('<ProductDetail>')
@@ -20,7 +20,7 @@ function ProductDetail() {
       for (let i = 0; i < endpoints.length; i += 1) {
         promises.push(axios.get(`http://localhost:3000${endpoints[i]}`));
       }
-      const data = await Promise.all(promises);;
+      const data = await Promise.all(promises);
       data.forEach((item) => {
         result = [...result, item.data];
       });
@@ -38,8 +38,13 @@ function ProductDetail() {
     <div className="page-container">
       <Overview details={productDetail}/>
       <Related details={productDetail} setProductID={setProductID} />
+<<<<<<< HEAD
       <QA details = {productDetail}/>
       {/* <Reviews details={productDetail} /> */}
+=======
+      <Reviews details={productDetail}/>
+
+>>>>>>> main
     </div>
   );
 }

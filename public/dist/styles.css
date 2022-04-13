@@ -1,35 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Roboto:wght@400;500;700;900&display=swap');
 
-
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
-
 body {
   -webkit-font-smooothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 .position-relative {
   position: relative;
 }
-
 .padNavTop {
   background-color: rgba(223, 222, 222, 0.904);
   margin: 0;
   padding: 0;
   height: 20px;
 }
-
 .padNavBottom {
   background-color: rgba(223, 222, 222, 0.904);
   margin: 0;
   padding: 0;
   height: 40px;
 }
-
 .topNav {
   background-color: white;
   color: rgb(0, 0, 0);
@@ -42,18 +36,15 @@ body {
   align-items: center;
   padding-left: 5.5%;
 }
-
 .logo {
   width: 75px;
   cursor: pointer;
 }
-
 .nav-list {
   list-style: none;
   display: inline-block;
   padding-left: 7.5px;
 }
-
 .nav-links {
   text-decoration: none;
   transition: all 0.3s ease 0s;
@@ -61,13 +52,11 @@ body {
   margin-right: 50px;
   margin-left: 50px;
 }
-
 .nav-links:hover {
   color: black;
   text-decoration: underline;
   transition: all 0.5s ease 0s;
 }
-
 .page-container {
   height: 15000px;
   margin: 0;
@@ -76,7 +65,6 @@ body {
   flex-direction: column;
   align-items: center;
 }
-
 .small-home-text {
   list-style: none;
   padding-top: 150px;
@@ -86,7 +74,6 @@ body {
   font-family: 'Dancing Script';
   letter-spacing: 15px;
 }
-
 .large-home-text {
   list-style: none;
   padding-top: 60px;
@@ -96,7 +83,6 @@ body {
   font-family: 'Roboto', sans-serif;
   letter-spacing: 22.5px;
 }
-
 .home-btn {
   width: 6.5em;
   height: 2.3em;
@@ -108,19 +94,16 @@ body {
   cursor: pointer;
   transition: all 0.5s ease 0s;
  }
-
 .home-btn:hover {
   color: rgb(128,128,128);
   box-shadow: 0px 5px 5px grey;
 }
-
 .padBottom {
   background-color: black;
   margin: 0px;
   padding: 0px;
   height: 125px;
 }
-
 .products-container {
   display: flex;
   flex-direction: row;
@@ -128,7 +111,6 @@ body {
   justify-content: center;
   align-content: center;
 }
-
 .row {
   display: flex;
   flex-wrap: wrap;
@@ -136,7 +118,6 @@ body {
   overflow: hidden;
   padding-top: 25px;
 }
-
 .row div {
   display: flex;
   justify-content: center;
@@ -146,7 +127,6 @@ body {
   position: relative;
   margin: 0px 75px;
 }
-
 .row img {
   max-height: 250px;
   max-width: 250px;
@@ -156,14 +136,11 @@ body {
   padding: 10px;
   border: 2px solid rgb(176, 175, 175);
 }
-
-
 .row img:hover {
   transform: scale(1.15);
   box-shadow: 0.3em 0.3em 1em rgba(0,0,0,0.3);
   border: 2px solid black;
 }
-
 .overview-container {
   width: 100%;
   display: flex;
@@ -174,7 +151,6 @@ body {
   font-family: 'Lato', sans-serif;
   margin-top: 25px;
 }
-
 .left-container {
   margin-top: 25px;
   margin-right: 150px;
@@ -187,12 +163,10 @@ body {
   /* box-shadow: 5px 5px 10px rgba(0,0,0,0.3);
   border: 5px solid black; */
 }
-
 .right-container {
   margin-top: 25px;
   margin-right: 200px;
 }
-
 .thumbnail-container {
   display: flex;
   flex-direction: column;
@@ -201,12 +175,10 @@ body {
   width: 25%;
   padding-left: 25px;
 }
-
 .feature-container {
   width: 50%;
   height: 500px;
 }
-
 .feature-img {
   padding: 25px;
   margin-left: 65px;
@@ -217,7 +189,6 @@ body {
   user-select: none;
   cursor: zoom-in;
 }
-
 .thumbnail-img {
   object-fit: cover;
   width: 35%;
@@ -228,17 +199,14 @@ body {
   transition: opacity .35s ease-out 0s;
   transition: box-shadow .35s ease-out 0s;
 }
-
 .thumbnail-img:hover {
   opacity: 1;
   box-shadow: 0px 5px 5px rgba(0,0,0,0.3);
 }
-
 .active {
   box-shadow: 0px 5px 5px rgba(0,0,0,0.3);
   opacity: 1;
 }
-
 .thumbnail-arrow {
   object-fit: contain;
   width: 32.5%;
@@ -251,16 +219,13 @@ body {
   border: 2px solid rgba(0,0,0,0.3);
   transition: all 0.35s ease-out 0s;
 }
-
 .thumbnail-arrow:hover {
   border: 2px solid black;
   transform: scale(1.1);
 }
-
 .padding-left-10 {
   padding-left: 10px;
 }
-
 .stars-outer {
   display: inline-block;
   position: relative;
@@ -268,25 +233,21 @@ body {
   font-weight: 300;
   font-size: 12px;
 }
-
 .stars-outer::before {
   content: "\f006 \f006 \f006 \f006 \f006";
 }
-
 .stars-inner::before {
   content: "\f005 \f005 \f005 \f005 \f005";
   color: black;
   font-weight: 300;
   font-size: 12px;
 }
-
 .styles {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 10px;
   padding: 10px;
 }
-
 .styles-thumbnail {
   margin: 5px;
   object-fit: cover;
@@ -297,16 +258,13 @@ body {
   opacity: 0.5;
   transition: opacity .35s ease-out 0s;
 }
-
 .styles-thumbnail:hover {
   opacity: 1;
 }
-
 .styles-active {
   opacity: 1;
   box-shadow: 5px 5px 5px grey;
 }
-
 .checkmark {
   position: absolute;
   height: 50px;
@@ -317,133 +275,483 @@ body {
   z-index: 10;
   opacity: 1;
 }
-
-/* DK CSS */
-.reviews-container{
-  width:1000px;
-  height:1000px;
+.size-selector {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 10px;
+  padding: 10px;
+}
+.size-item-container {
+  height: 49px;
+  width: 69px;
+  border: 1.75px solid rgba(0,0,0,0.3);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.size-active {
+  border: 1.75px solid black;
+}
+.size-item-container:hover {
+  border: 1.75px solid black;
+}
+.size-item {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  padding-top: 14px;
+}
+.quantity-container {
+  display: flex;
+  justify-content: space-around;
+  padding-left: 10px;
+  width: 100%;
+  padding-top: 25px;
+}
+.quantity {
+  padding-top: 3.5px;
+  padding-bottom: 3.5px;
+}
+.plus-minus {
+  cursor: pointer;
+  border: 2px solid black;
+  padding: 3.5px;
+  margin-left: 10px;
+}
+.cart-btn {
+  background: black;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  text-transform: uppercase;
+  margin-left: 10px;
+  margin-top: 25px;
+  border: none;
+  height: 50px;
+  width: 100%;
+  transition: all 0.20s ease 0s;
+ }
+.cart-btn:hover {
+   color: rgb(128,128,128);
+   box-shadow: 5px 5px 5px grey;
+}
+.modal-background {
+  width: 100%;
+  height: 650px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal-container {
+  width: 80%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 5px 5px 10px rgba(0,0,0,0.3);
+  margin-top: 50px;
+}
+.exit-btn {
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  width: 25px;
+  height: 25px;
+  font-size: 25px;
+  color: black;
+  object-fit: fill;
+  cursor: pointer;
+  transition: all 0.35s ease-out 0s;
+}
+.exit-btn:hover {
+  transform: scale(1.15);
+}
+.inner-modal-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.inner-modal-container img {
+  object-fit: contain;
+  height: 500px;
+  width: 400px;
+  padding: 25px;
+  box-shadow: 0.3em 0.3em 1em rgba(0,0,0,0.3);
+}
+.modal-arrow-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 75px;
+  margin-left: 75px;
+  width: 50px;
+  height: 50px;
+  opacity: 0.5;
+  cursor: pointer;
+  background-color: rgb(185, 183, 183);
+  box-shadow: 0px 5px 5px rgba(0,0,0,0.3);
+  transition: all 0.25s ease-out 0s;
+  z-index: 1;
+}
+.modal-arrow-container:hover {
+  opacity: 1;
+  box-shadow: 0px 5px 7.5px rgba(0,0,0,0.3);
+  transform: scale(1.15);
+}
+.modal-arrow {
+  object-fit: contain;
+  cursor: pointer;
+  z-index: 0;
+}
+.fa-circle {
+  color: black;
+  padding-left: 5px;
+  padding-right: 5px;
+  box-shadow: 5px 5px 5px black;
+}
+.description-and-feature-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  padding-top: 60px;
+}
+.description-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  inline-size: 80%;
+  width: 50%;
+  margin-left: 75px;
+  height: 150px;
+}
+.features-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: 200px;
+  margin-left: 155px;
+  border-left: 2.5px solid grey;
+  padding-left: 30px;
+  height: 150px;
+  font-family: 'Lato', sans-serif;
+  font-size: 17px;
+  color: rgb(66, 66, 66);
+  letter-spacing: 0.5px;
+  line-height: 50px;
+}
+.slogan {
+  font-family: 'Dancing Script', sans-serif;
+  font-size: 36px;
+  letter-spacing: 1.5px;
+}
+.description {
+  font-family: 'Lato', sans-serif;
+  font-size: 17px;
+  color: rgb(66, 66, 66);
+  letter-spacing: 0.5px;
+  line-height: 27px;
+}
+.underline {
+  font-size: 12px;
+  font-weight: 400;
+  margin-left: 5px;
+  cursor: pointer;
+  text-decoration: underline;
+}
+/* ____________DENNIS RELATED ITEMS CSS____________________ */
+#related-outfit-container{
+  /* border-style: solid; */
+  width: 100%;
+  height: 890px;
+  top: 500px;
+}
+#related-container{
+  /* border-style:dotted; */
+  /* background-color: green */
+  height:440px;
+  position: relative;
+}
+#related-items{
   /* border-style:solid; */
+  display: flex;
+  position: absolute;
+  bottom:0px;
+  left: 70px;
+}
+.related-item{
+  /* border-style: solid; */
+  margin-left: 30px;
+  margin-right: 30px;
+  width: 400px;
+  height: 370px;
+}
+.star-container{
+  display:flex;
+  position: absolute;
+  bottom:10px;
+  left:10px;
+}
+#outfit-container{
+  /* background-color: yellow; */
+  height:440px;
+  position: relative;
+}
+/* outfit row */
+#outfit-items{
+  /* border-style:solid; */
+
+  display: flex;
+  position: absolute;
+  bottom:0px;
+  left: 70px;
+}
+.actionbutton-star{
+  /* top right of each related container */
+  z-index: 9999;
+  position: absolute;
+  right:3px;
+  top:3px;
+}
+.actionbutton-x{
+  /* border: 2px solid red; */
+  z-index: 9999;
+  position: absolute;
+  right:33px;
+  top:-23px;
+}
+.star-modal-show{
+  border-style: solid;
+  height:300px;
+  width:600px;
+  position: absolute;
+  background-color: #f5f5f5;
+  top: -100px;
+  left: 300px;
+  z-index:10000;
+}
+.star-modal-hide{
+  display:none;
+}
+.modal-title{
+  text-align:center;
+}
+/* ____________END DENNIS RELATED ITEMS CSS____________________ */
+
+
+/* ____________START DK REVIEWS CSS____________________ */
+.dk-container{
+  /* background-color: pink; */
+  width:82%;
+  height:1000px;
+  border-style:solid;
+  padding-top:10px;
+  margin-top:30px;
+  margin-left:-180px;
+  font-family: 'Lato', sans-serif;
+}
+.title-review {
+  /* background-color: blue; */
+  font-weight: 400;
+  font-size: 20px;
+  margin-bottom:10px;
+}
+.rating-container {
+  /* border: 1px solid black; */
+  /* background-color: lightslategray; */
+  font-family: 'Lato', sans-serif;
   display:flex;
 }
 
-.title-review {
-  display: flex;
-}
-
 .left-side {
+  /* background-color: red; */
   /* border-style:solid; */
-  width:40%;
-
+  width:30%;
 }
-.rating-breakdown {
-  /* border-style:dotted; */
-  height:600px;
-  width:300px;
-  top:20px;
-  right:2px;
-
+.middle-column{
+  /* background-color: blue; */
+  border: 1px solid black;
+  width:7%;
 }
 .right-side{
-  /* border-style:solid; */
-  width:60%;
+  float:right;
+  border-style:solid;
+  width:63%;
+  /* background-color:slateblue; */
 }
 
-/* .reviewEntryBorder {
-  border: 2px solid;
-  border-radius: 5px;
-} */
 
-.star-container{
-  display: flex;
+/* start left side CSS__________________ */
+
+.rating-breakdown{
+  /* this just includes the big rating number plus 5 stars next to it */
+  /* border: 1px solid black; */
+  display:flex;
 }
-
-/************* Ratings *************/
-
-/* Three column layout */
-.row-rating {
-  display: flex;
-  flex-direction: column;
-  /* border: 10px solid; */
-}
-.column-rating {
+.rating-breakdown-number{
+  /* border: 1px solid black; */
+  /* background-color: salmon; */
+  font-size:88px;
   float:left;
 }
-.side-rating {
-  /* float: left;
-  width: 15%;
-  margin-top:10px; */
-  flex: 15%;
+.rating-breakdown-stars{
+  /* border: 1px solid black; */
+  display:flex;
+  margin-left: 20px;
+  margin-top:15px;
+}
+.recommendation{
+  /* background-color: greenyellow; */
+  font-size:14px;
+  margin-top:10px;
+}
+/* 5 star ratings */
+.row-rating {
+  /* background-color: yellow; */
+  /* border: 10px solid; */
+  display: flex;
+  flex-direction: column;
+  margin-top:15px;
+}
+.star-bar-container{
+  /* //contains text plus meter  */
+  /* border: 1px solid; */
+
+  display:flex;
+  margin-top: 10px;
+}
+  .star-bar-text{
+    /* background-color:red; */
+    text-decoration: underline;
+    text-decoration-color: black;
+    width: 30%;
+  }
+  .bar-container{
+    margin-top:5px;
+    margin-left:-20px;
+    width: 100%;
+    height: 10px; /***/
+    background-color: #f1f1f1;
+    text-align: center;
+    color: white;
+  }
+  /* Individual bars */
+  .bar-5 {height: 10px; background-color: #282828;}
+  .bar-4 {height: 10px; background-color: #282828;}
+  .bar-3 {height: 10px; background-color: #282828;}
+  .bar-2 {height: 10px; background-color: #282828;}
+  .bar-1 {height: 10px; background-color: #282828;}
+
+/* character bar  */
+.row-charbar {
+  margin-top: 20px;
+  /* background-color: red; */
 }
 
-.middle {
-  /* margin-top:10px;
-  float: left;
-  width: 85%; */
-  flex: 85%;
+.bar-fit {height: 10px; border-right: 6px solid; border-color: #282828;}
+.bar-length {height: 10px; border-right: 6px solid; border-color: #282828;}
+.bar-comfort {height: 10px; border-right: 6px solid; border-color: #282828;}
+.bar-quality { height: 10px; border-right: 6px solid; border-color: #282828;}
+
+.charbar-characteristic{
+  /* background-color: red; */
+  border: 1px solid black;
+  margin-bottom:10px;
+}
+.characteristic-title{
+  font-size:16px;
+  border: 1px solid black;
+
 }
 
-
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
+.characteristic-scale{
+  /* border: 1px solid black; */
+  background-color: white;
+  display:flex;
+  justify-content: space-between;
+  font-size:12px;
 }
-
-/* The bar container */
-.bar-container {
+.characteristic-bar-container{
+  margin-top:5px;
+  margin-bottom:5px;
   width: 100%;
+  height: 10px;
   background-color: #f1f1f1;
-  text-align: center;
   color: white;
 }
 
-/* Individual bars */
-.bar-5 {height: 10px; background-color: #282828;}
-.bar-4 {height: 10px; background-color: #282828;}
-.bar-3 {height: 10px; background-color: #282828;}
-.bar-2 {height: 10px; background-color: #282828;}
-.bar-1 {height: 10px; background-color: #282828;}
+/* end of left side  ______________________________*/
+/*right side  ______________________________*/
 
-/* Responsive layout - make the columns stack on top of each other instead of next to each other */
-@media (max-width: 300px) {
-  .side, .middle {
+.right-top{
+  /* includes title */
+  /* background-color:red; */
+  /* border: 1px solid black; */
+  margin-bottom:30px;
+  font-size:18px;
+  font-weight:600;
+
+}
+  .review-dropdown{
+    background-color: transparent;
+    margin-left: 10px;
+    margin-bottom:7px;
+  }
+
+.review-entries {
+  /* background-color:yellow; */
+  /* border: 1px solid black; */
+}
+
+  .entry-top {
+    /* background-color: red; */
+    /* border: 1px solid black; */
     width: 100%;
+    height:30px;
+    margin-bottom:20px;
+    /* display:flex; */
   }
-  .right {
-    display: none;
+  .entry-stars{
+    /* border: 1px solid black; */
+    display:flex;
+    float:left;
   }
+  .entry-user-date{
+    /* border: 1px solid black; */
+    float:right;
+    margin-top:1px;
+  }
+.entry-bottom{
+  /* border: 1px solid black; */
+  /* background-color: blue; */
+}
+.entry-summary {
+  background-color: white;
+  margin-bottom:20px;
 }
 
-/********** Charbar css *********/
-.row-charbar {
-  margin-top: 20px;
+.entry-body {
+  margin-bottom: 10px;
+  background-color: gray;
+  border: 1px solid black;
+  padding-top:30px;
+  padding-bottom:30px;
 }
 
-.bar-fit {height: 10px; border-right: 10px solid; border-color: #282828;}
-.bar-length {height: 10px; border-right: 10px solid; border-color: #282828;}
-.bar-comfort {height: 10px; border-right: 10px solid; border-color: #282828;}
-.bar-quality { height: 10px; border-right: 10px solid; border-color: #282828;}
-
-
-/****** href color ******/
-a {
-  color: #696969;
-  background-color: transparent;
-  text-decoration: underline;
+.entry-recommend {
+  border: 1px solid black;
+  background-color: red;
 }
 
-a:hover {
-  color: black;
-  background-color: transparent;
-  text-decoration: underline;
-}
-
-/********** reviewlist css *******/
-
-.response-review {
-
-  background-color: #282828;
+.entry-response {
+  border: 1px solid black;
+  background-color: yellow;
 }
 
 /********** MODAL CSS ************/
@@ -511,12 +819,36 @@ a:hover {
 }
 /******* add review input text ******/
 
-textarea {
+.textarea {
    font-family:"Times New Roman", Times, serif;
    font-size: 12px;
+}
+.entry-helpful-report-container {
+  border: 1px solid black;
+  background-color: orange;
+  display: flex;
+  justify-content: flex-start;
+
 }
 
-.add-review-text  {
-   font-family:"Times New Roman", Times, serif;
-   font-size: 12px;
+.entry-helpful {
+  border: 1px solid black;
+  background-color: red;
+
 }
+
+.entry-report {
+  border: 1px solid black;
+  background-color: blue;
+}
+
+.entry-hr {
+  border: 1px solid black;
+  /* background-color: white; */
+  height:20px;
+
+}
+
+/* end of right side  ______________________________*/
+
+

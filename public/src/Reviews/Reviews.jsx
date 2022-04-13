@@ -20,7 +20,7 @@ const Reviews = (props) => {
   const { id } = useParams();
 // props update and state changes ----> re-render
   useEffect(() => {
-    console.log('trigger use effect hook')
+    // console.log('trigger use effect hook')
     const promises = [];
     let result = [];
     const endpointsSortReviews = [`/api/reviews?product_id=${id}&sort=relevant`, `/api/reviews?product_id=${id}&sort=newest`, `/api/reviews?product_id=${id}&sort=helpfulness`, `/api/reviews/meta?product_id=${id}`];
@@ -35,7 +35,7 @@ const Reviews = (props) => {
         result = [...result, item.data]
       });
       const relevantArr = result[0].results; const newestArr = result[1].results; const helpfulnessArr = result[2].results;
-      console.log('result from promise: ', result); // 0: relevant, 1: newest, 2: helpfulness 3: metaData
+      // console.log('result from promise: ', result); // 0: relevant, 1: newest, 2: helpfulness 3: metaData
       // console.log(result[0].results);
         // setReviewList(relevantArr);
           if (option === 'relevant') {
@@ -170,7 +170,7 @@ const Reviews = (props) => {
       </>
   } else {
     display =
-    <div className="reviews-container">
+    <div className="dk-container">
           {/* {console.log('relevantArr outside: ', relevantArr)} */}
           {/* {console.log('props.details: ', props.details)} */}
           {/* {console.log('reviewList: ', reviewList)} */}
@@ -179,35 +179,43 @@ const Reviews = (props) => {
           {/* {console.log('ratings: ', ratings)} */}
           {/* {console.log("jeelllooo", charBarPercent(props.details.meta.characteristics))} */}
         <div className="title-review">RATINGS & REVIEWS</div>
-        <div className="left-side">
-          <div className="rating-breakdown">
-            <h1>{averageRatingCalc(props.details.meta.ratings)}</h1>
-            <ReviewsStars rating={averageRatingCalc(props.details.meta.ratings)} />
-            <div>{recommendPercent(props.details.meta.recommended)}% of reviews recommend this product</div>
-            <RatingBreakdown ratingBreakdownPercent={ratingBreakdownPercent(props.details.meta.ratings)} />
-            <CharBar charBarPercent={charBarPercent(props.details.meta.characteristics)}/>
+          <div className="rating-container">
+            <div className="left-side">
+                <div className="rating-breakdown">
+                  <h1 className="rating-breakdown-number">{averageRatingCalc(props.details.meta.ratings)}</h1>
+                  <ReviewsStars rating={averageRatingCalc(props.details.meta.ratings)} />
+                </div>
+                <div className="recommendation">
+                  {recommendPercent(props.details.meta.recommended)}% of reviews recommend this product
+                </div>
+                <RatingBreakdown ratingBreakdownPercent={ratingBreakdownPercent(props.details.meta.ratings)} />
+                <CharBar charBarPercent={charBarPercent(props.details.meta.characteristics)}/>
+            </div>
+            <div className="middle-column">
+            </div>
+            <div className="right-side">
+              <div className="right-top">
+                {reviewList.length} reviews, sorted by
+                <select onChange={changeOption} value={option} className="review-dropdown">
+                  <option value="relevant">relevance</option>
+                  <option value="newest">newest</option>
+                  <option value="helpfulness">helpful</option>
+                </select>
+              </div>
+              <div className="review-entries">
+                {/* {console.log(details.reviews)} */}
+                {reviewList.slice(0, numOfEntry).map((result, index) =>
+                  <ReviewsEntry key={index} result={result} reportReview={reportReview} index={index} incrementHelpfulness={incrementHelpfulness} />
+                )}
+              </div>
+              <div>
+                <button onClick={() => moreReviews()}>More Reviews</button>
+                <button onClick={() => setShow(true)}>Add A REVIEW +</button>
+                <AddReviewModal addReview={addReview} product_id={props.details.questions.product_id} onClose={() => setShow(false)} show={show} />
+              </div>
+            </div>
           </div>
-        </div>
-        <div className="right-side">
-          {reviewList.length} reviews, sorted by
-          <select onChange={changeOption} value={option}>
-            <option value="relevant">Relevance</option>
-            <option value="newest">Newest</option>
-            <option value="helpfulness">Helpful</option>
-          </select>
-          <div>
-            {/* {console.log(details.reviews)} */}
-            {reviewList.slice(0, numOfEntry).map((result, index) =>
-              <ReviewsEntry key={index} result={result} reportReview={reportReview} index={index} incrementHelpfulness={incrementHelpfulness} />
-            )}
-          </div>
-          <div>
-            <button onClick={() => moreReviews()}>More Reviews</button>
-            <button onClick={() => setShow(true)}>Add A REVIEW +</button>
-            <AddReviewModal addReview={addReview} product_id={props.details.questions.product_id} onClose={() => setShow(false)} show={show} />
-          </div>
-        </div>
-      </div>
+    </div>
   }
 
   return (
