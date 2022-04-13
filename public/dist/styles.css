@@ -13,19 +13,19 @@ body {
   position: relative;
 }
 .padNavTop {
-  background-color: rgba(223, 222, 222, 0.904);
+  /* background-color: rgba(223, 222, 222, 0.904); */
   margin: 0;
   padding: 0;
   height: 20px;
 }
 .padNavBottom {
-  background-color: rgba(223, 222, 222, 0.904);
+  /* background-color: rgba(10, 9, 9, 0.904); */
   margin: 0;
   padding: 0;
-  height: 40px;
+  /* height: 3px; */
 }
 .topNav {
-  background-color: white;
+  /* background-color: white; */
   color: rgb(0, 0, 0);
   font-family: 'IBM Plex Sans Arabic', sans-serif;
   font-weight: 300;
@@ -49,7 +49,7 @@ body {
   text-decoration: none;
   transition: all 0.3s ease 0s;
   color: rgb(128,128,128);
-  margin-right: 50px;
+  margin-right: 60px;
   margin-left: 50px;
 }
 .nav-links:hover {
@@ -57,6 +57,8 @@ body {
   text-decoration: underline;
   transition: all 0.5s ease 0s;
 }
+
+
 .page-container {
   height: 15000px;
   margin: 0;
