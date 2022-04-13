@@ -31,9 +31,11 @@ const QAModal = (props) => {
         <div className='modal-body'>
           <form>
               <label>
-                <span>*Your Question <input type='textarea' name='question' placeholder="Your Question" value={state.question} onChange={handleChange} /></span>
-                <span>*Your Nickname <input type="text" name='nickname' placeholder="What's Your Nickname" value={state.nickname} onChange={handleChange} /></span>
-                <span>*Your Email <input type='text' name='email' placeholder='Email Address' value={state.email} onChange={handleChange} /></span>
+                <div>
+                *Your Question <input type='textarea' name='question' placeholder="Your Question" value={state.question} onChange={handleChange}/><br></br>
+                *Your Nickname <input type="text" name='nickname' placeholder="What's Your Nickname" value={state.nickname} onChange={handleChange}/><br></br>
+                *Your Email <input type='text' name='email' placeholder='Email Address' value={state.email} onChange={handleChange} /> &nbsp;
+                </div>
               </label>
               <button type='button' onClick={() => postQuestion()}>Submit Question</button>
             </form>

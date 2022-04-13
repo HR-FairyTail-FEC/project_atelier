@@ -237,7 +237,7 @@ const QA = (props) => {
                   </QAReportQ>
                   <QAaddA>
                     <styledButton onClick={() => addA(q.result.question_id)} key={q.result.question_id}><u>Add Answer</u></styledButton>
-                    {clickedAnswer.includes(q.result.question_id) &&
+                        {clickedAnswer.includes(q.result.question_id) &&
                         <QAModalA id={q.result.question_id} postAnswer={postAnswer} onClose={()=>setShowA(false)} showA={showA}/>
                       }
                   </QAaddA>
@@ -283,7 +283,8 @@ const QA = (props) => {
       <ContainerBot>
           {numQShown < qShown.length && <QALoadQ onClick={showMoreQ}>Load More Questions</QALoadQ>}
 
-          <QAaddQ onClick={addQ}>Add A Question +</QAaddQ>
+          <QAaddQ onClick={addQ}>Add A Question +
+          </QAaddQ>
           <div>{addQPost === true &&
             <form>
               <QAModal id={props.details.questions.product_id} postQuestion={postQuestion} onClose={()=>setShow(false)} show={show}/>

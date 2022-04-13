@@ -89,6 +89,7 @@ const QAReportQ = styled.div`
 
 const QAaddA = styled.div`
   position: absolute, left;
+  text-align: center;
 `;
 
 const QAQuestionDetails = styled.div`
@@ -158,22 +159,21 @@ const QALoadA = styled.div`
 
 
 const ContainerBot = styled.div`
-  position: absolute;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: left;
   top: 640px;
-  height:30px;
+  height:50px;
   width:100%;
-  flex-direction: row;
+  font-family: 'Lato', sans-serif;
+
 
 `;
 const QALoadQ = styled.button`
   font-size: 2em;
-  font-family: 'Lato', sans-serif;
   padding: 0.25em 1em;
   border: 2px solid #D3D3D3;
-
   border-radius: 3px;
   background: white;
 
@@ -181,8 +181,6 @@ const QALoadQ = styled.button`
 `;
 const QAaddQ = styled.button`
   font-size: 2em;
-  font-family: 'Lato', sans-serif;
-
   padding: 0.25em 1em;
   border: 2px solid #D3D3D3;
   border-radius: 3px;
