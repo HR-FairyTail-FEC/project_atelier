@@ -227,17 +227,17 @@ const QA = (props) => {
                   <QAHelpfulQ>
                    | Helpful?&nbsp;
                     {!helpfulClickedQ.includes(q.result.question_id) &&
-                      <styledButton type='button' onClick={() => handleHelpfulClickQ(q.result.question_id)}><u>Yes</u>&nbsp;</styledButton>}
+                      <styledButton type='button' onClick={() => {handleHelpfulClickQ(q.result.question_id); callInteraction('Question Helpful Button', 'Q+A', new Date());}}><u>Yes</u>&nbsp;</styledButton>}
                     ({q.result.question_helpfulness}) |&nbsp;
                   </QAHelpfulQ>
                   <QAReportQ>
                     {!reportedQ.includes(q.result.question_id) &&
-                      <styledButton onClick={() => handleReportedQ(q.result.question_id)}> <u>Report</u> |</styledButton>}&nbsp;
+                      <styledButton onClick={() => {handleReportedQ(q.result.question_id); callInteraction('Report Question Button', 'Q+A', new Date());}}> <u>Report</u> |</styledButton>}&nbsp;
                   </QAReportQ>
                   <QAaddA>
                     <styledButton onClick={() => addA(q.result.question_id)} key={q.result.question_id}><u>Add Answer</u></styledButton>
                     {clickedAnswer.includes(q.result.question_id) &&
-                        <QAModalA id={q.result.question_id} postAnswer={postAnswer} onClose={()=>setShowA(false)} showA={showA}/>
+                        <QAModalA id={q.result.question_id} postAnswer={postAnswer} onClose={()=>{setShowA(false); callInteraction('Post Answer Button', 'Q+A', new Date());}} showA={showA}/>
                       }
                   </QAaddA>
 
@@ -255,12 +255,12 @@ const QA = (props) => {
                             <p> answered by {a.answerer_name} on {moment(a.date).format('MMMM Do YYYY')}&nbsp; </p>
                           </QAanswerInfo>
                           <QAHelpfulA>
-                            | Helpful? {!helpfulClickedA.includes(a.id) && <styledButton type='button' onClick={() => handleHelpfulClickA(a.id)}><u>Yes</u>&nbsp;</styledButton>}
+                            | Helpful? {!helpfulClickedA.includes(a.id) && <styledButton type='button' onClick={() => {handleHelpfulClickA(a.id); callInteraction('Answer Helpful Button', 'Q+A', new Date());}}><u>Yes</u>&nbsp;</styledButton>}
                             ({a.helpfulness})&nbsp;|&nbsp;
                           </QAHelpfulA>
                           <QAReportA>
                             {!reportedA.includes(a.id) &&
-                              <styledButton onClick={() => handleReportedA(a.id)}> <u>Report</u> </styledButton>}
+                              <styledButton onClick={() => {handleReportedA(a.id); callInteraction('Report Answer Button', 'Q+A', new Date());}}> <u>Report</u> </styledButton>}
                           </QAReportA>
                         </QAanswerBot>
                       </QAanswer>
@@ -268,7 +268,7 @@ const QA = (props) => {
                   })
                 }
                 <QALoadA>
-                  {(q.answers.length > 2 && numAShown < q.answers.length) && <styledButton onClick={showMoreA}> <u>Load More Answers</u></styledButton>}
+                  {(q.answers.length > 2 && numAShown < q.answers.length) && <styledButton onClick={()=>{showMoreA(); callInteraction('Load Answer Button', 'Q+A', new Date());}}> <u>Load More Answers</u></styledButton>}
                   {(q.answers.length > 2 && numAShown >= q.answers.length) && <styledButton onClick={hideA}> <u>Collapse Answers</u> </styledButton>}
                 </QALoadA>
               </QAAnswerList>
@@ -280,7 +280,7 @@ const QA = (props) => {
       </QAList>
 
       <ContainerBot>
-          {numQShown < qShown.length && <QALoadQ onClick={showMoreQ}>Load More Questions</QALoadQ>}
+          {numQShown < qShown.length && <QALoadQ onClick={()=>{showMoreQ(); callInteraction('Load Questions Button', 'Q+A', new Date());}}>Load More Questions</QALoadQ>}
 
           <QAaddQ onClick={addQ}>Add A Question +</QAaddQ>
           <div>{addQPost === true &&
