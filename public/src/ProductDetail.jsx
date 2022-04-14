@@ -38,7 +38,7 @@ function ProductDetail() {
   return (
     <>
     <div>
-    {console.log('<ProductDetail> render')}
+    {/* console.log('<ProductDetail> render')*/}
     </div>
     {
       (productDetail.length === 0) ? <></> :

@@ -8,7 +8,7 @@ import ReviewsStars from './ReviewsStars.jsx';
 import CharBar from './CharBar.jsx';
 
 const Reviews = (props) => {
-  console.log('<Reviews> with props', props);
+  // console.log('<Reviews> with props', props);
   const [reviewList, setReviewList] = useState([]);
   const [option, setOption] = useState('relevant');
   const [show, setShow] = useState(false);
@@ -51,8 +51,7 @@ const Reviews = (props) => {
   }, [option])
 
   const addReview = (reviewInfo) => {
-
-    console.log('reviewInfo: ', reviewInfo)
+    // console.log('reviewInfo: ', reviewInfo)
     axios.post(`http://localhost:3000/api/reviews`, {
       product_id: reviewInfo.product_id,
       rating: reviewInfo.rating,
@@ -209,8 +208,8 @@ const Reviews = (props) => {
                 )}
               </div>
               <div>
-                <button onClick={() => moreReviews()}>More Reviews</button>
-                <button onClick={() => setShow(true)}>Add A REVIEW +</button>
+                <button onClick={() => moreReviews()} className="review-button">More Reviews</button>
+                <button onClick={() => setShow(true)} className="review-button">Add A Review </button>
                 <AddReviewModal addReview={addReview} product_id={props.details.questions.product_id} onClose={() => setShow(false)} show={show} />
               </div>
             </div>

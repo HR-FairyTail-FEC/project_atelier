@@ -591,6 +591,16 @@ body {
   /* background-color:slateblue; */
 }
 
+.review-button {
+  font-size: 2em;
+  font-family: 'Lato', sans-serif;
+  padding: 0.25em 1em;
+  border: 2px solid #D3D3D3;
+  border-radius: 3px;
+  background: white;
+  cursor: pointer;
+}
+
 
 /* start left side CSS__________________ */
 
@@ -710,7 +720,6 @@ body {
   }
 
 .review-entries {
-  height:0px;
   /* background-color:yellow; */
   /* border: 1px solid black; */
 }
@@ -734,12 +743,10 @@ body {
     margin-top:1px;
   }
 .entry-bottom{
-  height:0px;
   /* border: 1px solid black; */
   /* background-color: blue; */
 }
 .entry-summary {
-  height:0px;
   /* background-color: white; */
   /* margin-bottom:20px; */
 }
@@ -762,7 +769,6 @@ body {
 }
 
 .entry-response {
-  height:0px;
   /* border: 1px solid black; */
   /* background-color: #f1f1f1; */
   /* padding-bottom: 3%; */
