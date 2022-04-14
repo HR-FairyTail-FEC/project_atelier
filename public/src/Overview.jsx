@@ -6,7 +6,6 @@ function Overview(props) {
   let feature;
   let photos;
   let details = props.details;
-  console.log('in overview w/ props: ', details);
   const [currentId, setId] = useState(null);
   const [featured, setFeatured] = useState(0);
   const [thumbnailActive, setThumbnailActive] = useState(0);
@@ -246,7 +245,7 @@ function Overview(props) {
         </div>);
       }
       let render =
-      <><div className="left-container">
+      <><div data-testid="left-container" className="left-container">
         <div className="thumbnail-container">
           {mapped}
           <svg onClick={handleArrowClick} className="thumbnail-arrow" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -305,7 +304,7 @@ function Overview(props) {
   }, [loading, thumbnails, featured, thumbnailActive, styleActive, style, skuActive, quantity, openModal, props]);
 
   return (
-    <div className="overview-container">
+    <div data-testid="overview-container" className="overview-container">
       {display}
     </div>
   );
