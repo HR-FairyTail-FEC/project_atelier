@@ -8,17 +8,19 @@ import ReviewsStars from './ReviewsStars.jsx';
 import CharBar from './CharBar.jsx';
 
 const Reviews = (props) => {
-  console.log('<Reviews> with props', props);
   const [reviewList, setReviewList] = useState([]);
   const [option, setOption] = useState('relevant');
   const [show, setShow] = useState(false);
   const [numOfEntry, setNumOfEntry] = useState(2);
+  const [post, setPost] = useState(false);
+  const [helpfulCLicked, setHelpfulClicked] = useState([]);
   // const [numOfHelpfulness, setNumOfHelpfulness] = useState(props.details.meta.ratings['2']);
   // console.log("testing props: ", props.details.meta.ratings)
   // console.log('current state of option: ', option)
   let display;
   // let ratings = props.details.meta.ratings;
   const { id } = useParams();
+  console.log('product id: ', id);
 // props update and state changes ----> re-render
   useEffect(() => {
     // console.log('trigger use effect hook')
@@ -48,22 +50,24 @@ const Reviews = (props) => {
           }
     }
     fetchData()
-  }, [option])
+  }, [option, post])
 
   const addReview = (reviewInfo) => {
-
     console.log('reviewInfo: ', reviewInfo)
     axios.post(`http://localhost:3000/api/reviews`, {
-      product_id: reviewInfo.product_id,
-      rating: reviewInfo.rating,
-      recommend: JSON.parse(reviewInfo.recommend),
+      product_id: Number(reviewInfo.product_id),
+      rating: Number(reviewInfo.rating),
       summary: reviewInfo.summary,
       body: reviewInfo.body,
+      recommend: JSON.parse(reviewInfo.recommend),
       name: reviewInfo.name,
-      email: reviewInfo.email
+      email: reviewInfo.email,
+      photos: reviewInfo.photos,
+      characteristics: reviewInfo.characteristics
     })
     .then(response => {
       console.log("response.data from addReview, ", response)
+      setPost(!post)
     })
     .catch(err => {
       console.log("err from addReview", err)
@@ -79,12 +83,12 @@ const Reviews = (props) => {
     setOption(event.target.value);
   }
 
-  const incrementHelpfulness = (review_id, currentNumOfHelpful) => {
-    console.log(`whats id and currentHelp: ${review_id}, ${currentNumOfHelpful}`)
+  const incrementHelpfulness = (review_id) => {
+    setHelpfulClicked(prevItem => [...prevItem, review_id]);
     axios.put(`http://localhost:3000/api/reviews/${review_id}/helpful`)
     .then(response => {
       console.log('response from increment: ', response)
-      // setReviewList([...reviewList])
+      setPost(!post)
     })
     .catch(err => {
       console.log('oh my..its err: ', err)
@@ -96,6 +100,8 @@ const Reviews = (props) => {
     axios.put(`http://localhost:3000/api/reviews/${review_id}/report`)
     .then(response => {
       console.log('response from report: ', response)
+      alert("The review has been reported!")
+      setPost(!post)
     })
     .catch(err => {
       console.log('err from report frontend: ', err)
@@ -155,6 +161,8 @@ const Reviews = (props) => {
   const charBarPercent = (obj) => {
     // value / scale of 5 = percentage
     // console.log("obj in charbar: ", obj)
+    if (obj.Size) { obj.Size.valueInPer = Math.round((obj.Size.value / 5) * 100) + `%`}
+    if (obj.Width) { obj.Width.valueInPer = Math.round((obj.Width.value / 5) * 100) + `%`}
     if (obj.Fit) { obj.Fit.valueInPer = Math.round((obj.Fit.value / 5) * 100) + `%`}
     if (obj.Length) { obj.Length.valueInPer = Math.round((obj.Length.value / 5) * 100) + `%`}
     if (obj.Comfort) { obj.Comfort.valueInPer = Math.round((obj.Comfort.value / 5) * 100) + `%`}
@@ -172,12 +180,6 @@ const Reviews = (props) => {
   } else {
     display =
     <div className="dk-container">
-          {/* {console.log('relevantArr outside: ', relevantArr)} */}
-          {/* {console.log('props.details: ', props.details)} */}
-          {/* {console.log('reviewList: ', reviewList)} */}
-          {/* {console.log('props.details.meta.ratings: ', props.details.meta.ratings)} */}
-          {/* {console.log('props.details.meta: ', props.details.meta)} */}
-          {/* {console.log("jeelllooo", charBarPercent(props.details.meta.characteristics))} */}
         <div className="title-review">RATINGS & REVIEWS</div>
           <div className="rating-container">
             <div className="left-side">
@@ -208,10 +210,10 @@ const Reviews = (props) => {
                   <ReviewsEntry key={index} result={result} reportReview={reportReview} index={index} incrementHelpfulness={incrementHelpfulness} />
                 )}
               </div>
-              <div>
-                <button onClick={() => moreReviews()}>More Reviews</button>
-                <button onClick={() => setShow(true)}>Add A REVIEW +</button>
-                <AddReviewModal addReview={addReview} product_id={props.details.questions.product_id} onClose={() => setShow(false)} show={show} />
+              <div className="review-button-container">
+                <button onClick={() => moreReviews()} className="review-button">More Reviews</button>
+                <button onClick={() => setShow(true)} className="review-button">Add A Review</button>
+                <AddReviewModal char={props.details.meta.characteristics} addReview={addReview} product_id={props.details.questions.product_id} onClose={() => setShow(false)} show={show} />
               </div>
             </div>
           </div>

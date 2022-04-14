@@ -47,12 +47,6 @@ const Related = (props)=> {
         <div>
           {/* {console.log('rendering <Related>')} */}
         </div>
-        <ul>To Do
-          <li>Group: </li>
-          <li>Related Module: add currentStyle? to outfits list,  fix errors key prop, hover effects, if similar characteristic - remove duplicates, also put value instead of checkmarks, </li>
-        </ul>
-        <br></br>
-        <br></br>
 
 
         <div id="related-outfit-container">

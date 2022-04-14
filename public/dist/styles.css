@@ -591,6 +591,16 @@ body {
   /* background-color:slateblue; */
 }
 
+.review-button {
+  font-size: 2em;
+  font-family: 'Lato', sans-serif;
+  padding: 0.25em 1em;
+  border: 2px solid #D3D3D3;
+  border-radius: 3px;
+  background: white;
+  cursor: pointer;
+}
+
 
 /* start left side CSS__________________ */
 
@@ -769,7 +779,8 @@ body {
   /* background-color: orange; */
   display: flex;
   justify-content: flex-start;
-
+  cursor: pointer;
+  opacity: 0.5;
 }
 
 .entry-helpful {
@@ -777,6 +788,7 @@ body {
   /* background-color: red; */
   padding-right: 1%;
   padding-bottom: 3%;
+  cursor: pointer;
 }
 
 .entry-report {

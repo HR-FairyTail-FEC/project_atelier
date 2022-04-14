@@ -11,7 +11,7 @@ const ContainerRelated = styled.div`
   height: 370px;
   font-family: 'Lato', sans-serif;
   position: relative;
-  /* background-color: yellow; */
+  background-color: white;
   box-shadow: 0.3em 0.3em 1em rgba(0,0,0,0.3);
 
 `;
@@ -36,12 +36,14 @@ const ImageContainer = styled.div`
 const Category = styled.p`
   font-weight: lighter;
   position: absolute;
+  color:black;
   bottom: 120px;
   left: 10px;
 `;
 
 const Name = styled.p`
   /* border-style:solid; */
+  color:black;
   font-weight: bold;
   font-size:21px;
   position: absolute;
@@ -51,6 +53,7 @@ const Name = styled.p`
 `;
 
 const Price = styled.p`
+  color:black;
   font-weight: 300;
   position: absolute;
   font-weight: 300;

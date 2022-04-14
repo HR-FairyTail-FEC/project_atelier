@@ -249,7 +249,8 @@ const QA = (props) => {
                   q.answers.slice(0, numAShown).map(a => {
                     return (
                       <QAanswer>
-                        <QAanswerBody> <div style={{fontWeight:'800'}}>A:&nbsp;</div> {a.body} </QAanswerBody>
+                        <QAanswerBody> <div style={{fontWeight:'800'}}>A:&nbsp;</div> <div style={{fontSize:'18px'}}>{a.body} </div>
+                        </QAanswerBody>
                         <QAanswerBot>
                           <QAanswerInfo>
                             <p> answered by {a.answerer_name} on {moment(a.date).format('MMMM Do YYYY')}&nbsp; </p>

@@ -27,23 +27,24 @@ const ReviewsEntry = (props) => {
         <h3 className="entry-summary">{result.summary}</h3>
         <div className="entry-body">{result.body}</div>
         <div className="entry-recommend">
-          {result.recommend ? <div><AiOutlineCheck />: I recommend this product</div> : null}
+          {result.recommend ? <div className="entry-recommend-text"><AiOutlineCheck />: I recommend this product</div> : null}
         </div>
         <div className="entry-response">
           {result.response === null || "" ? null : <div className="response-review">Response: {result.response}</div>}
         </div>
         <div className="entry-helpful-report-container">
-          <div className="entry-helpful">Helpful? <a href="#" onClick={()=> {
-            props.incrementHelpfulness(result.review_id, result.helpfulness);
+          <div className="entry-helpful">Helpful? <u onClick={()=> {
+            props.incrementHelpfulness(result.review_id);
             incremented(
-              // console.log("increment executed")
+              console.log("increment executed")
             );
-          }}>Yes</a> ({result.helpfulness}) | </div>
-          <div className="entry-report"><a href="#" onClick={()=> props.reportReview(result.review_id)}>Report</a></div>
+          }}>Yes</u> ({result.helpfulness}) | </div>
+          <div className="entry-report"><u onClick={()=> props.reportReview(result.review_id)}>Report</u></div>
         </div>
       </div>
-      <hr></hr>
+        <hr></hr>
       <div className="entry-hr"></div>
+
 
     </div>
   )
@@ -53,8 +54,9 @@ const ReviewsEntry = (props) => {
 const EntryReviewsStars = (props) => {
   // console.log('<ReviewsStars> with props', props);
   let rating = props.rating;
-  let ratingRounded = (Math.round(rating * 4) / 4).toFixed(2);
-  let starValues = ratingToArray(ratingRounded);
+  // let ratingRounded = (Math.round(rating * 4) / 4).toFixed(2);
+  // console.log('rating was ', rating, 'got rounded to ', ratingRounded);
+  let starValues = ratingToArray(rating);
 
   let entryIndex = props.entryIndex;
   // console.log('the star value array is', starValues);

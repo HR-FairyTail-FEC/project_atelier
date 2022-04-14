@@ -2,6 +2,7 @@ import React from 'react';
 import styled from "styled-components"
 
 const RelatedTitle = styled.div`
+  color:black;
   height:30px;
   font-family: 'Lato', sans-serif;
   font-weight: 400;
@@ -12,6 +13,7 @@ const RelatedTitle = styled.div`
 `;
 
 const OutfitTitle = styled.div`
+  color:black;
   height:30px;
   font-family: 'Lato', sans-serif;
   font-weight: 400;
