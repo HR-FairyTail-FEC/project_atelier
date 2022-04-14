@@ -3,18 +3,17 @@ import { useParams } from 'react-router-dom';
 import Overview from './Overview.jsx';
 import QA from './Q&A.jsx';
 import Related from './Related.jsx';
+import Reviews from './Reviews/Reviews.jsx';
 
 const axios = require('axios');
-
 
 function ProductDetail() {
   // console.log('<ProductDetail>')
   const [productDetail, setDetail] = useState([]);
   const { id } = useParams();
   const [productID, setProductID] = useState(id); //used to refresh productID in useEffect
-
-
   useLayoutEffect(() => {
+    console.log('<ProductDetail> useLayoutEffect()');
     const promises = [];
     let result = [];
     const endpoints = [`/api/products/${productID}`, `/api/products/${productID}/styles`, `/api/products/${productID}/related`, `/api/reviews?product_id=${productID}&sort=relevant`, `/api/reviews/meta?product_id=${productID}`, `/api/qa/questions?product_id=${productID}`];
@@ -37,11 +36,21 @@ function ProductDetail() {
   }, [productID]);
 
   return (
-    <div className="page-container">
-      <Overview details={productDetail}/>
-      <Related details={productDetail} setProductID={setProductID} />
-      <QA details = {productDetail}/>
+    <>
+    <div>
+    {/* console.log('<ProductDetail> render')*/}
     </div>
+    {
+      (productDetail.length === 0) ? <></> :
+      <div className="page-container">
+        <Overview details={productDetail}/>
+        <Related details={productDetail} setProductID={setProductID} />
+        <QA details = {productDetail}/>
+        <Reviews details={productDetail}/>
+      </div>
+    }
+    </>
+
   );
 }
 

@@ -9,6 +9,7 @@ const ContainerOutfit = styled.div`
   margin-right: 15px;
   width: 250px;
   height: 370px;
+
   font-family: 'Lato', sans-serif;
   position: relative;
   background-color: white;
@@ -18,6 +19,7 @@ const AddToOutfit_Text = styled.p`
   /* border-style:solid; */
   font-weight: bold;
   font-size:30px;
+  color:black;
   position: absolute;
   top: 250px;
   left: 30px;
@@ -26,15 +28,19 @@ const AddToOutfit_Text = styled.p`
 `;
 const AddToOutfit_Button = styled(PlusSquare)`
   width:50%;
+  color:black;
   position: absolute;
   top:50px;
   left: 60px;
-  :hover{
-    background-color:red;
+  :hover {
+    /* border: 2px solid black; */
+    transform: scale(1.1);
   }
 `;
 const ActionButtonX = styled(Close)`
-  border: 2px solid red;
+  /* border: 2px solid red; */
+  cursor: pointer;
+  color:black;
   width:40px;
   height:80px;
   position: absolute;

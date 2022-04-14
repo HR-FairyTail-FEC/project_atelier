@@ -8,7 +8,7 @@ const ModalTitle = styled.div`
 `;
 
 const ComparingModal = styled.div`
-  border-style:solid;
+  /* border-style:solid; */
   height: 100%;
   position: relative;
 `;
@@ -41,6 +41,7 @@ const Feature = styled.div`
   /* border-style:dotted; */
   text-align: center;
 `;
+
 const CheckmarkRed = styled(Checkmark)`
   color: red;
   stroke-width: 2;
@@ -49,4 +50,4 @@ const CheckmarkRed = styled(Checkmark)`
   float: ${props=>props.side};
 `;
 
-export {ModalTitle, ComparingModal, TitleContainer,  TitleMain, TitleRelated, Features, Feature, CheckmarkRed};
+export {ModalTitle, ComparingModal, TitleContainer,  TitleMain, TitleRelated, Features, Feature, CheckmarkRed };

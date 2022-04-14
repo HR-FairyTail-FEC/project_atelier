@@ -1,5 +1,7 @@
 import React from 'react';
-import styled from "styled-components"
+import styled from "styled-components";
+import {callInteraction} from '../../Global_Interactions.js';
+
 
 const ContainerRelated = styled.div`
   border: 2px solid rgba(0,0,0,0.3);
@@ -9,7 +11,7 @@ const ContainerRelated = styled.div`
   height: 370px;
   font-family: 'Lato', sans-serif;
   position: relative;
-  /* background-color: yellow; */
+  background-color: white;
   box-shadow: 0.3em 0.3em 1em rgba(0,0,0,0.3);
 
 `;
@@ -34,25 +36,28 @@ const ImageContainer = styled.div`
 const Category = styled.p`
   font-weight: lighter;
   position: absolute;
-  bottom: 130px;
+  color:black;
+  bottom: 120px;
   left: 10px;
 `;
 
 const Name = styled.p`
   /* border-style:solid; */
+  color:black;
   font-weight: bold;
   font-size:21px;
   position: absolute;
-  top: 235px;
+  top: 245px;
   left: 10px;
   height:60px;
 `;
 
 const Price = styled.p`
+  color:black;
   font-weight: 300;
   position: absolute;
   font-weight: 300;
-  bottom: 86px;
+  bottom: 76px;
   left: 10px;
 `;
 
@@ -89,7 +94,12 @@ const LeftArrow=(props)=>{
   let parentFunction = props.changeIndexFN;
   return (
     <LeftArrowCol>
-      <LeftArrowDiv onClick={parentFunction}>
+      <LeftArrowDiv onClick={()=>{
+        console.log('left arrow clicked');
+        parentFunction();
+        callInteraction('Related Product Carousel Left or Right Button', 'Related Items & Comparison', new Date());
+
+      }}>
         <svg x="0px" y="0px" viewBox="0 0 512 512" >
           <path d="M168.837,256L388.418,36.418c8.331-8.331,8.331-21.839,0-30.17c-8.331-8.331-21.839-8.331-30.17,0L123.582,240.915 c-8.331,8.331-8.331,21.839,0,30.17l234.667,234.667c8.331,8.331,21.839,8.331,30.17,0c8.331-8.331,8.331-21.839,0-30.17 L168.837,256z"/>
         </svg>
@@ -127,7 +137,10 @@ const RightArrow=(props)=>{
   let parentFunction = props.changeIndexFN;
   return (
     <RightArrowCol>
-      <RightArrowDiv onClick={parentFunction}>
+      <RightArrowDiv onClick={()=>{
+        parentFunction();
+        callInteraction('Related Product Carousel Left or Right Button', 'Related Items & Comparison', new Date());
+      }}>
         <svg x="0px" y="0px" viewBox="0 0 512 512" >
           <path d="M388.418,240.915L153.752,6.248c-8.331-8.331-21.839-8.331-30.17,0c-8.331,8.331-8.331,21.839,0,30.17L343.163,256
           L123.582,475.582c-8.331,8.331-8.331,21.839,0,30.17c8.331,8.331,21.839,8.331,30.17,0l234.667-234.667
@@ -136,7 +149,6 @@ const RightArrow=(props)=>{
       </RightArrowDiv>
 
     </RightArrowCol>
-
   )
 }
 
