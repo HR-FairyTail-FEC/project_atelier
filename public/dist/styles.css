@@ -710,6 +710,7 @@ body {
   }
 
 .review-entries {
+  height:0px;
   /* background-color:yellow; */
   /* border: 1px solid black; */
 }
@@ -733,10 +734,12 @@ body {
     margin-top:1px;
   }
 .entry-bottom{
+  height:0px;
   /* border: 1px solid black; */
   /* background-color: blue; */
 }
 .entry-summary {
+  height:0px;
   /* background-color: white; */
   /* margin-bottom:20px; */
 }
@@ -759,6 +762,7 @@ body {
 }
 
 .entry-response {
+  height:0px;
   /* border: 1px solid black; */
   /* background-color: #f1f1f1; */
   /* padding-bottom: 3%; */
