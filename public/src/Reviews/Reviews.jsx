@@ -29,7 +29,7 @@ const Reviews = (props) => {
     const endpointsSortReviews = [`/api/reviews?product_id=${id}&sort=relevant`, `/api/reviews?product_id=${id}&sort=newest`, `/api/reviews?product_id=${id}&sort=helpfulness`, `/api/reviews/meta?product_id=${id}`];
     const fetchData = async () => {
       for (let i = 0; i < endpointsSortReviews.length; i++) {
-        promises.push(axios.get(`http://localhost:3000${endpointsSortReviews[i]}`))
+        promises.push(axios.get(`http://${location.hostname}:3000${endpointsSortReviews[i]}`))
       }
       // console.log('promises from review: ', promises);
       const data = await Promise.all(promises);
@@ -54,7 +54,7 @@ const Reviews = (props) => {
 
   const addReview = (reviewInfo) => {
     console.log('reviewInfo: ', reviewInfo)
-    axios.post(`http://localhost:3000/api/reviews`, {
+    axios.post(`http://${location.hostname}:3000/api/reviews`, {
       product_id: Number(reviewInfo.product_id),
       rating: Number(reviewInfo.rating),
       summary: reviewInfo.summary,
@@ -85,7 +85,7 @@ const Reviews = (props) => {
 
   const incrementHelpfulness = (review_id) => {
     setHelpfulClicked(prevItem => [...prevItem, review_id]);
-    axios.put(`http://localhost:3000/api/reviews/${review_id}/helpful`)
+    axios.put(`http://${location.hostname}:3000/api/reviews/${review_id}/helpful`)
     .then(response => {
       console.log('response from increment: ', response)
       setPost(!post)
@@ -97,7 +97,7 @@ const Reviews = (props) => {
 
   const reportReview = (review_id) => {
     console.log('review id for report: ', review_id)
-    axios.put(`http://localhost:3000/api/reviews/${review_id}/report`)
+    axios.put(`http://${location.hostname}:3000/api/reviews/${review_id}/report`)
     .then(response => {
       console.log('response from report: ', response)
       alert("The review has been reported!")

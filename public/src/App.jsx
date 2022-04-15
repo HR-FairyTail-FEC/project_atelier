@@ -21,13 +21,13 @@ function App() {
 
   useEffect(() => {
     const fetch = async () => {
-      const response = await axios.get('http://localhost:3000/api/products');
+      const response = await axios.get(`http://${location.hostname}:3000/api/products`);
       const results = response.data;
       const promises = [];
       let result = [];
       for (let i = 0; i < results.length; i += 1) {
         const { id } = results[i];
-        promises.push(axios.get(`http://localhost:3000/api/products/${id}/styles`));
+        promises.push(axios.get(`http://${location.hostname}:3000/api/products/${id}/styles`));
       }
       const data = await Promise.all(promises);
       data.forEach((item) => {

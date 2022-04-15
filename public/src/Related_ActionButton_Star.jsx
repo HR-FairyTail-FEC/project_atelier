@@ -65,7 +65,7 @@ const ActionButton_Star = (props)=> {
 
   function starClick(){
     let relatedID = props.relatedID;
-    axios.get(`http://localhost:3000/api/products/${relatedID}`).then(response=>{
+    axios.get(`http://${location.hostname}:3000/api/products/${relatedID}`).then(response=>{
       let relProductFeatures = response.data.features;
       return relProductFeatures;
     }).then((relProductFeatures)=>{

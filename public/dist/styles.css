@@ -668,6 +668,8 @@ body {
   /* background-color: red; */
 }
 
+.bar-size {height: 10px; border-right: 6px solid; border-color: #282828;}
+.bar-width {height: 10px; border-right: 6px solid; border-color: #282828;}
 .bar-fit {height: 10px; border-right: 6px solid; border-color: #282828;}
 .bar-length {height: 10px; border-right: 6px solid; border-color: #282828;}
 .bar-comfort {height: 10px; border-right: 6px solid; border-color: #282828;}

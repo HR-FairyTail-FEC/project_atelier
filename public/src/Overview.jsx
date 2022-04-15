@@ -124,7 +124,7 @@ function Overview(props) {
 
   const handleCartClick = () => {
     let data = {sku_id: Number(skuActive), count: Number(quantity)};
-    axios.post('http://localhost:3000/api/cart', data)
+    axios.post(`http://${location.hostname}:3000/api/cart`, data)
       .then(res => res)
       .catch(err => console.error(err));
   };

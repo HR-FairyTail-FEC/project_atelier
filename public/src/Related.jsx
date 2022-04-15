@@ -27,10 +27,9 @@ const Related = (props)=> {
           let promisesArr = [];
           related.forEach((relatedID) => {
             // console.log('calling relatedID', relatedID);
-            promisesArr.push(axios.get(`http://localhost:3000/api/products/${relatedID}`)); //c n p
-            // promisesArr.push(axios.get(`http://localhost:3000/api/reviews?product_id=${relatedID}`)); //for reviews
-            promisesArr.push(axios.get(`http://localhost:3000/api/reviews/meta?product_id=${relatedID}`)); //for reviews
-            promisesArr.push(axios.get(`http://localhost:3000/api/products/${relatedID}/styles`)); //for thumbnail in
+            promisesArr.push(axios.get(`http://${location.hostname}:3000/api/products/${relatedID}`)); //c n p
+            promisesArr.push(axios.get(`http://${location.hostname}:3000/api/reviews/meta?product_id=${relatedID}`)); //for reviews
+            promisesArr.push(axios.get(`http://${location.hostname}:3000/api/products/${relatedID}/styles`)); //for thumbnail in
           });
           Promise.all(promisesArr).then((allData)=>{
             // console.log('raw all promises holds', allData);

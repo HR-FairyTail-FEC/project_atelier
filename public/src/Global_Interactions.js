@@ -8,7 +8,7 @@ export let callInteraction=(element, widget, time) =>{
     time: time.toString()
   }
   // console.log('data To Send is ', data)
-  axios.post('http://localhost:3000/api/interactions', data)
+  axios.post(`http://${location.hostname}:3000/api/interactions`, data)
   .then(res => {
     // console.log('response from interactions API', res);
   })

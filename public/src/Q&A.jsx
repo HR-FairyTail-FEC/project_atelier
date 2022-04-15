@@ -37,7 +37,7 @@ const QA = (props) => {
     } else {
       let productId = props.details.questions.product_id;
       let getQuestions = [];
-      getQuestions.push(axios.get(`http://localhost:3000/api/qa/questions?product_id=${productId}`));
+      getQuestions.push(axios.get(`http://${location.hostname}:3000/api/qa/questions?product_id=${productId}`));
       Promise.all(getQuestions).then((results) => {
         let allQ = [];
         results[0].data.results.forEach(result => {
@@ -86,7 +86,7 @@ const QA = (props) => {
   }
 
   const postAnswer = (q_id, name, email, body) => {
-    axios.post(`http://localhost:3000/api/qa/questions/${q_id}/answers`, {
+    axios.post(`http://${location.hostname}:3000/api/qa/questions/${q_id}/answers`, {
       data: {
         name: name,
         email: email,
@@ -105,7 +105,7 @@ const QA = (props) => {
   }
 
   const postQuestion = (p_id, body, name, email) => {
-    axios.post(`http://localhost:3000/api/qa/questions`, {
+    axios.post(`http://${location.hostname}:3000/api/qa/questions`, {
       data: {
         body: body,
         name: name,
@@ -148,7 +148,7 @@ const QA = (props) => {
       setReportedQ(reportedQ.filter(item => item != id));
     } else {
       setReportedQ(prevItem => [...prevItem, id]);
-      axios.put(`http://localhost:3000/api/qa/questions/${id}/report`, {})
+      axios.put(`http://${location.hostname}:3000/api/qa/questions/${id}/report`, {})
         .then(function (response) {
           console.log(response);
           setPost(!post);
@@ -165,7 +165,7 @@ const QA = (props) => {
       setReportedA(reportedA.filter(item => item != id));
     } else {
       setReportedA(prevItem => [...prevItem, id]);
-      axios.put(`http://localhost:3000/api/qa/answers/${id}/report`)
+      axios.put(`http://${location.hostname}:3000/api/qa/answers/${id}/report`)
         .then(function (response) {
           console.log(response);
           setPost(!post);
@@ -182,7 +182,7 @@ const QA = (props) => {
       setHelpfulClickedQ(helpfulClickedQ.filter(item => item != id));
     } else {
       setHelpfulClickedQ(prevItem => [...prevItem, id]);
-      axios.put(`http://localhost:3000/api/qa/questions/${id}/helpful`)
+      axios.put(`http://${location.hostname}:3000/api/qa/questions/${id}/helpful`)
         .then(function (response) {
           console.log(response);
           setPost(!post);
@@ -198,7 +198,7 @@ const QA = (props) => {
       setHelpfulClickedA(helpfulClickedA.filter(item => item != id));
     } else {
       setHelpfulClickedA(prevItem => [...prevItem, id]);
-      axios.put(`http://localhost:3000/api/qa/answers/${id}/helpful`)
+      axios.put(`http://${location.hostname}:3000/api/qa/answers/${id}/helpful`)
         .then(function (response) {
           console.log(response);
           setPost(!post);

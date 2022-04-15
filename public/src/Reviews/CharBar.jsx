@@ -7,6 +7,42 @@ const CharBar = (props) => {
     <div className="row-charbar">
       <div className="charbar-characteristic">
       {
+        result.Size ?
+        <>
+          <div className="characteristic-title">Size </div>
+          <div className="characteristic-bar-container">
+            <div className="bar-size" style={{width: result.Size.valueInPer }}></div>
+          </div>
+          <div className="characteristic-scale">
+            <div className="characteristic-left">Too small</div>
+            <div className="characteristic-middle">Perfect</div>
+            <div className="characteristic-right">Too wide</div>
+          </div>
+        </>
+        : null
+      }
+      </div>
+
+      <div className="charbar-characteristic">
+      {
+        result.Width ?
+        <>
+          <div className="characteristic-title">Width </div>
+          <div className="characteristic-bar-container">
+            <div className="bar-width" style={{width: result.Width.valueInPer }}></div>
+          </div>
+          <div className="characteristic-scale">
+            <div className="characteristic-left">Too narrow</div>
+            <div className="characteristic-middle">Perfect</div>
+            <div className="characteristic-right">Too wide</div>
+          </div>
+        </>
+        : null
+      }
+      </div>
+
+      <div className="charbar-characteristic">
+      {
         result.Fit ?
         <>
           <div className="characteristic-title">Fit </div>

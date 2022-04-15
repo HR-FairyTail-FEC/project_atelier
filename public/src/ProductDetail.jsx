@@ -19,7 +19,7 @@ function ProductDetail() {
     const endpoints = [`/api/products/${productID}`, `/api/products/${productID}/styles`, `/api/products/${productID}/related`, `/api/reviews?product_id=${productID}&sort=relevant`, `/api/reviews/meta?product_id=${productID}`, `/api/qa/questions?product_id=${productID}`];
     const fetch = async () => {
       for (let i = 0; i < endpoints.length; i += 1) {
-        promises.push(axios.get(`http://localhost:3000${endpoints[i]}`));
+        promises.push(axios.get(`http://${location.hostname}:3000${endpoints[i]}`));
       }
       const data = await Promise.all(promises);
       data.forEach((item) => {
