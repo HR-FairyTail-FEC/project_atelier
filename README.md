@@ -8,7 +8,8 @@ https://user-images.githubusercontent.com/521934/163687532-a9dc7422-485c-4f84-80
 
 ## Project Overview
 
-This Hack Reactor front-end project is a multi-page e-commerce website. Users will be able to interact with the UI and view products or services for sale. Featured components include adding an overview, related products + outfits, Questions and Answers and Reviews.
+This Hack Reactor front-end project is a multi-page e-commerce website. Users will be able to interact with the UI and view products or services for sale. 
+Featured components include adding an overview, related products + outfits, Questions and Answers and Reviews.
 Given a wireframe design, our group of four software engineers developed a front-end project reflecting the design and following a list of features requirements.
 
 
@@ -26,25 +27,14 @@ Given a wireframe design, our group of four software engineers developed a front
 - [react-testing-library](https://testing-library.com/docs/react-testing-library/intro/)
 
 
-## Table of Contents
-* Team Members
-* Description
-* Wireframe design & Finished Product (Overview Module)
-* Installation
-* LightHouse Audit Results
-* Roadmap
----
-**Team Members**
+## Description
 
-*Hack Reactor Cohort - RPP29*
+**Overview**
+**Overview**
+**Overview**
+**Overview**
 
-Group Name - Manchego
 
-* Louis La - Product Overview Module
-* Isaac Kim - Questions & Answers Module
-* Helena Tanubrata - Ratings & Reviews Module
-
----
 **Description**
 
 Our application allows the user to click through products and styles to add to their shopping carts. In addition, users can see the current questions asked for the selected product as well as add their own questions & answers. At the very bottom, users can view reviews written by other customers. There is a star rating for each product. The user can add their own rating and review to the products. Overall, there is a click tracker that logs the users’ click interactions into an API.
