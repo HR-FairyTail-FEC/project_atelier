@@ -8,9 +8,10 @@ https://user-images.githubusercontent.com/521934/163687532-a9dc7422-485c-4f84-80
 
 ## Project Overview
 
-This Hack Reactor front-end project is a multi-page e-commerce website. Users will be able to interact with the UI and view products or services for sale. 
-Featured components include adding an overview, related products + outfits, Questions and Answers and Reviews.
+This Hack Reactor front-end project is a multi-page e-commerce website. 
 Given a wireframe design, our group of four software engineers developed a front-end project reflecting the design and following a list of features requirements.
+Users will be able to interact with the UI and view products or services for sale. 
+Featured components include adding an Overiew, Related Products + Outfits, Questions & Answers and Reviews.
 
 
 ## Tech Stack
@@ -30,9 +31,9 @@ Given a wireframe design, our group of four software engineers developed a front
 ## Description
 
 **Overview**
-**Overview**
-**Overview**
-**Overview**
+**Related Products + Outfits**
+**Questions & Answers**
+**Reviews**
 
 
 **Description**
