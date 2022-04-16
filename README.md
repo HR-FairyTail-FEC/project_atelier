@@ -41,13 +41,13 @@ Featured components include adding an Overiew, Related Products + Outfits, Quest
 * This component will guide the customer through selecting a specific style and size to add to their cart.
 2) **Related Products & Outfits**
 
-    2.1) Related Products
+    2.1 Related Products
     * Related items to the current product are shown as seperate cards. 
     * Each related item card has a thumbnail photo, category, name, price, and averaged star ratin.
     * Additionally, each card has an action button star that pops out a modal which compares features of the current product to the selected related product. 
     * At most 4 related items are shown, if more exist a carousel feature will emerge to help the user flip through. 
 
-    2.2) Outfit List
+    2.2 Outfit List
     * An "Add To Outfit" button allows users to add the currently selected product/style to their outfits list
     * A carousel feature shows only the last 3 items added to the outfit.
     * This list persists after the user visits other pages.
