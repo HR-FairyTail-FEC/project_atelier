@@ -16,18 +16,18 @@ Featured components include adding an Overiew, Related Products + Outfits, Quest
 
 ## Tech Stack
 **Built with**
+- [Javascript, CSS, HTML] <img height="16" width="16" src="https://simpleicons.org/icons/javascript.svg" />
 - [React](https://reactjs.org/) <img height="16" width="16" src="https://simpleicons.org/icons/react.svg" />
-
-
-- [React Styled Components](https://styled-components.com/)
-- [Node.js](https://nodejs.org/en/)
-- [Express](https://expressjs.com/)
-- [Axios](https://www.npmjs.com/package/axios)
-- [Babel](https://babeljs.io/)
-- [Webpack](https://webpack.js.org/)
-- [Jest](https://jestjs.io/docs/getting-started)
-- [npm](https://www.npmjs.com/)
-- [react-testing-library](https://testing-library.com/docs/react-testing-library/intro/)
+- [React Styled Components](https://styled-components.com/) <img height="16" width="16" src="https://simpleicons.org/icons/react.svg" />
+- [Node.js](https://nodejs.org/en/) <img height="16" width="16" src="https://simpleicons.org/icons/nodedotjs.svg" />
+- [Express](https://expressjs.com/) <img height="16" width="16" src="https://simpleicons.org/icons/react.svg" />
+- [Axios](https://www.npmjs.com/package/axios) <img height="16" width="16" src="https://simpleicons.org/icons/react.svg" />
+- [Babel](https://babeljs.io/)<img height="16" width="16" src="https://simpleicons.org/icons/babel.svg" />
+- [Webpack](https://webpack.js.org/)<img height="16" width="16" src="https://simpleicons.org/icons/webpack.svg" />
+- [Jest](https://jestjs.io/docs/getting-started)<img height="16" width="16" src="https://simpleicons.org/icons/jest.svg" />
+- [npm](https://www.npmjs.com/)<img height="16" width="16" src="https://simpleicons.org/icons/npm.svg" />
+- [react-testing-library](https://testing-library.com/docs/react-testing-library/intro/)<img height="16" width="16" src="https://simpleicons.org/icons/testinglibrary.svg" />
+- [AWS] <img height="16" width="16" src="https://simpleicons.org/icons/amazonaws.svg" />
 
 
 ## Description
