@@ -14,11 +14,11 @@ Given a wireframe design, our group of four software engineers developed a front
 
 ## Tech Stack
 **Built with**
-- [React](https://reactjs.org/)
-- [React Styled Components] (https://styled-components.com/)
-- [Node.js] (https://nodejs.org/en/)
-- [Express] (https://expressjs.com/)
-- [Axios] (https://www.npmjs.com/package/axios)
+- [React](https://reactjs.org/) https://github.com/get-icon/geticon/raw/master/icons/react.svg
+- [React Styled Components](https://styled-components.com/)
+- [Node.js](https://nodejs.org/en/)
+- [Express](https://expressjs.com/)
+- [Axios](https://www.npmjs.com/package/axios)
 - [Babel](https://babeljs.io/)
 - [Webpack](https://webpack.js.org/)
 - [Jest](https://jestjs.io/docs/getting-started)
