@@ -33,23 +33,22 @@ Main components include adding an Overiew, Related Products + Outfits, Questions
 **Main Components**
 1) **Product Overview**
 ![Screen Shot 2022-04-16 at 1 39 17 PM](https://user-images.githubusercontent.com/521934/163690765-4c24a68a-ef57-4f91-8aa2-1ed4bcd976cb.png)
-
 The Product Overview module is top-most module on the Product Detail page. Product Overview displays a selected product with the following product information:
-    * A gallery of product images
-    * A variety of styles to select for each product
-    * A product's slogan, description, features, and pricing
-    * Size and quantity available
+    * A gallery of product images.
+    * A variety of styles to select for each product.
+    * A product's slogan, description, features, and pricing.
+    * Size and quantity available.
     
 2) **Related Products & Outfits**
 ![Screen Shot 2022-04-16 at 1 41 04 PM](https://user-images.githubusercontent.com/521934/163690774-c20edb44-9336-499d-91d5-36176bf5145d.png)
     2.1 Related Products
     * Related items to the current product are shown as seperate cards. 
-    * Each related item card has a thumbnail photo, category, name, price, and averaged star ratin.
+    * Each related item card has a thumbnail photo, category, name, price, and averaged star rating
     * Additionally, each card has an action button star that pops out a modal which compares features of the current product to the selected related product. 
     * At most 4 related items are shown, if more exist a carousel feature will emerge to help the user flip through. 
 
     2.2 Outfit List
-    * An "Add To Outfit" button allows users to add the currently selected product/style to their outfits list
+    * An "Add To Outfit" button allows users to add the currently selected product/style to their outfits list.
     * A carousel feature shows only the last 3 items added to the outfit.
     * This list persists after the user visits other pages.
 
