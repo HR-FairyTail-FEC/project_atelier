@@ -18,7 +18,7 @@ Featured components include adding an Overiew, Related Products + Outfits, Quest
 **Built with**
 - [Javascript, CSS, HTML] <img height="16" width="16" src="https://simpleicons.org/icons/javascript.svg" />
 - [React](https://reactjs.org/) <img height="16" width="16" src="https://simpleicons.org/icons/react.svg" />
-- [React Styled Components](https://styled-components.com/) <img height="16" width="16" src="https://simpleicons.org/icons/react.svg" />
+- [React Styled Components](https://styled-components.com/) <img height="16" width="16" src="https://simpleicons.org/icons/styledcomponents.svg" />
 - [Node.js](https://nodejs.org/en/) <img height="16" width="16" src="https://simpleicons.org/icons/nodedotjs.svg" />
 - [Express](https://expressjs.com/) <img height="16" width="16" src="https://simpleicons.org/icons/react.svg" />
 - [Axios](https://www.npmjs.com/package/axios) <img height="16" width="16" src="https://simpleicons.org/icons/react.svg" />
