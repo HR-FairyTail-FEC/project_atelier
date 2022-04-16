@@ -61,9 +61,13 @@ The Product Overview module is top-most module on the Product Detail page. Produ
     
 4) **Ratings & Reviews**
 ![Screen Shot 2022-04-16 at 1 39 44 PM](https://user-images.githubusercontent.com/521934/163690795-c80dc15c-a3ea-4d10-ae10-3b618eef9583.png)
-
-* The Ratings & Reviews module will allow viewing and submission of reviews for the product selected.
-* This component extends the ability to write, read, and browse through reviews for the current product.
+   4.1 Ratings
+      * Average Rating of the current product is shown in a left column with star rating, which corresponds the average rating.
+      * The total recommendation percentage and percenage for each rating data is shown.
+      * Characteristics bar shows how each characteristic of the product is based on each review's rating.
+   4.2 Reviews
+      * It shows all the review that have submitted with each rating and characteristics rating (this part does not show in the review, but adds on to the database). You cac filter the reviews based on dropdown options provided. Also, you can increment the value of "helpful" if the review is helpful and report if the review was inappropriate, then it will disappear.
+      * New review can be added by clicking the button. Photos may be uplaoded along with summary, rating for the current product and charactertics, nickname, email address, and body text.
 
 ## Installation
 1) Fork project and clone to local repository
