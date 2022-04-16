@@ -15,7 +15,7 @@ Users will be able to interact with the UI and view products or services for sal
 
 ## Tech Stack
 **Built with**
-- Javascript, CSS, HTML <img height="16" width="16" src="https://simpleicons.org/icons/javascript.svg" /><img height="16" width="16" src="https://simpleicons.org/icons/css3.svg" /><img height="16" width="16" src="https://simpleicons.org/icons/html5.svg" />
+- Javascript, CSS, HTML <img height="16" width="16" src="https://github.com/get-icon/geticon/raw/master/icons/javascript.svg" /><img height="16" width="16" src="https://simpleicons.org/icons/css3.svg" /><img height="16" width="16" src="https://simpleicons.org/icons/html5.svg" />
 - [React](https://reactjs.org/)  <img height="16" width="16" src="https://simpleicons.org/icons/react.svg" />
 - [React Styled Components](https://styled-components.com/)  <img height="18" width="18" src="https://simpleicons.org/icons/styledcomponents.svg" />
 - [Node.js](https://nodejs.org/en/)  <img height="16" width="16" src="https://simpleicons.org/icons/nodedotjs.svg" />
