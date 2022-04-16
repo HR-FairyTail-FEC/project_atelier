@@ -34,8 +34,12 @@ Main components include adding an Overiew, Related Products + Outfits, Questions
 1) **Product Overview**
 ![Screen Shot 2022-04-16 at 1 39 17 PM](https://user-images.githubusercontent.com/521934/163690765-4c24a68a-ef57-4f91-8aa2-1ed4bcd976cb.png)
 
-* The Overview module is top-most module on the Product Detail page.
-* This component will guide the customer through selecting a specific style and size to add to their cart.
+The Product Overview module is top-most module on the Product Detail page. Product Overview displays a selected product with the following product information:
+    * A gallery of product images
+    * A variety of styles to select for each product
+    * A product's slogan, description, features, and pricing
+    * Size and quantity available
+    
 2) **Related Products & Outfits**
 ![Screen Shot 2022-04-16 at 1 41 04 PM](https://user-images.githubusercontent.com/521934/163690774-c20edb44-9336-499d-91d5-36176bf5145d.png)
     2.1 Related Products
