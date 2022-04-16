@@ -12,6 +12,20 @@ This Hack Reactor front-end project is a multi-page e-commerce website. Users wi
 Given a wireframe design, our group of four software engineers developed a front-end project reflecting the design and following a list of features requirements.
 
 
+## Tech Stack
+**Built with**
+- [React](https://reactjs.org/)
+- [React Styled Components] (https://styled-components.com/)
+- [Node.js] (https://nodejs.org/en/)
+- [Express] (https://expressjs.com/)
+- [Axios] (https://www.npmjs.com/package/axios)
+- [Babel](https://babeljs.io/)
+- [Webpack](https://webpack.js.org/)
+- [Jest](https://jestjs.io/docs/getting-started)
+- [npm](https://www.npmjs.com/)
+- [react-testing-library](https://testing-library.com/docs/react-testing-library/intro/)
+
+
 ## Table of Contents
 * Team Members
 * Description
