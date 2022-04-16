@@ -26,7 +26,7 @@ Given a wireframe design, our group of four software engineers developed a front
 - [AWS](https://aws.amazon.com/ec2/)  <img height="16" width="16" src="https://simpleicons.org/icons/amazonaws.svg" />
 
 ## Description
-Our application allows the user to click through products and styles to add a product to their shopping carts. In addition, users can see the current questions asked for the selected product as well as add their own questions & answers. At the very bottom, users can view reviews written by other customers. There is a star rating for each product. The user can add their own rating and review to the products. Overall, there is a click tracker that logs the users’ click interactions into an API.
+Our application allows the user to click through products and styles to add a product to their shopping carts. Related products will populate under and be shown in a carousel, the user can add the current product to his outfit. In addition, users can see the current questions asked for the selected product as well as add their own questions & answers. At the very bottom, users can view reviews written by other customers. There is a star rating for each product. The user can add their own rating and review to the products. Overall, there is a click tracker that logs the users’ click interactions into an API.
 Main components include adding an Overiew, Related Products + Outfits, Questions & Answers and Reviews.
 
 **Main Components**
