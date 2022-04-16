@@ -14,16 +14,9 @@ const Reviews = (props) => {
   const [numOfEntry, setNumOfEntry] = useState(2);
   const [post, setPost] = useState(false);
   const [helpfulCLicked, setHelpfulClicked] = useState([]);
-  // const [numOfHelpfulness, setNumOfHelpfulness] = useState(props.details.meta.ratings['2']);
-  // console.log("testing props: ", props.details.meta.ratings)
-  // console.log('current state of option: ', option)
   let display;
-  // let ratings = props.details.meta.ratings;
   const { id } = useParams();
-  console.log('product id: ', id);
-// props update and state changes ----> re-render
   useEffect(() => {
-    // console.log('trigger use effect hook')
     const promises = [];
     let result = [];
     const endpointsSortReviews = [`/api/reviews?product_id=${id}&sort=relevant`, `/api/reviews?product_id=${id}&sort=newest`, `/api/reviews?product_id=${id}&sort=helpfulness`, `/api/reviews/meta?product_id=${id}`];
@@ -31,16 +24,11 @@ const Reviews = (props) => {
       for (let i = 0; i < endpointsSortReviews.length; i++) {
         promises.push(axios.get(`http://localhost:3000${endpointsSortReviews[i]}`))
       }
-      // console.log('promises from review: ', promises);
       const data = await Promise.all(promises);
-      // console.log('data from promise: ', data);
       data.forEach((item) => {
         result = [...result, item.data]
       });
       const relevantArr = result[0].results; const newestArr = result[1].results; const helpfulnessArr = result[2].results;
-      // console.log('result from promise: ', result); // 0: relevant, 1: newest, 2: helpfulness 3: metaData
-      // console.log(result[0].results);
-        // setReviewList(relevantArr);
           if (option === 'relevant') {
             setReviewList(relevantArr);
           } else if (option === 'newest') {
@@ -66,7 +54,7 @@ const Reviews = (props) => {
       characteristics: reviewInfo.characteristics
     })
     .then(response => {
-      console.log("response.data from addReview, ", response)
+      // console.log("response.data from addReview, ", response)
       setPost(!post)
     })
     .catch(err => {
@@ -79,7 +67,6 @@ const Reviews = (props) => {
   }
 
   const changeOption = (event) => {
-    console.log('event.target.value: ', event.target.value)
     setOption(event.target.value);
   }
 
@@ -87,7 +74,6 @@ const Reviews = (props) => {
     setHelpfulClicked(prevItem => [...prevItem, review_id]);
     axios.put(`http://localhost:3000/api/reviews/${review_id}/helpful`)
     .then(response => {
-      console.log('response from increment: ', response)
       setPost(!post)
     })
     .catch(err => {
@@ -99,7 +85,7 @@ const Reviews = (props) => {
     console.log('review id for report: ', review_id)
     axios.put(`http://localhost:3000/api/reviews/${review_id}/report`)
     .then(response => {
-      console.log('response from report: ', response)
+      // console.log('response from report: ', response)
       alert("The review has been reported!")
       setPost(!post)
     })
@@ -117,26 +103,16 @@ const Reviews = (props) => {
     let average = 0;
     let sumOfRatings = (1*ratingObj[1] + 2*ratingObj[2] + 3*ratingObj[3] + 4*ratingObj[4] + 5*ratingObj[5])
     let totalNumOfRatings = Number(ratingObj[1]) + Number(ratingObj[2])+ Number(ratingObj[3])+ Number(ratingObj[4])+ Number(ratingObj[5]);
-    // console.log("eah rating: ", ratingObj[1], ratingObj[2], ratingObj[3], ratingObj[4], ratingObj[5])
-    // console.log(sumOfRatings)
-    // console.log("totalnumofratings: 32 ", totalNumOfRatings)
     average = sumOfRatings / totalNumOfRatings;
-    // console.log("average rating: ", average);
     let slicedAver = average.toString().slice(0, 4);
-    // console.log("sliced average rating: ", slicedAver);
     let finalAver = Math.round((Number(slicedAver) * 10)) / 10;
-    // console.log("finalAver: 3.9 ", finalAver);
     return finalAver;
   }
 
   const recommendPercent = (metaRecObj) => {
     let percent = 0;
-    // console.log("metaRecObj.true and metaRecObj.false", metaRecObj.true, metaRecObj.false);
-    // console.log("should be 0.875:  ", (metaRecObj.true / (Number(metaRecObj.true) + Number(metaRecObj.false))))
     percent = metaRecObj.true / (Number(metaRecObj.true) + Number(metaRecObj.false))
-    // console.log("percent before round: 0.875 ", percent)
     percent = Math.round(percent * 100);
-    // console.log("percent after *100 and round: 88 ", percent)
     return percent;
   }
 
@@ -147,27 +123,21 @@ const Reviews = (props) => {
     else if (obj[4] === undefined) { obj[4] = 0;}
     else if (obj[5] === undefined) { obj[5] = 0;}
     let totalNumOfRatings = Number(obj[1]) + Number(obj[2])+ Number(obj[3])+ Number(obj[4])+ Number(obj[5]);
-    // console.log("totalnumofratings: 32 ", totalNumOfRatings)
-    // console.log("[1,2,6,2,21]", Object.values(obj))
     let arr = [];
     let valuesArr = Object.values(obj);
     for (var i = 0; i < valuesArr.length; i++) {
       arr.push((valuesArr[i] / totalNumOfRatings * 100) + `%`)
     }
-    // console.log('final arr: ', arr);
     return arr;
   }
 
   const charBarPercent = (obj) => {
-    // value / scale of 5 = percentage
-    // console.log("obj in charbar: ", obj)
     if (obj.Size) { obj.Size.valueInPer = Math.round((obj.Size.value / 5) * 100) + `%`}
     if (obj.Width) { obj.Width.valueInPer = Math.round((obj.Width.value / 5) * 100) + `%`}
     if (obj.Fit) { obj.Fit.valueInPer = Math.round((obj.Fit.value / 5) * 100) + `%`}
     if (obj.Length) { obj.Length.valueInPer = Math.round((obj.Length.value / 5) * 100) + `%`}
     if (obj.Comfort) { obj.Comfort.valueInPer = Math.round((obj.Comfort.value / 5) * 100) + `%`}
     if (obj.Quality) { obj.Quality.valueInPer = Math.round((obj.Quality.value / 5) * 100) + `%`}
-    // console.log("whatis this newly made, ", obj)
     return obj;
 
   }

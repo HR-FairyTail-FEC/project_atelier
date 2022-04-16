@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-let placeHolderURL = 'https://www.eslc.org/wp-content/uploads/2019/08/placeholder-grey-square-600x600.jpg'
+let placeHolderURL = 'https://cdn.shopify.com/s/files/1/0346/5945/products/Spec-Side_31cc55d4-d48d-4b7c-a26e-d9070210cc7c_5000x.png?v=1641417596'
 import { ContainerRelated, Category, Name, Price, ImageContainer,LeftArrow, RightArrow, CarouselContainer}  from '../src/Styled Components/RelatedItems+Comparison/container-related.styled.js';
 import { ContainerOutfit, AddToOutfit_Text, AddToOutfit_Button, ActionButtonX} from '../src/Styled Components/RelatedItems+Comparison/container-outfit.styled.js';
 import {RelatedTitle, OutfitTitle, SpaceHolderColumn} from './Styled Components/RelatedItems+Comparison/container-related-outfit.styled.js';
@@ -33,7 +33,7 @@ const Related = (props)=> {
             promisesArr.push(axios.get(`http://localhost:3000/api/products/${relatedID}/styles`)); //for thumbnail in
           });
           Promise.all(promisesArr).then((allData)=>{
-            // console.log('raw all promises holds', allData);
+            console.log('raw all promises holds', allData);
             let formattedData = formatData(allData);
             // console.log('this is what relatedEntries holds', formattedData);
             setRelatedEntries(formattedData);
@@ -87,8 +87,6 @@ const Related = (props)=> {
     );
 
     function relatedEntriesMapped(startIndexRelated, endIndexRelated){
-      // console.log('in relatedEntriesMapped');
-      // console.log('sliced entries are', relatedEntries.slice(startIndexRelated, endIndexRelated+1));
       return relatedEntries.slice(startIndexRelated,endIndexRelated+1).map((obj,index)=>{
         return (
             <ContainerRelated key={index} onClick={() => {
@@ -115,12 +113,11 @@ const Related = (props)=> {
             <Price> ${outfit.price} </Price>
             <Stars rating={outfit.stars} instance={outfit.instance} key={index}/>
             <div className = "actionbutton-x">
-            <ActionButtonX onClick={()=>{
-              DeleteFromOutfit_Click(outfit.id);
-              callInteraction('Related Product Outfit Card Remove Button', 'Related Items & Comparison', new Date());
-            }}/>
+              <ActionButtonX onClick={()=>{
+                DeleteFromOutfit_Click(outfit.id);
+                callInteraction('Related Product Outfit Card Remove Button', 'Related Items & Comparison', new Date());
+              }}/>
             </div>
-
           </ContainerOutfit>
         )
       })
@@ -157,18 +154,14 @@ const Related = (props)=> {
 
     }
     function handleContainerSelect(event){
-      // console.log('whole ContainerRelated clicked event:', event);
       navigate(`/products/${event}`);
       props.setProductID(event)
-
     };
 
     function AddToOutfit_Click(){
       let currentProduct = props.details.product;
       let currentReview = props.details.reviews;
       let currentStyle = props.details.styles;
-      // console.log(' button clicked with currentProduct', currentProduct);
-      // console.log(' state of outfitEntries is', outfitEntries);
       let cnp = {
         data: currentProduct
       }
@@ -180,7 +173,6 @@ const Related = (props)=> {
       }
       let allData = [cnp, review, style];
       let formattedData = formatData(allData)[0];
-      // console.log(' in AddToOutfitClick_ formattedData is', formattedData);
       let addingOutfits = [...outfitEntries, formattedData];
       const uniqueOutfits = addingOutfits.filter((outfit, index) => {
         const _outfit = JSON.stringify(outfit);
@@ -188,11 +180,9 @@ const Related = (props)=> {
           return JSON.stringify(obj) === _outfit;
         });
       });
-      // console.log(uniqueOutfits);
       setOutfitEntries(uniqueOutfits);
     }
     function DeleteFromOutfit_Click(idTarget){
-      // console.log('delete From outfit clicked on id', idTarget,'current outfitEntries is', outfitEntries);
       let copy = [...outfitEntries];
       for (let i =0; i<copy.length; i++){
         if (copy[i].id ===idTarget){
@@ -200,20 +190,16 @@ const Related = (props)=> {
         }
       }
       setOutfitEntries(copy);
-      // console.log('deleted entry outfitEntries looks like', copy);
     }
 
 };
 
 function formatData(allData){
-  // console.log('in formatData with data', allData);
     let data = [];
     for (let i =0; i<allData.length;i = i+3){
       let averageStars = calculateStars(allData[i+1].data);//even is cnp data, odd has reviews
       let thumbnailURL = allData[i+2].data.results[0].photos[0].thumbnail_url || placeHolderURL;
       let instance = i/3;
-      // console.log('instance is', instance);
-      // console.log(thumbnailURL);
       let dataObj = {
         id: allData[i].data.id,
         instance: instance,
@@ -223,15 +209,12 @@ function formatData(allData){
         price: allData[i].data.default_price,
         stars: averageStars
       }
-      // console.log('dataobj being pushed is', dataObj);
       data.push(dataObj);
     }
-    // console.log('data array', data);
     return data;
 
 };
 function calculateStars(obj){
-  // console.log('in calculate stars with obj', obj);
   let ratings = obj.ratings;
   let totalStars = 0;
   let totalReviews = 0;
@@ -243,12 +226,9 @@ function calculateStars(obj){
   }
   let average = totalStars/totalReviews;
   let averageRounded = (Math.round(average * 4) / 4).toFixed(2);
-  // console.log('averageRounded is', averageRounded);
   return averageRounded;
 }
 function Stars(props) {
-  // console.log('in <Stars> with props', props);
-  // console.log('in stars component with rating', props.rating,' instance', props.instance);
   let instance = props.instance;
   let rating = props.rating;
   let starValues = ratingToArray(rating);
@@ -277,11 +257,9 @@ function Stars(props) {
   )
 }
 function ratingToArray(rating){
-  // console.log('Related.jsx - ratingToArray with rating', rating);
   let array = ['0%','0%','0%','0%','0%'];
   let whole = Math.floor(rating);
   let decimal = rating - whole;
-  // console.log('whole is', whole, 'dec is ', decimal);
   for (let i =0; i<whole; i++){
     array[i] = '100%';
   }
@@ -294,13 +272,7 @@ function ratingToArray(rating){
     let percentage = decimalToPercentage[decimal];
     array[whole] = percentage;
   }
-
-
   return array;
 }
-
-
-
-
 
 export default Related;

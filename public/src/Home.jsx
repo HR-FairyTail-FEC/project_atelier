@@ -9,8 +9,11 @@ const Home = () => {
       <span className="small-home-text">ENTER THE</span>
       <span className="large-home-text">ATELIER</span>
       <button onClick={onButtonClick} className="home-btn">Enter</button>
+
     </div>
   );
 }
+
+
 
 export default Home;

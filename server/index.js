@@ -174,10 +174,9 @@ app.put('/api/qa/answers/:answer_id/report', (request, response) => {
 
 app.post('/api/interactions', (request, response) => {
   let data = request.body;
-  console.log('in index js with data', data);
+  // console.log('in index js with data', data);
   axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/interactions', data, { headers: Options})
     .then((res) => {
-      console.log('response from post is', res);
       response.sendStatus(201);
     })
 });
