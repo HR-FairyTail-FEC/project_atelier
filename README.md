@@ -10,8 +10,6 @@ https://user-images.githubusercontent.com/521934/163687532-a9dc7422-485c-4f84-80
 
 This Hack Reactor front-end project is a multi-page e-commerce website retrieving all product information from an API database.
 Given a wireframe design, our group of four software engineers developed a front-end project reflecting the design and following a list of features requirements.
-Users will be able to interact with the UI and view products or services for sale. 
-
 
 ## Tech Stack
 **Built with**
@@ -28,12 +26,9 @@ Users will be able to interact with the UI and view products or services for sal
 - [react-testing-library](https://testing-library.com/docs/react-testing-library/intro/)  <img height="16" width="16" src="https://simpleicons.org/icons/testinglibrary.svg" />
 - [AWS](https://aws.amazon.com/ec2/)  <img height="16" width="16" src="https://simpleicons.org/icons/amazonaws.svg" />
 
-
 ## Description
-
 Our application allows the user to click through products and styles to add a product to their shopping carts. In addition, users can see the current questions asked for the selected product as well as add their own questions & answers. At the very bottom, users can view reviews written by other customers. There is a star rating for each product. The user can add their own rating and review to the products. Overall, there is a click tracker that logs the users’ click interactions into an API.
-
-Featured components include adding an Overiew, Related Products + Outfits, Questions & Answers and Reviews.
+Main components include adding an Overiew, Related Products + Outfits, Questions & Answers and Reviews.
 
 **Main Components**
 1) **Product Overview**
