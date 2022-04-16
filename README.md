@@ -18,6 +18,8 @@ Featured components include adding an Overiew, Related Products + Outfits, Quest
 **Built with**
 - [React](https://reactjs.org/) <img src="{https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB"} />
 https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
+![image]({https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
+})
 
 - [React Styled Components](https://styled-components.com/)
 - [Node.js](https://nodejs.org/en/)
