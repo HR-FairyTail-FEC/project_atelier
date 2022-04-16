@@ -55,9 +55,13 @@ Featured components include adding an Overiew, Related Products + Outfits, Quest
     * This list persists after the user visits other pages.
 
 3) Questions & Answers
+![Screen Shot 2022-04-16 at 1 39 34 PM](https://user-images.githubusercontent.com/521934/163690787-a0540031-a8ec-4274-90cb-7a06f47b97c1.png)
+
 * The Questions & Answers module allows asking and answering of questions for the product selected.
 * This component extends the ability to view and search questions, ask questions, answer questions and provide feedback on questions about the current product.
 4) Ratings & Reviews
+![Screen Shot 2022-04-16 at 1 39 44 PM](https://user-images.githubusercontent.com/521934/163690795-c80dc15c-a3ea-4d10-ae10-3b618eef9583.png)
+
 * The Ratings & Reviews module will allow viewing and submission of reviews for the product selected.
 * This component extends the ability to write, read, and browse through reviews for the current product.
 
