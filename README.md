@@ -1,6 +1,5 @@
 # Project Atelier
-Software Team: [Dennis Cao](https://www.linkedin.com/in/dennisrcao/), [Andy Chan](https://www.linkedin.com/in/andychan727/), Francesco Garofalo, [Dong Hyoung Kim](https://www.linkedin.com/in/dong-hyoung-kim-7686b8222/)
-
+Software Team: [Dennis Cao](https://www.linkedin.com/in/dennisrcao/), [Andy Chan](https://www.linkedin.com/in/andychan727/), Francesco Garofalo(https://www.linkedin.com/in/garofalofrancesco/), [Dong Hyoung Kim](https://www.linkedin.com/in/dong-hyoung-kim-7686b8222/)
 
 
 https://user-images.githubusercontent.com/521934/163687532-a9dc7422-485c-4f84-80c3-edb728b2e5f4.mov
@@ -8,8 +7,8 @@ https://user-images.githubusercontent.com/521934/163687532-a9dc7422-485c-4f84-80
 
 ## Project Overview
 
-This Hack Reactor front-end project is a multi-page e-commerce website retrieving all product information from an API database.
-Given a wireframe design, our group of four software engineers developed a front-end project reflecting the design and following a list of features requirements.
+This Hack Reactor front-end project is a multi-page e-commerce website retrieving all product information from an API database. 
+Given a wireframe design, our group of four software engineers developed a front-end project reflecting the design and following a list of features requirements. We deployed the site to an [AWS EC2 Instance](http://ec2-18-223-212-148.us-east-2.compute.amazonaws.com:3000/)
 
 ## Tech Stack
 **Built with**
@@ -48,11 +47,11 @@ The Product Overview module is top-most module on the Product Detail page. Produ
     * At most 4 related items are shown, if more exist a carousel feature will emerge to help the user flip through. 
 
     2.2 Outfit List
-    * An "Add To Outfit" button allows users to add the currently selected product/style to their outfits list.
+    * An "Add To Outfit" button allows users to add or delete the currently selected product/style to their outfits list.
     * A carousel feature shows only the last 3 items added to the outfit.
     * This list persists after the user visits other pages.
 
-3) Questions & Answers
+3) **Questions & Answers**
 ![Screen Shot 2022-04-16 at 1 39 34 PM](https://user-images.githubusercontent.com/521934/163690787-a0540031-a8ec-4274-90cb-7a06f47b97c1.png)
 
     * The Questions & Answers module displays previous entries made by others and allows asking and answering of questions for the current product             selected and providing feedback.
@@ -60,7 +59,7 @@ The Product Overview module is top-most module on the Product Detail page. Produ
     * This module extends the ability to view and search previous entries, ask questions, answer questions through a modal popup. 
     * Feedback options include marking the question/answer as helpful which is what the entries are sorted by (top -> down) and report an entry               which will flag it so it's no longer shown in the lists.
     
-4) Ratings & Reviews
+4) **Ratings & Reviews**
 ![Screen Shot 2022-04-16 at 1 39 44 PM](https://user-images.githubusercontent.com/521934/163690795-c80dc15c-a3ea-4d10-ae10-3b618eef9583.png)
 
 * The Ratings & Reviews module will allow viewing and submission of reviews for the product selected.
@@ -98,7 +97,7 @@ Page performance goals:
 
 ![desktop](https://github.com/Louis-La/atelier-front-end-capstone-project/blob/main/SpeedTestsScreenshots/LightHouseAuditDesktop.png)
 
-## Roadmap - future enhancements
+## Future Enhancemenets
 
 * CSS overhaul to have each component's CSS style align better
 * Login/User creation - Store user data associated to a certain user
