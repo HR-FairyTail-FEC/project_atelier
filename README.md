@@ -52,8 +52,11 @@ Main components include adding an Overiew, Related Products + Outfits, Questions
 3) Questions & Answers
 ![Screen Shot 2022-04-16 at 1 39 34 PM](https://user-images.githubusercontent.com/521934/163690787-a0540031-a8ec-4274-90cb-7a06f47b97c1.png)
 
-* The Questions & Answers module allows asking and answering of questions for the product selected.
-* This component extends the ability to view and search questions, ask questions, answer questions and provide feedback on questions about the current product.
+    * The Questions & Answers module displays previous entries made by others and allows asking and answering of questions for the current product             selected and providing feedback.
+    * The list of questions & answers is contained within a scrollable container that adds 2 more questions or 2 more answers when their                       respective buttons are present.
+    * This module extends the ability to view and search previous entries, ask questions, answer questions through a modal popup. 
+    * Feedback options include marking the question/answer as helpful which is what the entries are sorted by (top -> down) and report an entry               which will flag it so it's no longer shown in the lists.
+    
 4) Ratings & Reviews
 ![Screen Shot 2022-04-16 at 1 39 44 PM](https://user-images.githubusercontent.com/521934/163690795-c80dc15c-a3ea-4d10-ae10-3b618eef9583.png)
 
