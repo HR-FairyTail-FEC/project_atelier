@@ -16,7 +16,7 @@ Featured components include adding an Overiew, Related Products + Outfits, Quest
 
 ## Tech Stack
 **Built with**
-- [Javascript, CSS, HTML] <img height="16" width="16" src="https://simpleicons.org/icons/javascript.svg" />
+- Javascript, CSS, HTML <img height="16" width="16" src="https://simpleicons.org/icons/javascript.svg" /><img height="16" width="16" src="https://simpleicons.org/icons/css3.svg" /><img height="16" width="16" src="https://simpleicons.org/icons/html5.svg" />
 - [React](https://reactjs.org/)  <img height="16" width="16" src="https://simpleicons.org/icons/react.svg" />
 - [React Styled Components](https://styled-components.com/)  <img height="18" width="18" src="https://simpleicons.org/icons/styledcomponents.svg" />
 - [Node.js](https://nodejs.org/en/)  <img height="16" width="16" src="https://simpleicons.org/icons/nodedotjs.svg" />
@@ -27,7 +27,7 @@ Featured components include adding an Overiew, Related Products + Outfits, Quest
 - [Jest](https://jestjs.io/docs/getting-started)  <img height="16" width="16" src="https://simpleicons.org/icons/jest.svg" />
 - [npm](https://www.npmjs.com/)  <img height="16" width="16" src="https://simpleicons.org/icons/npm.svg" />
 - [react-testing-library](https://testing-library.com/docs/react-testing-library/intro/)  <img height="16" width="16" src="https://simpleicons.org/icons/testinglibrary.svg" />
-- [AWS]  <img height="16" width="16" src="https://simpleicons.org/icons/amazonaws.svg" />
+- [AWS](https://aws.amazon.com/ec2/)  <img height="16" width="16" src="https://simpleicons.org/icons/amazonaws.svg" />
 
 
 ## Description
