@@ -474,6 +474,7 @@ body {
   width: 100%;
   height: 890px;
   top: 500px;
+  margin-top:100px;
 }
 #related-container{
   /* border-style:dotted; */

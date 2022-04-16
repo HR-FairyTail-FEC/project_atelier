@@ -12,7 +12,6 @@ function Product(props) {
       <img onClick={() => handleImageSelect(item.id)} src={item.url} alt=""></img>
     </div>
   ));
-
   return (
     <div>
       <div className="row">
