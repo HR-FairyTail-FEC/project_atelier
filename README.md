@@ -60,43 +60,28 @@ Main components include adding an Overiew, Related Products + Outfits, Questions
 * The Ratings & Reviews module will allow viewing and submission of reviews for the product selected.
 * This component extends the ability to write, read, and browse through reviews for the current product.
 
-![product overview component](https://github.com/Louis-La/atelier-front-end-capstone-project/blob/main/screenshots/ProductOverview.png)
-![related products component](https://github.com/Louis-La/atelier-front-end-capstone-project/blob/main/screenshots/RelatedProducts.png)
-[Questions & Answers Screenshot Link](https://drive.google.com/file/d/1Rchka4OMjUognCv3MwobskHrvEwxBQef/view?usp=sharing)
-
-[Ratings & Reviews Screenshot Link](https://drive.google.com/file/d/1A28eU5CArZtWi7UuVLrLoFR0wghoDS8g/view?usp=sharing)
-
----
-**Wireframe design & Finished Product (Overview Module)**
-
-![wireframe](https://github.com/Louis-La/atelier-front-end-capstone-project/blob/main/WireframeAndBusinessDoc/ProductOverviewWireFrameComparison.png)
-
----
 **Installation**
-
-Our application uses React, Express, Axios, jQuery,  webpack, and babelrc mainly. The developer needs node installed and would just need to run an npm install and then run the npm commands to start webpack and the server. The developer would also need their own config files such as a GitHub token and an imgBB key, in order to use the image upload function.
-
-1) Install all packages by running the following commands in your terminal.
+1)Fork project and clone to local repository
+2) Install all packages by running the following commands in your terminal.
 ```
 npm install
 ```
-2) Start the server.
+3) Start the server(runs Nodemon on server>index.js). In the terminal type
 ```
-npm run server
+npm run server-dev
 ```
-3) On a separate terminal, run webpack.
+4) Start webpack (webpack serve --open). In the terminal type
 ```
-npm run webpack
+npm run start
 ```
 
-4) Rename the `example.config.js` file to `config.js`
+5) Rename the `example.config.js` file to `config.js`
 
-5) Insert your own GitHub token and imgBB token into the `config.js` file.
+6) Insert your own GitHub token and imgBB token into the `config.js` file.
 
 6) Open the project in your web browser.
-http://localhost:3000/
+http://localhost:8080
 
----
 **LightHouse Audit Results**
 
 These are screenshots of the LightHouse audit results (taken locally) for desktop.
