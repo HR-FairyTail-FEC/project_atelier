@@ -100,8 +100,8 @@ Page performance goals:
 * Time to First Paint: 0.8 seconds
 * Time to First Meaningful Paint: 2.0 seconds
 * Time to Interactive: 2.5 seconds
+<img width="690" alt="Screen Shot 2022-04-16 at 1 59 14 PM" src="https://user-images.githubusercontent.com/521934/163691730-ac056072-6b67-4ba9-bbd6-32917720f432.png">
 
-![desktop](https://github.com/Louis-La/atelier-front-end-capstone-project/blob/main/SpeedTestsScreenshots/LightHouseAuditDesktop.png)
 
 ## Future Enhancemenets
 
