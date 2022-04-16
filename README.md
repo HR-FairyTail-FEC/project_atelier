@@ -1,5 +1,5 @@
 # Project Atelier
-Software Team: [Dennis Cao](https://www.linkedin.com/in/dennisrcao/), Andy Chan, Francesco Garofalo, Dong Hyoung Kim
+Software Team: [Dennis Cao](https://www.linkedin.com/in/dennisrcao/), Andy Chan, Francesco Garofalo, [Dong Hyoung Kim](https://www.linkedin.com/in/dong-hyoung-kim-7686b8222/)
 
 
 
