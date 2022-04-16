@@ -60,8 +60,9 @@ Main components include adding an Overiew, Related Products + Outfits, Questions
 * The Ratings & Reviews module will allow viewing and submission of reviews for the product selected.
 * This component extends the ability to write, read, and browse through reviews for the current product.
 
-**Installation**
+## Installation
 1)Fork project and clone to local repository
+
 2) Install all packages by running the following commands in your terminal.
 ```
 npm install
