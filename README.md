@@ -8,10 +8,9 @@ https://user-images.githubusercontent.com/521934/163687532-a9dc7422-485c-4f84-80
 
 ## Project Overview
 
-This Hack Reactor front-end project is a multi-page e-commerce website. 
+This Hack Reactor front-end project is a multi-page e-commerce website retrieving all product information from an API database.
 Given a wireframe design, our group of four software engineers developed a front-end project reflecting the design and following a list of features requirements.
 Users will be able to interact with the UI and view products or services for sale. 
-Featured components include adding an Overiew, Related Products + Outfits, Questions & Answers and Reviews.
 
 
 ## Tech Stack
@@ -32,24 +31,30 @@ Featured components include adding an Overiew, Related Products + Outfits, Quest
 
 ## Description
 
-**Overview**
-**Related Products + Outfits**
-**Questions & Answers**
-**Reviews**
+Our application allows the user to click through products and styles to add a product to their shopping carts. In addition, users can see the current questions asked for the selected product as well as add their own questions & answers. At the very bottom, users can view reviews written by other customers. There is a star rating for each product. The user can add their own rating and review to the products. Overall, there is a click tracker that logs the users’ click interactions into an API.
 
+Featured components include adding an Overiew, Related Products + Outfits, Questions & Answers and Reviews.
 
-**Description**
-
-Our application allows the user to click through products and styles to add to their shopping carts. In addition, users can see the current questions asked for the selected product as well as add their own questions & answers. At the very bottom, users can view reviews written by other customers. There is a star rating for each product. The user can add their own rating and review to the products. Overall, there is a click tracker that logs the users’ click interactions into an API.
-
-*Main Components*
+**Main Components**
 1) Product Overview
 * The Overview module is top-most module on the Product Detail page.
 * This component will guide the customer through selecting a specific style and size to add to their cart.
-2) Questions & Answers
+2) Related Products & Outfits
+
+2.1) Related Products
+* Related items to the current product are shown as seperate cards. 
+* Each related item card has a thumbnail photo, category, name, price, and averaged star ratin.
+* Additionally, each card has an action button star that pops out a modal which compares features of the current product to the selected related product. 
+* At most 4 related items are shown, if more exist a carousel feature will emerge to help the user flip through. 
+2.2) Outfit List
+* An "Add To Outfit" button allows users to add the currently selected product/style to their outfits list
+* A carousel feature shows only the last 3 items added to the outfit.
+* This list persists after the user visits other pages.
+
+3) Questions & Answers
 * The Questions & Answers module allows asking and answering of questions for the product selected.
 * This component extends the ability to view and search questions, ask questions, answer questions and provide feedback on questions about the current product.
-3) Ratings & Reviews
+4) Ratings & Reviews
 * The Ratings & Reviews module will allow viewing and submission of reviews for the product selected.
 * This component extends the ability to write, read, and browse through reviews for the current product.
 
