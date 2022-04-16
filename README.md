@@ -37,9 +37,11 @@ Featured components include adding an Overiew, Related Products + Outfits, Quest
 
 **Main Components**
 1) **Product Overview**
+![Screen Shot 2022-04-16 at 1 39 17 PM](https://user-images.githubusercontent.com/521934/163690765-4c24a68a-ef57-4f91-8aa2-1ed4bcd976cb.png)
+
 * The Overview module is top-most module on the Product Detail page.
 * This component will guide the customer through selecting a specific style and size to add to their cart.
-2) **Related Products & Outfits**
+3) **Related Products & Outfits**
 
     2.1 Related Products
     * Related items to the current product are shown as seperate cards. 
