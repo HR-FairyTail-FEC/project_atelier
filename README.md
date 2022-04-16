@@ -61,7 +61,7 @@ Main components include adding an Overiew, Related Products + Outfits, Questions
 * This component extends the ability to write, read, and browse through reviews for the current product.
 
 ## Installation
-1)Fork project and clone to local repository
+1) Fork project and clone to local repository
 
 2) Install all packages by running the following commands in your terminal.
 ```
