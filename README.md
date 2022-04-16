@@ -85,18 +85,14 @@ http://localhost:8080
 
 ## LightHouse Audit Results
 
-These are screenshots of the LightHouse audit results (taken locally) for desktop.
-
 Page performance goals:
 * Time to First Paint: 0.8 seconds
 * Time to First Meaningful Paint: 2.0 seconds
 * Time to Interactive: 2.5 seconds
 
 ![desktop](https://github.com/Louis-La/atelier-front-end-capstone-project/blob/main/SpeedTestsScreenshots/LightHouseAuditDesktop.png)
-* [Mobile Version Screenshot Link](https://github.com/Louis-La/atelier-front-end-capstone-project/blob/main/SpeedTestsScreenshots/LightHouseAuditMobile.png)
 
----
-**Roadmap - future enhancements**
+## Roadmap - future enhancements
 
 * CSS overhaul to have each component's CSS style align better
 * Login/User creation - Store user data associated to a certain user
