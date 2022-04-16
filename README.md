@@ -78,12 +78,12 @@ npm run start
 
 5) Rename the `example.config.js` file to `config.js`
 
-6) Insert your own GitHub token and imgBB token into the `config.js` file.
+6) Insert your own GitHub token into the `config.js` file.
 
 6) Open the project in your web browser.
 http://localhost:8080
 
-**LightHouse Audit Results**
+## LightHouse Audit Results
 
 These are screenshots of the LightHouse audit results (taken locally) for desktop.
 
@@ -93,7 +93,6 @@ Page performance goals:
 * Time to Interactive: 2.5 seconds
 
 ![desktop](https://github.com/Louis-La/atelier-front-end-capstone-project/blob/main/SpeedTestsScreenshots/LightHouseAuditDesktop.png)
-
 * [Mobile Version Screenshot Link](https://github.com/Louis-La/atelier-front-end-capstone-project/blob/main/SpeedTestsScreenshots/LightHouseAuditMobile.png)
 
 ---
@@ -104,7 +103,6 @@ Page performance goals:
 * Database integration with user data via MongoDB
 * Adding security certificate to allow for ‘https’ access
 
----
 
 
 
