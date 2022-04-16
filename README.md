@@ -16,7 +16,7 @@ Featured components include adding an Overiew, Related Products + Outfits, Quest
 
 ## Tech Stack
 **Built with**
-- [React](https://reactjs.org/) <img height="32" width="32" src="https://simpleicons.org/icons/react.svg" />
+- [React](https://reactjs.org/) <img height="16" width="16" src="https://simpleicons.org/icons/react.svg" />
 
 
 - [React Styled Components](https://styled-components.com/)
