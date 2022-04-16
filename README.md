@@ -19,7 +19,7 @@ Users will be able to interact with the UI and view products or services for sal
 - [React](https://reactjs.org/)  <img height="16" width="16" src="https://simpleicons.org/icons/react.svg" />
 - [React Styled Components](https://styled-components.com/)  <img height="18" width="18" src="https://simpleicons.org/icons/styledcomponents.svg" />
 - [Node.js](https://nodejs.org/en/)  <img height="16" width="16" src="https://simpleicons.org/icons/nodedotjs.svg" />
-- [Express](https://expressjs.com/)  <img height="16" width="16" src="https://simpleicons.org/icons/nodedotjs.svg" />
+- [Express](https://expressjs.com/)  <img height="16" width="16" src="https://github.com/get-icon/geticon/raw/master/icons/express.svg" />
 - [Axios](https://www.npmjs.com/package/axios)  <img height="16" width="16" src="https://simpleicons.org/icons/nodedotjs.svg" />
 - [Babel](https://babeljs.io/)  <img height="16" width="16" src="https://simpleicons.org/icons/babel.svg" />
 - [Webpack](https://webpack.js.org/)  <img height="16" width="16" src="https://simpleicons.org/icons/webpack.svg" />
