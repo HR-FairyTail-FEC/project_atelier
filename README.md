@@ -1,5 +1,5 @@
 # Project Atelier
-Software Team: [Dennis Cao](https://www.linkedin.com/in/dennisrcao/), [Andy Chan](https://www.linkedin.com/in/andychan727/), Francesco Garofalo(https://www.linkedin.com/in/garofalofrancesco/), [Dong Hyoung Kim](https://www.linkedin.com/in/dong-hyoung-kim-7686b8222/)
+Software Team: [Dennis Cao](https://www.linkedin.com/in/dennisrcao/), [Andy Chan](https://www.linkedin.com/in/andychan727/), [Francesco Garofalo](https://www.linkedin.com/in/garofalofrancesco/), [Dong Hyoung Kim](https://www.linkedin.com/in/dong-hyoung-kim-7686b8222/)
 
 
 https://user-images.githubusercontent.com/521934/163687532-a9dc7422-485c-4f84-80c3-edb728b2e5f4.mov
